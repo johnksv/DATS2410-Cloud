@@ -14,7 +14,7 @@ if ($conn->connect_error) {
 }
 echo "Connected successfully. ";
 
-$sql = "SELECT studentID FROM testdb.Student";
+$sql = "SELECT * FROM testdb.Student";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
