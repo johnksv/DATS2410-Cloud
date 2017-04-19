@@ -2,33 +2,18 @@
 ini_set('error_reporting', E_ALL);
 ?>
 
-<!DOCTYPE html>
-<html>
-<body>
-Testing php database to proxy:
 <?php
 $servername = "10.1.0.252";
 $username = "testuser";
 $password = "password";
-$dbname = "testdb";
+
 // Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($servername, $username, $password);
+
 // Check connection
 if ($conn->connect_error) {
-     die("Connection failed: " . $conn->connect_error);
-} 
-$sql = "SELECT studentID FROM Student";
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-     // output data of each row
-     while($row = $result->fetch_assoc()) {
-         echo "<br> id: ". $row["studentID"]. "<br>";
-     }
-} else {
-     echo "0 results";
+    die("Connection failed: " . $conn->connect_error);
 }
-$conn->close();
-?>  
+echo "Connected successfully";
+?>
 
-</body>
-</html>
