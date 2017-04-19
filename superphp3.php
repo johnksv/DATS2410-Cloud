@@ -13,7 +13,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 echo "Connected successfully";
-$sql = "show databases";
+$sql = "show databases\n";
 $result = $conn->query($sql);
 
 while( $row = mysqli_fetch_row( $result ) ){
