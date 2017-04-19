@@ -15,7 +15,7 @@ if ($conn->connect_error) {
 echo "Connected successfully";
 $sql = "show databases";
 $result = $conn->query($sql);
-echo "$result"
+echo "$result";
     
 $conn->close();
 ?>
