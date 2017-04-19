@@ -15,7 +15,12 @@ if ($conn->connect_error) {
 echo "Connected successfully";
 $sql = "show databases";
 $result = $conn->query($sql);
-echo "$result";
+
+while( $row = mysqli_fetch_row( $result ) ){
+        if (($row[0]!="information_schema") && ($row[0]!="mysql")) {
+            echo $row[0]."\r\n";
+        }
+    }
     
 $conn->close();
 ?>
