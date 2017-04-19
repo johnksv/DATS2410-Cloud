@@ -17,7 +17,7 @@
     background-color: rgba(0,0,0,0.8);
 ">
 	<h1>Group 08</h1>
-	<p>Private IP: <?php echo "$_SERVER['SERVER_ADDR']" ?></p>
+	<p>Private IP: <?php echo $_SERVER['SERVER_ADDR'] ?></p>
 	<p>Public IP: 128.39.121.59.8008</p>
   </div>
 <canvas id="q" width="100%" height="1080">
