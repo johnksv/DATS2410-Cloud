@@ -12,8 +12,8 @@ $conn = new mysqli($servername, $username, $password);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-echo "Connected successfully";
-$sql = "show databases\n";
+echo "Connected successfully.\n";
+$sql = "show databases";
 $result = $conn->query($sql);
 
 while( $row = mysqli_fetch_row( $result ) ){
