@@ -8,8 +8,8 @@ ini_set('error_reporting', E_ALL);
 Testing php database
 <?php
 $servername = "10.1.0.252";
-$username = "maxscaleuser";
-$password = "placeSundayjudge";
+$username = "root";
+$password = "root";
 $dbname = "testdb";
 
 // Create connection
