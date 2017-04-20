@@ -13,8 +13,9 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 echo "Connected successfully. ";
+$conn->select_db("testdb");
 
-$sql = "SELECT * FROM testdb.Student";
+$sql = "SELECT * FROM Student";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
