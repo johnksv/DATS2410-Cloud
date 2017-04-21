@@ -5,6 +5,7 @@ class Database
     private static $dbHost = '10.1.0.252' ;
     private static $dbUsername = 'webserver';
     private static $dbUserPassword = 'placeSundayjudge';
+    private static $database = 'studentinfosys';
 
     private static $cont  = null;
 
