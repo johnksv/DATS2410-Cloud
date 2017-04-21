@@ -2,7 +2,7 @@
 
 class Database
 {
-    private static $dbHost = '10.1.0.252' ;
+    private static $dbHost = '10.1.0.251' ;
     private static $dbUsername = 'webserver';
     private static $dbUserPassword = 'placeSundayjudge';
     private static $database = 'studentinfosys';
