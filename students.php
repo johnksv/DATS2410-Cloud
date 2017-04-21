@@ -29,11 +29,12 @@ $result = $conn->query($sql);
     // output data of each row
     while($row = $result->fetch_assoc()) {
         echo '<tr>';
-        echo '<td>'. $row['studentID'] . '</td>';
-        echo '<td>'. $row['firstName'] . '</td>';
-        echo '<td>'. $row['lastName'] . '</td>';
-        echo '<td>'. $row['email'] . '</td>';
-        echo '<td>'. $row['startYear'] . '</td>';
+        echo '<td>'. $row[0]. '</td>';
+        //echo '<td>'. $row['studentID'] . '</td>';
+       // echo '<td>'. $row['firstName'] . '</td>';
+        //echo '<td>'. $row['lastName'] . '</td>';
+       // echo '<td>'. $row['email'] . '</td>';
+       // echo '<td>'. $row['startYear'] . '</td>';
         echo '</tr>';
     }
 Database::disconnect();
