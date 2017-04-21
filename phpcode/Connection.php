@@ -4,7 +4,7 @@ class Connection
 {
 
     private static $con;
-    private static $host = "10.1.1.252";
+    private static $host = "10.1.0.252";
     private static $username = "maxscaleuser";
     private static $password = "placeSundayjudge";
     private static $database = "studentinfosys";
