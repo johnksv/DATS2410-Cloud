@@ -1,47 +1,26 @@
-<?php
-ini_set('error_reporting', E_ALL);
-?>
-    <body>
-    <div class="container">
-        <div class="row">
-            <h3>Students</h3>
-        </div>
-        <div class="row">
-            <table class="table table-striped table-bordered">
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
-                    <th>Email</th>
-                    <th>StartYear</th>
-                </tr>
-                </thead>
-                <tbody>
-<?php
-include 'database.php';
-// Create connection
-$conn = Database::connect();
-//echo "Connected successfully. ";
-//$conn->select_db("studentinfosys");
-$sql = "SELECT * FROM Student";
-$result = $conn->query($sql);
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-        echo '<tr>';
-        echo '<td>'. $row[0]. '</td>';
-        //echo '<td>'. $row['studentID'] . '</td>';
-       // echo '<td>'. $row['firstName'] . '</td>';
-        //echo '<td>'. $row['lastName'] . '</td>';
-       // echo '<td>'. $row['email'] . '</td>';
-       // echo '<td>'. $row['startYear'] . '</td>';
-        echo '</tr>';
-    }
-Database::disconnect();
-?>
-
-                </tbody>
-            </table>
-        </div>
-    </div> <!-- /container -->
-    </body>
+<?php		
+ ini_set('error_reporting', E_ALL);		
+ ?>		
+ <p>test</p>		
+ <?php		
+ $servername = "10.1.0.252";		
+ $username = "maxscaleuser";		
+ $password = "placeSundayjudge";		
+ // Create connection		
+ $conn = new mysqli($servername, $username, $password);		
+ // Check connection		
+ if ($conn->connect_error) {		
+     die("Connection failed: " . $conn->connect_error);		
+ }		
+ echo "Connected successfully.\n";		
+ $sql = "show databases";		
+ $result = $conn->query($sql);		
+ 		
+ while( $row = mysqli_fetch_row( $result ) ){		
+        if (($row[0]!="information_schema") && ($row[0]!="mysql")) {		
+             echo $row[0]."\r\n";		
+         }		
+     }		
+     		
+ $conn->close();		
+ ?>
