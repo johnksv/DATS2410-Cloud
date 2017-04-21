@@ -20,13 +20,13 @@ class Database
         {
             try
             {
-                self::$cont =  new mysqli(self::$dbHost, self::$dbUsername);
+                self::$cont =  new mysqli(self::$dbHost, self::$dbUsername, self::$dbUserPassword);
+                self::$cont->select_db(self::$database);
             }
             catch(PDOException $e)
             {
                 die("Connection failed: " . self::$cont->connect_error);
             }
-            $conn->select_db($database);
         }
         return self::$cont;
     }
