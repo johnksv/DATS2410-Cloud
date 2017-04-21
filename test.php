@@ -1,13 +1,13 @@
 <?php
 ini_set('error_reporting', E_ALL);
-include_once 'phpcode/Connection.php';
+require_once 'phpcode/Connection.php';
 ?>
 <p>test</p>
 <?php
 
 $conn = Connection::connect();
 
-$sql = "SELECT * FROM Student";
+$sql = "SELECT * FROM student";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
