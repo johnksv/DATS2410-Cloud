@@ -1,11 +1,24 @@
 <?php
 ini_set('error_reporting', E_ALL);
-require_once 'phpcode/Connection.php';
+//require_once 'phpcode/Connection.php';
 ?>
 <p>test</p>
 <?php
 
-$conn = Connection::connect();
+
+  $host = "10.1.0.252";
+  $username = "maxscaleuser";
+  $password = "placeSundayjudge";
+  $database = "studentinfosys";
+
+
+$conn = new mysqli($host, $username, $password);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+$conn->select_db($database);
+
 
 $sql = "SELECT * FROM student";
 $result = $conn->query($sql);
@@ -18,5 +31,5 @@ if ($result->num_rows > 0) {
 } else {
     echo "0 results";
 }
-Connection::disconnet();
+$conn->close();
 ?>
