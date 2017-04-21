@@ -3,8 +3,8 @@
 class Database
 {
     private static $dbHost = '10.1.0.252' ;
-    private static $dbUsername = 'testuser';
-    private static $dbUserPassword = 'password';
+    private static $dbUsername = 'maxscaleuser';
+    private static $dbUserPassword = 'placeSundayjudge';
 
     private static $cont  = null;
 
