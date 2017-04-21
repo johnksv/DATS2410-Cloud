@@ -3,7 +3,7 @@
 class Database
 {
     private static $dbHost = '10.1.0.252' ;
-    private static $dbUsername = 'maxscaleuser';
+    private static $dbUsername = 'webserver';
     private static $dbUserPassword = 'placeSundayjudge';
 
     private static $cont  = null;
@@ -19,12 +19,13 @@ class Database
         {
             try
             {
-                self::$cont =  new mysqli(self::$dbHost, self::$dbUsername, self::$dbUserPassword);
+                self::$cont =  new mysqli(self::$dbHost, self::$dbUsername);
             }
             catch(PDOException $e)
             {
                 die("Connection failed: " . self::$cont->connect_error);
             }
+            $conn->select_db($database);
         }
         return self::$cont;
     }
