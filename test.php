@@ -7,8 +7,8 @@ ini_set('error_reporting', E_ALL);
 
 
   $host = "10.1.0.252";
-  $username = "maxscaleuser";
-  $password = "placeSundayjudge";
+  $username = "testuser";
+  $password = "password";
   $database = "studentinfosys";
 
 
