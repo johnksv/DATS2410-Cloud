@@ -19,5 +19,4 @@ if ($result->num_rows > 0) {
     echo "0 results";
 }
 Connection::disconnet();
-echo "$conn";
 ?>
