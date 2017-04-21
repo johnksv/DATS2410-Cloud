@@ -20,7 +20,7 @@ class Connection
                self::$conn =  new mysqli(self::$host, self::$username, self::$password);
                self::$conn->select_db(self::$database);
             if (self::$conn->connect_error) {
-                die("Connection failed: " . $self::conn->connect_error);
+                die("Connection failed: " . self::$conn->connect_error);
             }
         }
         return self::$conn;
