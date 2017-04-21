@@ -17,16 +17,13 @@ class Database
     {
         // One connection through whole application
         if ( null == self::$cont )
-        {
-            try
-            {
-                self::$cont =  new mysqli(self::$dbHost, self::$dbUsername, self::$dbUserPassword);
-                self::$cont->select_db(self::$database);
-            }
-            catch(PDOException $e)
-            {
-                die("Connection failed: " . self::$cont->connect_error);
-            }
+        { 
+               self::$cont =  new mysqli(self::$dbHost, self::$dbUsername, self::$dbUserPassword);
+               self::$cont->select_db(self::$database);
+            if ($conn->connect_error) {
+    
+                die("Connection failed: " . $conn->connect_error);
+}
         }
         return self::$cont;
     }
