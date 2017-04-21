@@ -6,7 +6,6 @@ class Database
     private static $dbUsername = 'webserver';
     private static $dbUserPassword = 'placeSundayjudge';
     private static $database = 'studentinfosys';
-
     private static $cont  = null;
 
     public function __construct() {
@@ -22,7 +21,7 @@ class Database
                self::$cont->select_db(self::$database);
             if ($conn->connect_error) {
     
-                die("Connection failed: " . $conn->connect_error);
+                echo "Connection failed: " . $conn->connect_error;
 }
         }
         return self::$cont;
