@@ -18,7 +18,7 @@ class Connection
      */
     public static function connect()
     {
-        self::$con = new \mysqli(self::$host, self::$username, self::$password);
+        self::$con = new \mysqli(self::$host, self::$username, self::$password, self::$database);
 
         if (self::$con->connect_error) {
             die("Connection failed: " . self::$con->connect_error);
