@@ -3,7 +3,7 @@
 class Connection
 {
     private static $conn  = null;
-    private static $host = '10.1.0.252' ;
+    private static $host = '10.1.1.252' ;
     private static $username = 'webserver';
     private static $password = 'placeSundayjudge';
     private static $database = 'studentinfosys';
@@ -19,7 +19,7 @@ class Connection
         {
                self::$conn =  new mysqli(self::$host, self::$username, self::$password);
                self::$conn->select_db(self::$database);
-            if ($conn->connect_error) {
+            if (self::$conn->connect_error) {
                 die("Connection failed: " . $conn->connect_error);
             }
         }
