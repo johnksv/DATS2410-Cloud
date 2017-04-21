@@ -21,7 +21,6 @@ ini_set("display_errors", 1);
                 <tbody>
 <?php
 require_once 'connection.php';
-$test = new Connection();
 $conn = Connection::connect();
 
                     $sql = "SELECT * FROM Student";
