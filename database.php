@@ -2,7 +2,7 @@
 
 class Database
 {
-    private static $dbHost = '10.1.0.251' ;
+    private static $dbHost = '10.1.0.252' ;
     private static $dbUsername = 'webserver';
     private static $dbUserPassword = 'placeSundayjudge';
     private static $database = 'studentinfosys';
@@ -21,7 +21,7 @@ class Database
                self::$cont->select_db(self::$database);
             if ($conn->connect_error) {
     
-                echo "Connection failed: " . $conn->connect_error;
+                die("Connection failed: " . $conn->connect_error);
 }
         }
         return self::$cont;
