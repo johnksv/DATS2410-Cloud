@@ -19,12 +19,11 @@ ini_set('error_reporting', E_ALL);
                 </thead>
                 <tbody>
 <?php
-include 'database.php';
-// Create connection
-$conn = Database::connect();
-//echo "Connected successfully. ";
-//$conn->select_db("studentinfosys");
-$sql = "SELECT * FROM Student";
+require_once 'connection.php';
+
+$conn = Connection::connect();
+
+                    $sql = "SELECT * FROM Student";
 $result = $conn->query($sql);
     // output data of each row
     while($row = $result->fetch_assoc()) {
@@ -36,7 +35,7 @@ $result = $conn->query($sql);
         echo '<td>'. $row['startYear'] . '</td>';
         echo '</tr>';
     }
-Database::disconnect();
+Connection::disconnect();
 ?>
 
                 </tbody>
