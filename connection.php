@@ -9,7 +9,7 @@ class Connection
     private static $database = 'studentinfosys';
 
     public function __construct() {
-        die("Not allowed");
+        die("Not allowed to create new Connection");
     }
 
     public static function connect()
