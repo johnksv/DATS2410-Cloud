@@ -2,7 +2,7 @@
 
 class Database
 {
-    private static $dbHost = '10.1.0.252' ;
+    private static $dbHost = '10.1.1.252' ;
     private static $dbUsername = 'maxscaleuser';
     private static $dbUserPassword = 'placeSundayjudge';
 
