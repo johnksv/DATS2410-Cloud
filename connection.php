@@ -8,8 +8,8 @@ class Connection
     private static $password = 'placeSundayjudge';
     private static $database = 'studentinfosys';
 
-    public function construct() {
-        die('Init function is not allowed');
+    public function __construct() {
+        die("Not allowed");
     }
 
     public static function connect()
