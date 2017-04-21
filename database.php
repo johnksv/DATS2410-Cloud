@@ -19,7 +19,7 @@ class Database
         {
             try
             {
-                self::$cont =  new mysqli(self::$dbHost, self::$dbUsername, self::$dbUserPassword , "studentinfosys");
+                self::$cont =  new mysqli(self::$dbHost, self::$dbUsername, self::$dbUserPassword);
             }
             catch(PDOException $e)
             {
