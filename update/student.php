@@ -8,13 +8,27 @@ if (!empty($_POST["studentID"])) {
     $yearError = null;
     $firstNameError = null;
     $lastNameError = null;
-
-    // keep track post values
-    $studentID = $_POST['studentID'];
-    $email = $_POST['email'];
-    $startYear = $_POST['startYear'];
-    $firstName = $_POST['firstName'];
-    $lastName = $_POST['lastName'];
+	
+	$conn = Connection::connect();
+		
+	$sql = 'SELECT * FROM Student WHERE studentID="'.$_POST["studentID"] . '"';
+	$result = $conn->query($sql);
+	
+	if ($result->num_rows > 0) {
+			// output data of each row
+		while ($row = $result->fetch_assoc()) {	
+			$studentID = $row['studentID'];
+			$email = $row['email'];
+			$startYear = $row['startYear'];
+			$firstName = $row['firstName'];
+			$lastName = $row['lastName'];
+			}
+		
+		} else {
+			echo "<p> No such user</p>";
+		}
+		
+		Connection::disconnect();
 
 
     // validate input
