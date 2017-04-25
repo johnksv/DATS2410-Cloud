@@ -61,7 +61,7 @@ if (!empty($_POST)) {
 
         $result = $conn->query($sql);
         Connection::disconnect();
-        header("Location: ../show/student.php");
+        //header("Location: ../show/student.php");
     }
 }
 ?>
@@ -79,12 +79,10 @@ if (!empty($_POST)) {
 
     <form action="student.php" method="post">
         <label>Student ID</label>
-        <div>
             <input name="studentID" type="text" placeholder="sxxxxxx" value="<?php echo !empty($studentID) ? $studentID : ''; ?>">
             <?php if (!empty($IDError)): ?>
                 <span><?php echo $IDError; ?></span>
             <?php endif; ?>
-        </div>
 
 <label>Email</label>
 <div>
