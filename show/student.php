@@ -41,8 +41,8 @@ $result = $conn->query($sql);
             
         </form>'. '</td>';
         echo '<td>' . 
-            '<form method="post">
-            <input type="hidden" value="' . $row['studentID'] . '">
+            '<form action="delete.php" method="post">
+            <input type="hidden" name="id" value="' . $row['studentID'] . '">
             <input type="submit"  name="Delete" value="Delete"><br>
             
         </form>'. '</td>';
