@@ -88,7 +88,7 @@ if (!empty($_POST)) {
 
         <label>Start year</label>
         <div>
-            <input name="startYear" type="text" placeholder="Start year" value="<?php echo !empty($startYear) ? $startYear : ''; ?>">
+            <input name="startYear" type="date" placeholder="Start year" value="<?php echo !empty($startYear) ? $startYear : ''; ?>">
             <?php if (!empty($startYearError)): ?>
                 <span><?php echo $startYearError; ?></span>
             <?php endif; ?>

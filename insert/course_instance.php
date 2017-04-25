@@ -47,7 +47,7 @@ if (!empty($_POST)) {
 
 <div class="span10 offset1">
 
-    <h3>Apply for a course</h3>
+    <h3>Start a course</h3>
 
     <form action="course_instance.php" method="post">
         <label>Course code</label>
