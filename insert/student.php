@@ -61,7 +61,7 @@ if (!empty($_POST)) {
 
         $result = $conn->query($sql);
         Connection::disconnect();
-        header("Location: index.php");
+        header("Location: ../show/student.php");
     }
 }
 ?>
@@ -131,7 +131,7 @@ if (!empty($_POST)) {
 
 <div>
     <button type="submit">Create</button>
-    <a href="index.php">Back</a>
+    <a href="../show/student.php">Back</a>
 </div>
 </form>
 </div>
