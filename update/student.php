@@ -1,6 +1,5 @@
 <?php
 
-require '../phpcode/Connection.php';
 if (!empty($_POST["studentID"])) {
     // keep track validation errors
     $IDError = null;
@@ -9,6 +8,7 @@ if (!empty($_POST["studentID"])) {
     $firstNameError = null;
     $lastNameError = null;
 	
+	require '../phpcode/Connection.php';
 	$conn = Connection::connect();
 		
 	$sql = 'SELECT * FROM Student WHERE studentID="'.$_POST["studentID"] . '"';
