@@ -20,7 +20,7 @@ ini_set("display_errors", 1);
                 </thead>
                 <tbody>
 <?php
-require_once '../phpcode/connection.php';
+require_once '../phpcode/Connection.php';
 $conn = Connection::connect();
 
                     $sql = "SELECT * FROM Student";

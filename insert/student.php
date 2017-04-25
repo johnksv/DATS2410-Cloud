@@ -1,6 +1,6 @@
 <?php
 
-require '../phpcode/connection.php';
+require '../phpcode/Connection.php';
 
 if (!empty($_POST)) {
     // keep track validation errors
@@ -78,7 +78,7 @@ if (!empty($_POST)) {
         <h3>Create a Student</h3>
     </div>
 
-    <form action="insertStudent.php" method="post">
+    <form action="student.php" method="post">
         <div <?php echo !empty($IDError) ? 'error' : ''; ?>">
         <label>Student ID</label>
         <div>
