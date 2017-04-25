@@ -79,7 +79,6 @@ if (!empty($_POST)) {
     </div>
 
     <form action="student.php" method="post">
-        <div <?php echo !empty($IDError) ? 'error' : ''; ?>">
         <label>Student ID</label>
         <div>
             <input name="studentID" type="text" placeholder="sxxxxxx" value="<?php echo !empty($studentID) ? $studentID : ''; ?>">
@@ -87,9 +86,7 @@ if (!empty($_POST)) {
                 <span><?php echo $IDError; ?></span>
             <?php endif; ?>
         </div>
-</div>
 
-<div <?php echo !empty($emailError) ? 'error' : ''; ?>">
 <label>Email</label>
 <div>
     <input name="email" type="text" placeholder="my.example@example.com" value="<?php echo !empty($email) ? $email : ''; ?>">
@@ -97,9 +94,7 @@ if (!empty($_POST)) {
         <span><?php echo $emailError; ?></span>
     <?php endif; ?>
 </div>
-</div>
 
-<div <?php echo !empty($yearError) ? 'error' : ''; ?>">
 <label>Start year</label>
 <div>
     <input name="startYear" type="date" placeholder="yyyy-mm-dd" value="<?php echo !empty($startYear) ? $startYear : ''; ?>">
@@ -107,9 +102,7 @@ if (!empty($_POST)) {
         <span><?php echo $yearError; ?></span>
     <?php endif; ?>
 </div>
-</div>
 
-<div <?php echo !empty($firstNameError) ? 'error' : ''; ?>">
 <label>First Name</label>
 <div>
     <input name="firstName" type="text" placeholder="First Name" value="<?php echo !empty($firstName) ? $firstName : ''; ?>">
@@ -117,16 +110,13 @@ if (!empty($_POST)) {
         <span><?php echo $firstNameError; ?></span>
     <?php endif; ?>
 </div>
-</div>
 
-<div <?php echo !empty($lastNameError) ? 'error' : ''; ?>">
 <label>Last Name</label>
 <div>
     <input name="lastName" type="text" placeholder="Last Name" value="<?php echo !empty($lastName) ? $lastName : ''; ?>">
     <?php if (!empty($lastNameError)): ?>
         <span><?php echo $lastNameError; ?></span>
     <?php endif; ?>
-</div>
 </div>
 
 <div>
