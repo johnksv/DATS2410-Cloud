@@ -7,11 +7,11 @@ ini_set('error_reporting', E_ALL);
 	if (empty($_POST["studentID"])) {
 		echo "EMPTY";
 	}else{
-		echo "Updating student: ". $_POST["studentId"] ."<br>";
+		echo "Updating student: ". $_POST["studentID"] ."<br>";
 		
 		$conn = Connection::connect();
 		
-		$sql = 'SELECT * FROM student WHERE studentID="'.$_POST["studentId"] . '"';
+		$sql = 'SELECT * FROM student WHERE studentID="'.$_POST["studentID"] . '"';
 		//echo $sql;
 		$result = $conn->query($sql);
 
