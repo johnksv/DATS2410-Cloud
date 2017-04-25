@@ -7,13 +7,14 @@ require_once '../phpcode/Connection.php';
 
 $studentID ="Please go away.";
 $_POST["studentID"]="s305084";
+$IDError = null;
+$emailError = null;
+$yearError = null;
+$firstNameError = null;
+$lastNameError = null;
 if (!empty($_POST["studentID"])) {
     // keep track validation errors
-    $IDError = null;
-    $emailError = null;
-    $yearError = null;
-    $firstNameError = null;
-    $lastNameError = null;
+   
 	
 	$conn = Connection::connect();
 		
@@ -30,7 +31,7 @@ if (!empty($_POST["studentID"])) {
 			}
 		
 		} else {
-			echo "<p> No such user</p>";
+			
 		}
 
     // validate input
@@ -72,7 +73,6 @@ if (!empty($_POST["studentID"])) {
     // insert data
     if ($valid) {
         $sql = "UPDATE Student SET email='$email', startYear='$startYear', firstName='$firstName', lastName='$lastName' WHERE studentId='$studentID'";
-		echo "<p>".$sql."</p>";
 
         $result = $conn->query($sql);
         header("Location: ../show/student.php");
