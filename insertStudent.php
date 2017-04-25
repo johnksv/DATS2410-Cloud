@@ -42,12 +42,7 @@ if (!empty($_POST)) {
     if (empty($startYear)) {
         $yearError = 'Please enter date';
         $valid = false;
-    }else if(!validateDate($date)){
-        $yearError = 'Please enter valid date, yyyy-mm-dd';
-        $valid = false;
     }
-
-
 
     if (empty($firstName)) {
         $firstNameError = 'Please enter Name';
