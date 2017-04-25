@@ -11,7 +11,7 @@ ini_set('error_reporting', E_ALL);
 		
 		$conn = Connection::connect();
 		
-		$sql = 'SELECT * FROM student WHERE studentID="'.$_POST["studentID"] . '"';
+		$sql = 'SELECT * FROM Student WHERE studentID="'.$_POST["studentID"] . '"';
 		echo $sql;
 		$result = $conn->query($sql);
 
@@ -20,6 +20,7 @@ ini_set('error_reporting', E_ALL);
 		while ($row = $result->fetch_assoc()) {
 			echo "Id: " . $row["studentID"] . ", email: " . $row["email"] . "<br>";
 		}
+		
 		} else {
 			echo "0 results";
 		}
