@@ -1,12 +1,6 @@
 <html>
 <body>
 
-<?php echo $_POST["firstname"]; ?><br>
-<?php echo $_POST["lastname"]; ?><br>
-<?php echo $_POST["email"]; ?><br>
-<?php echo $_POST["startyear"]; ?><br>
-<?php echo $_POST["studentid"]; ?><br>
-
 <div class="container">
         <div class="row">
             <h3>Students</h3>
