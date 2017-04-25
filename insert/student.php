@@ -74,9 +74,8 @@ if (!empty($_POST)) {
 <body>
 
 <div class="span10 offset1">
-    <div class="row">
+
         <h3>Create a Student</h3>
-    </div>
 
     <form action="student.php" method="post">
         <label>Student ID</label>
