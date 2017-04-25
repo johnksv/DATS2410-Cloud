@@ -15,7 +15,7 @@ $result = $conn->query($sql);
             <div class="row">
                 <h3>Students</h3>
             </div>
-
+ <button><a href="../insert/student.php" >Create new entry</a></button>
             <div class="row">
                 <table class="table table-striped table-bordered">
                     <thead>
