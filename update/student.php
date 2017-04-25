@@ -15,7 +15,6 @@ if (!empty($_POST["studentID"])) {
 	$result = $conn->query($sql);
 	
 	if ($result->num_rows > 0) {
-			// output data of each row
 		while ($row = $result->fetch_assoc()) {	
 			$studentID = $row['studentID'];
 			$email = $row['email'];
@@ -27,9 +26,6 @@ if (!empty($_POST["studentID"])) {
 		} else {
 			echo "<p> No such user</p>";
 		}
-		
-		Connection::disconnect();
-
 
     // validate input
     $valid = true;
@@ -69,14 +65,13 @@ if (!empty($_POST["studentID"])) {
 
     // insert data
     if ($valid) {
-        $conn = Connection::connect();
         $sql = "UPDATE Student SET email='$email', startYear='$startYear', firstName='$firstName', lastName='$lastName' WHERE studentId='$studentID'";
 		echo "<p>".$sql."</p>";
 
         $result = $conn->query($sql);
-        Connection::disconnect();
         header("Location: ../show/student.php");
     }
+    Connection::disconnect();
 }
 ?>
 
@@ -94,7 +89,7 @@ if (!empty($_POST["studentID"])) {
     <form action="student.php" method="post">
         <label>Student ID</label>
         <div>
-            <Label name="studentID" value=<?php echo studentID; ?> type="text" >
+            <Label name="studentID" value=<?php echo $studentID; ?> type="text" >
            
         </div>
 
