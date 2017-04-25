@@ -89,7 +89,7 @@ if (!empty($_POST["studentID"])) {
     <form action="student.php" method="post">
         <label>Student ID</label>
         <div>
-            <Label name="studentID" value=<?php echo $studentID; ?> type="text" >
+            <Label name="studentID" value="<?php echo $studentID; ?>" type="text" >
            
         </div>
 
