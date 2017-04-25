@@ -1,16 +1,25 @@
 <?php
- 
+
 require_once '../phpcode/Connection.php';
 $conn = Connection::connect();
 
-$sql = "DELETE FROM Student WHERE studentID='".$_POST["id"]."' ";
-
-if ($conn->query($sql) === TRUE) {
-     header('Location: student.php');
-} else {
-    echo "Error deleting record: " . $conn->error;
+$type = filter_input(INPUT_POST, "type");
+if (strcmp($type, "student")) {
+    $sql = "DELETE FROM Student WHERE studentID='" . $_POST["id"] . "' ";
+    if ($conn->query($sql) === TRUE) {
+        Connection::disconnect();
+        header('Location: student.php');
+    }
+} else if (strcmp($tp, "course")) {
+    $sql = "DELETE FROM Course WHERE courseCode='" . $_POST["id"] . "' ";
+    if ($conn->query($sql) === TRUE) {
+        Connection::disconnect();
+        header('Location: course.php');
+    }
 }
 
-$conn->close();
-?>
+echo "Error deleting record: " . $conn->error;
+
+Connection::disconnect();
+
 
