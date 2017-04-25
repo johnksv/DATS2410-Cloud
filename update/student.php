@@ -12,7 +12,7 @@ ini_set('error_reporting', E_ALL);
 		$conn = Connection::connect();
 		
 		$sql = 'SELECT * FROM student WHERE studentID="'.$_POST["studentID"] . '"';
-		//echo $sql;
+		echo $sql;
 		$result = $conn->query($sql);
 
 		if ($result->num_rows > 0) {
