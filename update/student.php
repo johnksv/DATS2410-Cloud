@@ -1,4 +1,8 @@
 <?php
+ini_set('error_reporting', E_ALL);
+//require_once 'phpcode/Connection.php';
+?>
+<?php
 $studentID ="Please go away.";
 if (!empty($_POST["studentID"])) {
     // keep track validation errors
