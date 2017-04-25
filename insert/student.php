@@ -1,6 +1,6 @@
 <?php
 
-require 'connection.php';
+require '../phpcode/connection.php';
 
 if (!empty($_POST)) {
     // keep track validation errors
