@@ -4,6 +4,7 @@ ini_set('error_reporting', E_ALL);
 ?>
 <?php
 $studentID ="Please go away.";
+$_POST["studentID"]="s305084";
 if (!empty($_POST["studentID"])) {
     // keep track validation errors
     $IDError = null;
@@ -93,7 +94,7 @@ if (!empty($_POST["studentID"])) {
     <form action="student.php" method="post">
         <label>Student ID</label>
         <div>
-            <Label name="studentID" value="<?php echo $studentID; ?>" type="text" >
+            <p> <?php echo $studentID; ?></p>
            
         </div>
 
