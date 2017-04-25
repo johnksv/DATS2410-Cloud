@@ -30,7 +30,7 @@ class Connection
     /**
      * Closes the connection to the database
      */
-    public static function disconnet()
+    public static function disconnect()
     {
         if (self::$con instanceof \mysqli) {
             self::$con->close();
