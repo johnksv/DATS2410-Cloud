@@ -10,7 +10,7 @@ if (strcmp($type, "student")) {
         Connection::disconnect();
         header('Location: student.php');
     }
-} else if (strcmp($tp, "course")) {
+} else if (strcmp($type, "course")) {
     $sql = "DELETE FROM Course WHERE courseCode='" . $_POST["id"] . "' ";
     if ($conn->query($sql) === TRUE) {
         Connection::disconnect();
