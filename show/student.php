@@ -14,8 +14,9 @@ $result = $conn->query($sql);
         <div class="container">
             <div class="row">
                 <h3>Students</h3>
+                <button><a href="../insert/student.php" >Create new entry</a></button>
             </div>
- <button><a href="../insert/student.php" >Create new entry</a></button>
+ 
             <div class="row">
                 <table class="table table-striped table-bordered">
                     <thead>
@@ -48,6 +49,7 @@ $result = $conn->query($sql);
                                 <td> 
                                     <form action="delete.php" method="post">
                                         <input type="hidden" name="id" value="<?php echo $row['studentID'] ?>">
+                                        <input type="hidden" name="type" value="student">
                                         <input type="submit"  name="Delete" value="Delete"><br>
 
                                     </form>
