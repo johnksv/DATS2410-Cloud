@@ -1,5 +1,5 @@
 <?php
-
+$studentID ="Please go away.";
 if (!empty($_POST["studentID"])) {
     // keep track validation errors
     $IDError = null;
