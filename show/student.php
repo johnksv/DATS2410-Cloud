@@ -35,9 +35,9 @@ $result = $conn->query($sql);
         echo '<td>'. $row['startYear'] . '</td>';
         echo '<td>'. $row['studentID'] . '</td>';
         echo '<td>' . 
-            '<form action="change.php?test" method="post">
-            <input type="hidden" name="id" value="' . $row['studentID'] . '">
-            <input type="submit"  name="Change" value="Change"><br>
+            '<form action="../update/student.php" method="post">
+            <input type="hidden" name="studentID" value="' . $row['studentID'] . '">
+            <input type="submit"  name="Change" value="Edit"><br>
             
         </form>'. '</td>';
         echo '<td>' . 
