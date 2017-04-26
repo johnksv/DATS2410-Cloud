@@ -18,14 +18,14 @@ Connection::disconnect();
 readfile("../htmlTemplate/header.html");
 ?>
 
-<main class="container">
-    <div class="row">
+<main>
+    <div>
         <h3>Students</h3>
         <a href="../insert/student.php"><button>Create new entry</button></a>
     </div>
 
-    <div class="row">
-        <table class="table table-striped table-bordered">
+    <div>
+        <table>
             <thead>
             <tr>
 
