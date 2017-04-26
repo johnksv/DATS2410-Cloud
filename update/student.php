@@ -29,22 +29,11 @@ if (!empty($_POST["update"])) {
     <title>HiOA student information system</title>
 </head>
 <body>
-<header>
-    <nav>
-        <a>
-            Home
-        </a>
-        <a>
-            Students
-        </a>
-        <a>
-            Courses
-        </a>
-        <a>
-            Exams
-        </a>
-    </nav>
-</header>
+
+<?php
+//Insert header
+readfile("../htmlTemplate/header.html");
+?>
 
 <?php
 //If the request is from another webpage
