@@ -46,13 +46,7 @@ $result2 = $conn->query($sql);
                                 <td><?php echo $row['sPID'] ?></td>
                                 <td><?php echo $row['courseCode'] ?></td>
                                 <td><?php echo $row['standardSemester'] ?></td>
-                                <td> 
-                                    <form action="../update/studyprogramInfo.php" method="post">
-                                        <input type="hidden" name="sPID" value="<?php echo $row['sPID'] ?>">
-                                        <input type="submit"  name="Change" value="Edit"><br>
-
-                                    </form>
-                                </td>
+                                
                                 <td> 
                                     <form action="delete.php" method="post">
                                         <input type="hidden" name="id" value="<?php echo $row['sPID'] ?>">
