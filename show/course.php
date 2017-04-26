@@ -17,14 +17,14 @@ Connection::disconnect();
 //Insert header
 readfile("../htmlTemplate/header.html");
 ?>
-<main class="container">
-    <div class="row">
+<main>
+    <div>
         <h3>Courses</h3>
-        <button><a href="../insert/course.php">Create new entry</a></button>
+        <a href="../insert/course.php"><button>Create new entry</button></a>
     </div>
 
-    <div class="row">
-        <table class="table table-striped table-bordered">
+    <div>
+        <table>
             <thead>
             <tr>
 
