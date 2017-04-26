@@ -112,7 +112,7 @@ readfile("../htmlTemplate/header.html");
                 <span><?php echo $standardSemesterError; ?></span>
             <?php endif; ?>
         </div>
-		Type:
+		Type: <?php if (!empty($typeError)){ echo $typeError; } ?>
         <div>
             <input type="radio" name="type"
                    value="M" <?php echo (!empty($type) && $type == "M") ? "checked" : ''; ?>>
