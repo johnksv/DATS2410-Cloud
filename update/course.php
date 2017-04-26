@@ -37,8 +37,8 @@
 		if ($result->num_rows > 0) {
 			// output data of each row
 			while ($row = $result->fetch_assoc()) {
-				$fname = $row['courseTitle'];
-				$lname = $row['semester'];
+				$coursetitle = $row['courseTitle'];
+				$semester = $row['semester'];
 			}
 
 		} else {
