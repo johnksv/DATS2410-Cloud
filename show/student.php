@@ -60,6 +60,14 @@ readfile("../htmlTemplate/header.html");
 
                         </form>
                     </td>
+                    <td>
+                        <form action="delete.php" method="post">
+                            <input type="hidden" name="id" value="<?php echo $row['studentID'] ?>">
+                            <input type="hidden" name="type" value="student">
+                            <input type="submit" name="Delete" value="Delete"><br>
+
+                        </form>
+                    </td>
                 </tr>
             <?php }
             $conn->close();
