@@ -65,9 +65,25 @@ if (empty($_POST["sPID"])) {
 	Duration (number of semesters): <br>
 	<input name="duration" type="text" value="<?php echo $dur; ?>"><br>
 	Start Year<br>
-	<input name="startYear" type="date" value="<?php echo $year; ?>"><br>		
+	<select name="startYear">
+		<option value="<?php echo $year; ?>" ><?php echo $year; ?></option>
+                <?php
+				value="">
+                $time = new DateTime('now');
+                $year = intval($time->format("Y"));
+                for($i = 5; $i > 0; $i--){?>
+                    <option><?php echo $year+$i; ?></option>
+                <?php } ?>
+
+                <option selected><?php echo $year; ?></option>
+
+                <?php for($i = $year-1 ; $i > 1990; $i--){ ?>
+                    <option><?php echo $i; ?></option>
+                <?php } ?>
+
+            </select>
 	<br>
-	
+	<br>
     <input type="hidden" name="foo" value="<?php echo $_POST["sPID"]; ?>"/>
     <input type="submit" name="update" Value="Update">
 </form>
