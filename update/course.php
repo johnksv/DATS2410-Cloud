@@ -6,10 +6,10 @@
 	//require_once 'phpcode/connection.php';
 	?>
 	<?php
-	require '../connection.php';
+	require '../Connection.php';
 	$coursetitle = null;
 	$semester = null;
-	$conn = connection::connect();
+	$conn = Connection::connect();
 
 	if(!empty($_POST["update"])){
 
@@ -19,7 +19,7 @@
             "'";
 
         $result = $conn->query($sql);
-        connection::disconnect();
+        Connection::disconnect();
         header("Location: ../show/course.php");
 	}
 
@@ -43,7 +43,7 @@
 			echo "No such course!";
 		}
 
-		connection::disconnect();
+		Connection::disconnect();
 	}
 	?>
 	<form action="course.php" method="post">
