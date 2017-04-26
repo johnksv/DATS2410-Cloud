@@ -42,8 +42,9 @@ if (!empty($_POST)) {
         $sql = "INSERT INTO Studyprogram (sPID, sPName, durationSemester, startYear) values('$spid', '$spname', '$durationSemester', '$startYear')";
 
         $result = $conn->query($sql);
+        echo $conn->error;
         Connection::disconnect();
-        header("Location: ../show/studyprogram.php");
+        //header("Location: ../show/studyprogram.php");
     }
 }
 ?>
