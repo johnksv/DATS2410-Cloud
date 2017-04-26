@@ -44,7 +44,7 @@ readfile("../htmlTemplate/header.html");
                     <td><?php echo $row['durationSemester'] ?></td>
                     <td><?php echo $row['startYear'] ?></td>
                     <td>
-                        <form action="studyprogramInfo.php" method="get">
+                        <form action="studyprograminfo.php" method="get">
                             <input type="hidden" name="id" value="<?php echo $row['sPID'] ?>">
                             <input type="submit" value="Show courses"><br>
 
