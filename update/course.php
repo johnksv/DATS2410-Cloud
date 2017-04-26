@@ -24,7 +24,7 @@
 <html>
 	<body>
 	
-	<?php>
+	<?php
 	//If the request is from another webpage
 	if (empty($_POST["id"])) {
 		echo "EMPTY";
