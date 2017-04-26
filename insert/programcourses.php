@@ -41,10 +41,10 @@ if (!empty($_POST)) {
         $standardSemesterError = 'Please choose a standard amount of semesters';
         $valid = false;
     }
-	/*if(!is_int ($standardSemester)){
+	if(!is_int (mixed $standardSemester)){
 		$standardSemesterError = 'Be kind and use a number.';
         $valid = false;
-	}*/
+	}
 
     // insert data
     if ($valid) {
@@ -118,7 +118,7 @@ readfile("../htmlTemplate/header.html");
                    value="M" <?php echo (!empty($type) && $type == "M") ? "checked" : ''; ?>>
             Mandatory <br>
             <input type="radio" name="type"
-                   value="E" <?php echo (!empty($type) && $type != "M") ? "checked" : ''; ?>> Elective
+                   value="E" <?php echo (empty($type) || $type != "M") ? "checked" : ''; ?>> Elective
             <p hidden><input type="radio" name="type" value="" <?php echo (empty($type)) ? "checked" : ''; ?>>
             </p>
         </div>
