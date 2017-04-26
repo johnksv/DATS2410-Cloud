@@ -83,7 +83,7 @@ Connection::disconnect();
 							<td></td>
 							<td>
 								<form action="../insert/programcourses.php" method="post">
-									<input type="hidden" name="id" value="<?php echo $row['sPID'] ?>">
+									<input type="hidden" name="id" value="<?php echo $_GET["id"] ?>">
 									<input type="submit" value="ADD"><br>
 								</form>
 							</td>
