@@ -8,14 +8,14 @@ if (strcmp($type, "elective") == 0) {
 $sql = "DELETE FROM ElectiveCourse WHERE sPID='" . $_POST["id"] . "' and courseCode='" . $_POST["course"] . "'";
  if ($conn->query($sql) === TRUE) {
         Connection::disconnect();
-        header('Location: studentprogramInfo.php');
+        header('Location: studentprogramInfo.php?' . $_POST["id"]);
     }
 }
 else if (strcmp($type, "mandatory") == 0) {
 $sql = "DELETE FROM MandatoryCourse WHERE sPID='" . $_POST["id"] . "' and courseCode='" . $_POST["course"] . "'";
 if ($conn->query($sql) === TRUE) {
         Connection::disconnect();
-        header('Location: studentprogramInfo.php');
+        header('Location: studentprogramInfo.php?' . $_POST["id"] );
     }
 }
 

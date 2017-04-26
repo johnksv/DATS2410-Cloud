@@ -2,10 +2,10 @@
 require_once '../Connection.php';
 $conn = Connection::connect();
 
-$sql = "Select *  from ElectiveCourse WHERE sPID='" . $_POST["id"] . "' ";
+$sql = "Select *  from ElectiveCourse WHERE sPID='" . $_GET["id"] . "' ";
 
 $result1 = $conn->query($sql);
-$sql = "Select *  from MandatoryCourse WHERE sPID='" . $_POST["id"] . "' ";
+$sql = "Select *  from MandatoryCourse WHERE sPID='" . $_GET["id"] . "' ";
 
 $result2 = $conn->query($sql);
 
@@ -18,7 +18,6 @@ $result2 = $conn->query($sql);
         
     <?php
     //Insert header
-    echo  $_POST["id"] ;
     readfile("../htmlTemplate/header.html");
     ?>
 
