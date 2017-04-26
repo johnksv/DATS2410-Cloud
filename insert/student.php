@@ -88,7 +88,7 @@ if (!empty($_POST)) {
 	 </div>
 <label>Email</label>
 <div>
-    <input name="email" type="text" placeholder="my.example@example.com" value="<?php echo !empty($email) ? $email : ''; ?>">
+    <input name="email" type="email" placeholder="my.example@example.com" value="<?php echo !empty($email) ? $email : ''; ?>">
     <?php if (!empty($emailError)): ?>
         <span><?php echo $emailError; ?></span>
     <?php endif; ?>
