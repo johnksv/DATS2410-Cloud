@@ -13,7 +13,6 @@ if (!empty($_POST)) {
     $startDate = $_POST['startDate'];
 
 
-
     // validate input
     $valid = true;
     if (empty($courseCode)) {
@@ -39,12 +38,17 @@ if (!empty($_POST)) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="utf-8">
     <title>HiOA student information system</title>
 </head>
 <body>
+
+<?php
+//Insert header
+readfile("../htmlTemplate/header.html");
+?>
 
 <div>
 
@@ -53,23 +57,23 @@ if (!empty($_POST)) {
     <form action="course_instance.php" method="post">
         <label>Course code</label>
         <div>
-           <select name='courseCode'>
-               <option value="" >Choose course</option>
-               <?php
-               require_once '../Connection.php';
-               $conn = Connection::connect();
+            <select name='courseCode'>
+                <option value="">Choose course</option>
+                <?php
+                require_once '../Connection.php';
+                $conn = Connection::connect();
 
-               $sql = "SELECT courseCode, courseTitle FROM Course";
-               $result = $conn->query($sql);
-               // output data of each row
-               while($row = $result->fetch_assoc()) {
-                   $selected = (!empty($courseCode) && $courseCode == $row['courseCode']) ? 'selected' : ' ';
-                   echo "<option value='". $row['courseCode']."' ".$selected.">". $row['courseCode'] . " " .$row['courseTitle'] ."</option>";
-               }
-               Connection::disconnect();
-               ?>
+                $sql = "SELECT courseCode, courseTitle FROM Course";
+                $result = $conn->query($sql);
+                // output data of each row
+                while ($row = $result->fetch_assoc()) {
+                    $selected = (!empty($courseCode) && $courseCode == $row['courseCode']) ? 'selected' : ' ';
+                    echo "<option value='" . $row['courseCode'] . "' " . $selected . ">" . $row['courseCode'] . " " . $row['courseTitle'] . "</option>";
+                }
+                Connection::disconnect();
+                ?>
 
-           </select>
+            </select>
 
             <?php if (!empty($courseCodeError)): ?>
                 <span><?php echo $courseCodeError; ?></span>
@@ -78,7 +82,8 @@ if (!empty($_POST)) {
 
         <label>Start date</label>
         <div>
-            <input name='startDate' type="date" placeholder="yyyy-mm-dd" value="<?php echo !empty($startDate) ? $startDate : ''; ?>">
+            <input name='startDate' type="date" placeholder="yyyy-mm-dd"
+                   value="<?php echo !empty($startDate) ? $startDate : ''; ?>">
             <?php if (!empty($startDateError)): ?>
                 <span><?php echo $startDateError; ?></span>
             <?php endif; ?>

@@ -67,63 +67,73 @@ if (!empty($_POST)) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="utf-8">
     <title>HiOA student information system</title>
 </head>
 <body>
 
+<?php
+//Insert header
+readfile("../htmlTemplate/header.html");
+?>
+
 <div>
 
-        <h3>Create a Student</h3>
+    <h3>Create a Student</h3>
 
     <form action="student.php" method="post">
-	     
-	  <label>Student ID</label>
-	  <div> 
-            <input name="studentID" type="text" placeholder="sxxxxxx" value="<?php echo !empty($studentID) ? $studentID : ''; ?>">
+
+        <label>Student ID</label>
+        <div>
+            <input name="studentID" type="text" placeholder="sxxxxxx"
+                   value="<?php echo !empty($studentID) ? $studentID : ''; ?>">
             <?php if (!empty($IDError)): ?>
                 <span><?php echo $IDError; ?></span>
             <?php endif; ?>
-	 </div>
-<label>Email</label>
-<div>
-    <input name="email" type="email" placeholder="my.example@example.com" value="<?php echo !empty($email) ? $email : ''; ?>">
-    <?php if (!empty($emailError)): ?>
-        <span><?php echo $emailError; ?></span>
-    <?php endif; ?>
-</div>
+        </div>
+        <label>Email</label>
+        <div>
+            <input name="email" type="email" placeholder="my.example@example.com"
+                   value="<?php echo !empty($email) ? $email : ''; ?>">
+            <?php if (!empty($emailError)): ?>
+                <span><?php echo $emailError; ?></span>
+            <?php endif; ?>
+        </div>
 
-<label>Start year</label>
-<div>
-    <input name="startYear" type="date" placeholder="yyyy-mm-dd" value="<?php echo !empty($startYear) ? $startYear : ''; ?>">
-    <?php if (!empty($yearError)): ?>
-        <span><?php echo $yearError; ?></span>
-    <?php endif; ?>
-</div>
+        <label>Start year</label>
+        <div>
+            <input name="startYear" type="date" placeholder="yyyy-mm-dd"
+                   value="<?php echo !empty($startYear) ? $startYear : ''; ?>">
+            <?php if (!empty($yearError)): ?>
+                <span><?php echo $yearError; ?></span>
+            <?php endif; ?>
+        </div>
 
-<label>First Name</label>
-<div>
-    <input name="firstName" type="text" placeholder="First Name" value="<?php echo !empty($firstName) ? $firstName : ''; ?>">
-    <?php if (!empty($firstNameError)): ?>
-        <span><?php echo $firstNameError; ?></span>
-    <?php endif; ?>
-</div>
+        <label>First Name</label>
+        <div>
+            <input name="firstName" type="text" placeholder="First Name"
+                   value="<?php echo !empty($firstName) ? $firstName : ''; ?>">
+            <?php if (!empty($firstNameError)): ?>
+                <span><?php echo $firstNameError; ?></span>
+            <?php endif; ?>
+        </div>
 
-<label>Last Name</label>
-<div>
-    <input name="lastName" type="text" placeholder="Last Name" value="<?php echo !empty($lastName) ? $lastName : ''; ?>">
-    <?php if (!empty($lastNameError)): ?>
-        <span><?php echo $lastNameError; ?></span>
-    <?php endif; ?>
-</div>
+        <label>Last Name</label>
+        <div>
+            <input name="lastName" type="text" placeholder="Last Name"
+                   value="<?php echo !empty($lastName) ? $lastName : ''; ?>">
+            <?php if (!empty($lastNameError)): ?>
+                <span><?php echo $lastNameError; ?></span>
+            <?php endif; ?>
+        </div>
 
-<div>
-    <button type="submit">Create</button>
-    <a href="../show/student.php">Back</a>
-</div>
-</form>
+        <div>
+            <button type="submit">Create</button>
+            <a href="../show/student.php">Back</a>
+        </div>
+    </form>
 </div>
 
 

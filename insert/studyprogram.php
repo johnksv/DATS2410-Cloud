@@ -55,12 +55,17 @@ if (!empty($_POST)) {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="utf-8">
     <title>HiOA student information system</title>
 </head>
 <body>
+
+<?php
+//Insert header
+readfile("../htmlTemplate/header.html");
+?>
 
 <div>
 

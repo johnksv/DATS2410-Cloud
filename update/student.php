@@ -42,7 +42,7 @@ if (empty($_POST["studentID"])) {
     header("Location: ../show/student.php");
 } else { ?>
     <b>Updating student: <?php echo $_POST["studentID"] ?> </b><br>
-<?php
+    <?php
     $sql = 'SELECT * FROM Student WHERE studentID="' . $_POST["studentID"] . '"';
     $result = $conn->query($sql);
     Connection::disconnect();
