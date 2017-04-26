@@ -1,8 +1,4 @@
 <?php
-ini_set('error_reporting', E_ALL);
-//require_once 'phpcode/connection.php';
-?>
-<?php
 
 require '../Connection.php';
 if(empty($_POST['id'])){   
@@ -45,7 +41,7 @@ if (!empty($_POST)) {
         $standardSemesterError = 'Please choose a standard amount of semesters';
         $valid = false;
     }
-	if(!is_int (mixed $standardSemester)){
+	if(!is_numeric($standardSemester)){
 		$standardSemesterError = 'Be kind and use a number.';
         $valid = false;
 	}
