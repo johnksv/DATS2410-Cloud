@@ -24,14 +24,14 @@
 <html>
 	<body>
 	
-	<?php>
+	<?php
 	//If the request is from another webpage
-	if (empty($_POST["id"])) {
+	if (empty($_POST["courseCode"])) {
 		echo "EMPTY";
 	}else{
-		echo "<B>Updating course: ". $_POST["id"] ."</B><br>";
+		echo "<B>Updating course: ". $_POST["courseCode"] ."</B><br>";
 
-		$sql = 'SELECT * FROM Course WHERE courseCode="'.$_POST["id"] . '"';
+		$sql = 'SELECT * FROM Course WHERE courseCode="'.$_POST["courseCode"] . '"';
 		$result = $conn->query($sql);
 
 		if ($result->num_rows > 0) {
@@ -52,7 +52,7 @@
 		Title: <input type="text" name="courseTitle" value="<?php echo $coursetitle; ?>"><br>
 		Semster: <input type="text" name="semester" value="<?php echo $semester; ?>"><br>
 		<br>
-		<input type="hidden" name="foo" value="<?php echo $_POST["id"];?>" />
+		<input type="hidden" name="foo" value="<?php echo $_POST["courseCode"];?>" />
 		<input type="submit" name="update" Value="Update">
 	</form>
 
