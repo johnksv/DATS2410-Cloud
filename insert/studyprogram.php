@@ -85,7 +85,7 @@ readfile("../htmlTemplate/header.html");
 
         <label>Duration (number of semesters)</label>
         <div>
-            <input name="durationSemester" type="text"
+            <input name="durationSemester" type="number"
                    value="<?php echo !empty($startYear) ? $startYear : ''; ?>">
             <?php if (!empty($durationError)): ?>
                 <span><?php echo $durationError; ?></span>
