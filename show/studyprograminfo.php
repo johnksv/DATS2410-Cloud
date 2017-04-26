@@ -55,7 +55,7 @@ $result2 = $conn->query($sql);
                                     </form>
                                 </td>
                                 <td> 
-                                    <form action="deleteInfo.php" method="post">
+                                    <form action="delete.php" method="post">
                                         <input type="hidden" name="id" value="<?php echo $row['sPID'] ?>">
                                         <input type="hidden" name="course" value="<?php echo $row['courseCode'] ?>">
                                         <input type="hidden" name="type" value="elective">
@@ -81,11 +81,11 @@ $result2 = $conn->query($sql);
                                     </form>
                                 </td>
                                 <td> 
-                                    <form action="deleteInfo.php" method="post">
+                                    <form action="delete.php" method="post">
                                         <input type="hidden" name="id" value="<?php echo $row['sPID'] ?>">
                                         <input type="hidden" name="course" value="<?php echo $row['courseCode'] ?>">
                                         <input type="hidden" name="type" value="mandatory">
-                                        <input type="submit"  name="Delete" value="Delete"><br>
+                                        <input type="submit" name="Delete" value="Delete"><br>
 
                                     </form>
                                 </td>
