@@ -121,11 +121,13 @@ readfile("../htmlTemplate/header.html");
             <input type="radio" name="type"
                    value="M" <?php echo (!empty($type) && $type == "M") ? "checked" : ''; ?>>
             Mandatory <br>
-            <input type="radio" name="type"
-                   value="E" <?php if(empty($type)){echo "checked";} ?>> Elective
+             <input type="radio" name="type"
+                   value="E" <?php echo (!empty($type) && $type == "E") ? "checked" : ''; ?>> Elective
             <p hidden><input type="radio" name="type" value="" <?php echo (empty($type)) ? "checked" : ''; ?>>
-            </p>
+           </p>
+			
         </div>
+		
 		
         <div>
 			<input type="hidden" name="id" value="<?php echo $sPID ?>">
