@@ -1,3 +1,7 @@
+body {
+    margin: 0;
+}
+
 header {
     display: -webkit-box;
     display: -moz-box;
@@ -10,14 +14,15 @@ header {
     background: beige;
 }
 
-body {
-    margin: 0;
-}
-
 nav a {
     padding: 0.2em;
     background: ghostwhite;
     margin: 15px;
+}
+
+main {
+    margin: 0 auto;
+    width: 75%;
 }
 
 footer {
