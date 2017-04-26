@@ -51,7 +51,7 @@ readfile("../htmlTemplate/header.html");
 
 <main>
 
-    <h3>Apply for a course</h3>
+    <h3>Start a course</h3>
 
     <form action="course_instance.php" method="post">
         <label>Course code</label>
