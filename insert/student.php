@@ -78,14 +78,14 @@ if (!empty($_POST)) {
         <h3>Create a Student</h3>
 
     <form action="student.php" method="post">
-        <label>Student ID</label>
-        <div>
+	     
+	  <label>Student ID</label>
+	  <div> 
             <input name="studentID" type="text" placeholder="sxxxxxx" value="<?php echo !empty($studentID) ? $studentID : ''; ?>">
             <?php if (!empty($IDError)): ?>
                 <span><?php echo $IDError; ?></span>
             <?php endif; ?>
-        </div>
-
+	 </div>
 <label>Email</label>
 <div>
     <input name="email" type="text" placeholder="my.example@example.com" value="<?php echo !empty($email) ? $email : ''; ?>">
