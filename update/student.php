@@ -6,12 +6,12 @@
 	//require_once 'phpcode/connection.php';
 	?>
 	<?php
-	require '../connection.php';
+	require '../Connection.php';
 	$fname = null;
 	$lname = null;
 	$email = null;
 	$year  = null;
-	$conn = connection::connect();
+	$conn = Connection::connect();
 
 	if(!empty($_POST["update"])){
 
@@ -23,7 +23,7 @@
             "'";
 
         $result = $conn->query($sql);
-        connection::disconnect();
+        Connection::disconnect();
         header("Location: ../show/student.php");
 	}
 
@@ -49,7 +49,7 @@
 			echo "No such user!";
 		}
 
-		connection::disconnect();
+		Connection::disconnect();
 	}
 	?>
 	<form action="student.php" method="post">

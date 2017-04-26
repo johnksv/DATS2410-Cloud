@@ -1,6 +1,6 @@
 <?php
 
-require '../connection.php';
+require '../Connection.php';
 
 if (!empty($_POST)) {
     // keep track validation errors
@@ -28,11 +28,11 @@ if (!empty($_POST)) {
 
     // insert data
     if ($valid) {
-        $conn = connection::connect();
+        $conn = Connection::connect();
         $sql = "INSERT INTO Course_Instance (courseCode, startDate) values('$courseCode', '$startDate')";
 
         $result = $conn->query($sql);
-        connection::disconnect();
+        Connection::disconnect();
         header("Location: ../show/course_instance.php");
     }
 }
@@ -55,8 +55,8 @@ if (!empty($_POST)) {
            <select name='courseCode'>
                <option value="" >Choose course</option>
                <?php
-               require_once '../connection.php';
-               $conn = connection::connect();
+               require_once '../Connection.php';
+               $conn = Connection::connect();
 
                $sql = "SELECT courseCode, courseTitle FROM Course";
                $result = $conn->query($sql);
@@ -65,7 +65,7 @@ if (!empty($_POST)) {
                    $selected = (!empty($courseCode) && $courseCode == $row['courseCode']) ? 'selected' : ' ';
                    echo "<option value='". $row['courseCode']."' ".$selected.">". $row['courseCode'] . " " .$row['courseTitle'] ."</option>";
                }
-               connection::disconnect();
+               Connection::disconnect();
                ?>
 
            </select>

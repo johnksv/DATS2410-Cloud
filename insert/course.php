@@ -1,6 +1,6 @@
 <?php
 
-require '../connection.php';
+require '../Connection.php';
 
 if (!empty($_POST)) {
     // keep track validation errors
@@ -33,11 +33,11 @@ if (!empty($_POST)) {
 
     // insert data
     if ($valid) {
-        $conn = connection::connect();
+        $conn = Connection::connect();
         $sql = "INSERT INTO Course (courseCode, courseTitle, Semester) values('$courseCode', '$courseTitle', '$semester')";
 
         $result = $conn->query($sql);
-        connection::disconnect();
+        Connection::disconnect();
         header("Location: ../show/course.php");
     }
 }

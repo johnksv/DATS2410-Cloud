@@ -1,6 +1,6 @@
 <?php
 
-require '../connection.php';
+require '../Connection.php';
 die('Not implemented yet..!');
 if (!empty($_POST)) {
     // keep track validation errors
@@ -56,11 +56,11 @@ if (!empty($_POST)) {
 
     // insert data
     if ($valid) {
-        $conn = connection::connect();
-        $sql = "INSERT INTO Student (studentId, email, startYear, firstName, lastName) values('$studentID', '$email', '$startYear', '$firstName', '$lastName')";
+        $conn = Connection::connect();
+        $sql = "INSERT INTO Studyprogram ('sPID', 'sPName', 'durationSemester', 'startYear') values('$studentID', '$email', '$startYear', '$firstName', '$lastName')";
 
         $result = $conn->query($sql);
-        connection::disconnect();
+        Connection::disconnect();
         header("Location: ../show/student.php");
     }
 }
