@@ -1,5 +1,9 @@
 <!DOCTYPE HTML>
 <html>
+<head>
+    <meta charset="utf-8">
+    <title>HiOA student information system</title>
+</head>
 	<body>
 	<?php
 	ini_set('error_reporting', E_ALL);

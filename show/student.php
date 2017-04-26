@@ -7,7 +7,8 @@ $result = $conn->query($sql);
 ?>
 <html>
     <head>
-        
+        <meta charset="utf-8">
+        <title>HiOA student information system</title>
     </head>
     <body>
 

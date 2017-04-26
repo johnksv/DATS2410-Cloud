@@ -70,6 +70,7 @@ if (!empty($_POST)) {
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <title>HiOA student information system</title>
 </head>
 <body>
 
