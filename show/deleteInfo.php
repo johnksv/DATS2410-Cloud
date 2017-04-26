@@ -8,7 +8,7 @@ $sql = "DELETE FROM ElectiveCourse WHERE sPID='" . $_POST["id"] . "' and courseC
         header('Location: studyprogramInfo.php');
 
     }
-$sql = "DELETE FROM ElectiveCourse WHERE sPID='" . $_POST["id"] . "' and courseCode='" . $_POST["course"] . "'";
+$sql = "DELETE FROM MandatoryCourse WHERE sPID='" . $_POST["id"] . "' and courseCode='" . $_POST["course"] . "'";
 if ($conn->query($sql) === TRUE) {
         Connection::disconnect();
         header('Location: studyprogramInfo.php');
