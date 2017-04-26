@@ -1,3 +1,25 @@
+header {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: center;
+    padding-top: 2em;
+    padding-bottom: 1em;
+    background: beige;
+}
+
+body {
+    margin: 0;
+}
+
+nav a {
+    padding: 0.2em;
+    background: ghostwhite;
+    margin: 15px;
+}
+
 footer {
     position: absolute;
     bottom: 0;
