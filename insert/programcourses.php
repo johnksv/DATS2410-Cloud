@@ -41,10 +41,10 @@ if (!empty($_POST)) {
         $standardSemesterError = 'Please choose a standard amount of semesters';
         $valid = false;
     }
-	if(!is_int ($standardSemester)){
+	/*if(!is_int ($standardSemester)){
 		$standardSemesterError = 'Be kind and use a number.';
         $valid = false;
-	}
+	}*/
 
     // insert data
     if ($valid) {
@@ -54,7 +54,6 @@ if (!empty($_POST)) {
 			$sql = "INSERT INTO MandatoryCourse (sPID, courseCode, standardSemester) values('$sPID', '$courseCode', '$standardSemester')";
 		}else{
 				$sql = "INSERT INTO ElectiveCourse (sPID, courseCode, standardSemester) values('$sPID', '$courseCode', '$standardSemester')";
-		
 		}
         $result = $conn->query($sql);
         Connection::disconnect();
