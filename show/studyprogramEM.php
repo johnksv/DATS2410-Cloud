@@ -16,7 +16,7 @@ $result = $conn->query($sql);
     ?>
 
 
-    <div class="container">
+    <main class="container">
             <div class="row">
                 <h3>Elective and mandatory courses</h3>
             </div>
@@ -61,6 +61,8 @@ $result = $conn->query($sql);
                     </tbody>
                 </table>
             </div>
-        </div>
+        </main>
+
+    <?php include '../htmlTemplate/footer.php'; ?>
     </body>
 </html>
