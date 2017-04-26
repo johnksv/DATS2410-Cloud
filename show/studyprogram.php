@@ -21,7 +21,7 @@ readfile("../htmlTemplate/header.html");
 <main class="container">
     <div class="row">
         <h3>Studyprograms</h3>
-        <button><a href="../insert/studyprogram.php">Create new entry</a></button>
+        <a href="../insert/studyprogram.php"><button>Create new entry</button></a>
     </div>
 
     <div class="row">
