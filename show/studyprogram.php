@@ -2,7 +2,7 @@
 require_once '../Connection.php';
 $conn = Connection::connect();
 
-$sql = "SELECT * FROM studyprogram";
+$sql = "SELECT * FROM StudyProgram";
 $result = $conn->query($sql);
 ?>
 <html>
