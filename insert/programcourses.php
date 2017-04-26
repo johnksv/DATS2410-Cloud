@@ -122,7 +122,7 @@ readfile("../htmlTemplate/header.html");
                    value="M" <?php echo (!empty($type) && $type == "M") ? "checked" : ''; ?>>
             Mandatory <br>
             <input type="radio" name="type"
-                   value="E" <?php if(empty($type)){echo "checked";} elseif ($type == "E") {echo "checked";} ?>> Elective
+                   value="E" <?php if(empty($type)){echo "checked";} ?>> Elective
             <p hidden><input type="radio" name="type" value="" <?php echo (empty($type)) ? "checked" : ''; ?>>
             </p>
         </div>
