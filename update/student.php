@@ -38,11 +38,11 @@ readfile("../htmlTemplate/header.html");
 <?php
 //If the request is from another webpage
 if (empty($_POST["studentID"])) {
-    //If direct access
+    //If direct access, redirect
     header("Location: ../show/student.php");
-} else {
-    echo "<B>Updating student: " . $_POST["studentID"] . "</B><br>";
-
+} else { ?>
+    <b>Updating student: <?php echo $_POST["studentID"] ?> </b><br>
+<?php
     $sql = 'SELECT * FROM Student WHERE studentID="' . $_POST["studentID"] . '"';
     $result = $conn->query($sql);
     Connection::disconnect();
@@ -63,7 +63,7 @@ if (empty($_POST["studentID"])) {
 <form action="student.php" method="post">
     First Name: <input type="text" name="firstName" value="<?php echo $fname; ?>"><br>
     Last Name: <input type="text" name="lastName" value="<?php echo $lname; ?>"><br>
-    email: <input type="text" name="email" value="<?php echo $email; ?>"><br>
+    E-mail: <input type="text" name="email" value="<?php echo $email; ?>"><br>
 
     Start Year: <input name="startYear" type="date" value="<?php echo $year; ?>"><br>
     <br>
