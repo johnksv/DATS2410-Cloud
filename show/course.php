@@ -8,8 +8,7 @@ $result = $conn->query($sql);
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>HiOA student information system</title>
+    <?php readfile("../htmlTemplate/head.html");  ?>
 </head>
 <body>
 

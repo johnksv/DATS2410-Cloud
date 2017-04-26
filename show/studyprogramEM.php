@@ -1,18 +1,22 @@
 <?php
 require_once '../Connection.php';
-$conn = connection::connect();
+$conn = Connection::connect();
 
-$sql = "Select FROM electivecourse.sPID, mandatorycourse.sPID, electivecourse.courseCode, mandatorycourse.courseCode, electivecourse.standardSemester, mandatorycourse.standardSemester  ". "WHERE sPID='" . $_POST["id"] . "' ";
+$sql = "Select electivecourse.sPID, mandatorycourse.sPID, electivecourse.courseCode, mandatorycourse.courseCode, electivecourse.standardSemester, mandatorycourse.standardSemester FROM  electivecourse,mandatorycourse WHERE sPID='" . $_POST["id"] . "' ";
 $result = $conn->query($sql);
 ?>
 <html>
     <head>
-        <meta charset="utf-8">
-        <title>HiOA student information system</title>
+        <?php readfile("../htmlTemplate/head.html");  ?>
     </head>
     <body>
+    <?php
+    //Insert header
+    readfile("../htmlTemplate/header.html");
+    ?>
 
-        <div class="container">
+
+    <div class="container">
             <div class="row">
                 <h3>Elective and mandatory courses</h3>
             </div>
@@ -52,7 +56,7 @@ $result = $conn->query($sql);
                                 </td>
                             </tr>
                         <?php }
-                        $conn->close();
+                        Connection::disconnect();
                         ?>
                     </tbody>
                 </table>
