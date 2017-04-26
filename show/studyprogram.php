@@ -2,7 +2,7 @@
 require_once '../Connection.php';
 $conn = Connection::connect();
 
-$sql = "SELECT * FROM Student";
+$sql = "SELECT * FROM StudyProgram";
 $result = $conn->query($sql);
 ?>
 <!DOCTYPE html>
@@ -19,8 +19,8 @@ readfile("../htmlTemplate/header.html");
 
 <main class="container">
     <div class="row">
-        <h3>Students</h3>
-        <button><a href="../insert/student.php">Create new entry</a></button>
+        <h3>Studyprograms</h3>
+        <button><a href="../insert/studyprogram.php">Create new entry</a></button>
     </div>
 
     <div class="row">
@@ -28,11 +28,10 @@ readfile("../htmlTemplate/header.html");
             <thead>
             <tr>
 
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Email</th>
-                <th>StartYear</th>
-                <th>StudentID</th>
+                <th>sPID</th>
+                <th>sPName</th>
+                <th>durationSemester</th>
+                <th>startYear</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -40,22 +39,26 @@ readfile("../htmlTemplate/header.html");
             <tbody>
             <?php while ($row = $result->fetch_assoc()) { ?>
                 <tr>
-                    <td><?php echo $row['firstName'] ?></td>
-                    <td><?php echo $row['lastName'] ?></td>
-                    <td><?php echo $row['email'] ?></td>
+                    <td><?php echo $row['sPID'] ?></td>
+                    <td><?php echo $row['sPName'] ?></td>
+                    <td><?php echo $row['durationSemester'] ?></td>
                     <td><?php echo $row['startYear'] ?></td>
-                    <td><?php echo $row['studentID'] ?></td>
                     <td>
-                        <form action="../update/student.php" method="post">
-                            <input type="hidden" name="studentID" value="<?php echo $row['studentID'] ?>">
+                        <form action="studyprogramInfo.php" method="post">
+                            <input type="hidden" name="sPID" value="<?php echo $row['sPID'] ?>">
+                            <input type="submit" name="Show" value="Show courses"><br>
+
+                        </form>
+                        <form action="../update/studyprogram.php" method="post">
+                            <input type="hidden" name="sPID" value="<?php echo $row['sPID'] ?>">
                             <input type="submit" name="Change" value="Edit"><br>
 
                         </form>
                     </td>
                     <td>
                         <form action="delete.php" method="post">
-                            <input type="hidden" name="id" value="<?php echo $row['studentID'] ?>">
-                            <input type="hidden" name="type" value="student">
+                            <input type="hidden" name="id" value="<?php echo $row['sPID'] ?>">
+                            <input type="hidden" name="type" value="studyprogram">
                             <input type="submit" name="Delete" value="Delete"><br>
 
                         </form>
@@ -72,5 +75,4 @@ readfile("../htmlTemplate/header.html");
 <?php include '../htmlTemplate/footer.php'; ?>
 </body>
 </html>
-
 

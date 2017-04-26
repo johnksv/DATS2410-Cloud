@@ -1,6 +1,6 @@
 <?php
 
-require '../phpcode/Connection.php';
+require '../Connection.php';
 
 if (!empty($_POST)) {
     // keep track validation errors
@@ -11,7 +11,6 @@ if (!empty($_POST)) {
     // keep track post values
     $courseCode = $_POST['courseCode'];
     $startDate = $_POST['startDate'];
-
 
 
     // validate input
@@ -38,37 +37,42 @@ if (!empty($_POST)) {
 }
 ?>
 
-<!DCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="utf-8">
+    <?php readfile("../htmlTemplate/head.html");  ?>
 </head>
 <body>
 
-<div class="span10 offset1">
+<?php
+//Insert header
+readfile("../htmlTemplate/header.html");
+?>
+
+<main>
 
     <h3>Start a course</h3>
 
     <form action="course_instance.php" method="post">
         <label>Course code</label>
         <div>
-           <select name='courseCode'>
-               <option value="" >Choose course</option>
-               <?php
-               require_once '../phpcode/Connection.php';
-               $conn = Connection::connect();
+            <select name='courseCode'>
+                <option value="">Choose course</option>
+                <?php
+                require_once '../Connection.php';
+                $conn = Connection::connect();
 
-               $sql = "SELECT courseCode, courseTitle FROM Course";
-               $result = $conn->query($sql);
-               // output data of each row
-               while($row = $result->fetch_assoc()) {
-                   $selected = (!empty($courseCode) && $courseCode == $row['courseCode']) ? 'selected' : ' ';
-                   echo "<option value='". $row['courseCode']."' ".$selected.">". $row['courseCode'] . " " .$row['courseTitle'] ."</option>";
-               }
-               Connection::disconnect();
-               ?>
+                $sql = "SELECT courseCode, courseTitle FROM Course";
+                $result = $conn->query($sql);
+                // output data of each row
+                while ($row = $result->fetch_assoc()) {
+                    $selected = (!empty($courseCode) && $courseCode == $row['courseCode']) ? 'selected' : ' ';
+                    echo "<option value='" . $row['courseCode'] . "' " . $selected . ">" . $row['courseCode'] . " " . $row['courseTitle'] . "</option>";
+                }
+                Connection::disconnect();
+                ?>
 
-           </select>
+            </select>
 
             <?php if (!empty($courseCodeError)): ?>
                 <span><?php echo $courseCodeError; ?></span>
@@ -77,7 +81,8 @@ if (!empty($_POST)) {
 
         <label>Start date</label>
         <div>
-            <input name='startDate' type="date" placeholder="yyyy-mm-dd" value="<?php echo !empty($startDate) ? $startDate : ''; ?>">
+            <input name='startDate' type="date" placeholder="yyyy-mm-dd"
+                   value="<?php echo !empty($startDate) ? $startDate : ''; ?>">
             <?php if (!empty($startDateError)): ?>
                 <span><?php echo $startDateError; ?></span>
             <?php endif; ?>
@@ -88,8 +93,8 @@ if (!empty($_POST)) {
             <a href="../show/course_instance.php">Back</a>
         </div>
     </form>
-</div>
+</main>
 
-
+<?php include '../htmlTemplate/footer.php'; ?>
 </body>
 </html>

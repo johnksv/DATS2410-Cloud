@@ -1,6 +1,6 @@
 <?php
 
-require '../phpcode/Connection.php';
+require '../Connection.php';
 
 if (!empty($_POST)) {
     // keep track validation errors
@@ -43,21 +43,27 @@ if (!empty($_POST)) {
 }
 ?>
 
-<!DCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="utf-8">
+    <?php readfile("../htmlTemplate/head.html");  ?>
 </head>
 <body>
 
-<div class="span10 offset1">
+<?php
+//Insert header
+readfile("../htmlTemplate/header.html");
+?>
+
+<main>
 
     <h3>Create a Course</h3>
 
     <form action="course.php" method="post">
         <label>Course code</label>
         <div>
-            <input name="courseCode" type="text" placeholder="Course code" value="<?php echo !empty($courseCode) ? $courseCode : ''; ?>">
+            <input name="courseCode" type="text" placeholder="Course code"
+                   value="<?php echo !empty($courseCode) ? $courseCode : ''; ?>">
             <?php if (!empty($courseCodeError)): ?>
                 <span><?php echo $courseCodeError; ?></span>
             <?php endif; ?>
@@ -65,7 +71,8 @@ if (!empty($_POST)) {
 
         <label>Course title</label>
         <div>
-            <input name="courseTitle" type="text" placeholder="Course title" value="<?php echo !empty($courseTitle) ? $courseTitle : ''; ?>">
+            <input name="courseTitle" type="text" placeholder="Course title"
+                   value="<?php echo !empty($courseTitle) ? $courseTitle : ''; ?>">
             <?php if (!empty($courseTitleError)): ?>
                 <span><?php echo $courseTitleError; ?></span>
             <?php endif; ?>
@@ -73,10 +80,13 @@ if (!empty($_POST)) {
 
         <label>Semester</label>
         <div>
-            <input type="radio" name="semester" value="S" <?php echo (!empty($semester) && $semester == "S") ? "checked" : ''; ?>> Spring <?php if (!empty($semesterError)): ?>
+            <input type="radio" name="semester"
+                   value="S" <?php echo (!empty($semester) && $semester == "S") ? "checked" : ''; ?>>
+            Spring <?php if (!empty($semesterError)): ?>
                 <span><?php echo $semesterError; ?></span>
             <?php endif; ?><br>
-            <input type="radio" name="semester" value="F" <?php echo (!empty($semester) && $semester == "F") ? "checked" : ''; ?>> Fall
+            <input type="radio" name="semester"
+                   value="F" <?php echo (!empty($semester) && $semester == "F") ? "checked" : ''; ?>> Fall
             <p hidden><input type="radio" name="semester" value="" <?php echo (empty($semester)) ? "checked" : ''; ?>>
             </p>
 
@@ -87,8 +97,8 @@ if (!empty($_POST)) {
             <a href="../show/course.php">Back</a>
         </div>
     </form>
-</div>
+</main>
 
-
+<?php include '../htmlTemplate/footer.php'; ?>
 </body>
 </html>

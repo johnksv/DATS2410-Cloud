@@ -1,6 +1,6 @@
 <?php
 ini_set('error_reporting', E_ALL);
-//require_once 'phpcode/Connection.php';
+//require_once 'phpcode/connection.php';
 ?>
 <p>test</p>
 <?php
@@ -15,7 +15,7 @@ ini_set('error_reporting', E_ALL);
 $conn = new mysqli($host, $username, $password);
 
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+    die("connection failed: " . $conn->connect_error);
 }
 $conn->select_db($database);
 
