@@ -1,18 +1,15 @@
 <?php
 
-require '../phpcode/Connection.php';
+require '../Connection.php';
 
 if (!empty($_POST)) {
     // keep track validation errors
     $studentIDError = null;
     $sPIDError = null;
-    $completedError = null;
-
 
     // keep track post values
     $studentID = $_POST['studentID'];
     $sPID = $_POST['sPID'];
-    $completed = $_POST['completed'];
 
 
     // validate input
@@ -27,15 +24,10 @@ if (!empty($_POST)) {
         $valid = false;
     }
 
-    if (empty($completed)) {
-        $completedError = 'Please enter a date';
-        $valid = false;
-    }
-
     // insert data
     if ($valid) {
         $conn = Connection::connect();
-        $sql = "INSERT INTO Student_has_StudyProgram (studentID, sPID, completed) values('$studentID', '$sPID', '$completed')";
+        $sql = "INSERT INTO Student_has_StudyProgram (studentID, sPID) values('$studentID', '$sPID')";
 
         $result = $conn->query($sql);
         Connection::disconnect();
@@ -56,12 +48,12 @@ if (!empty($_POST)) {
     <h3>Apply for study program</h3>
 
     <form action="student_has_StudyProgram.php" method="post">
-        <label>Chpse student</label>
+        <label>Choose student</label>
         <div>
             <select name='studentID'>
                 <option value="" >Student</option>
                 <?php
-                require_once '../phpcode/Connection.php';
+                require_once '../Connection.php';
                 $conn = Connection::connect();
 
                 $sql = "SELECT studentID, firstName, lastName FROM Student";
@@ -86,7 +78,7 @@ if (!empty($_POST)) {
             <select name='sPID'>
                 <option value="" >Choose course</option>
                 <?php
-                require_once '../phpcode/Connection.php';
+                require_once '../Connection.php';
                 $conn = Connection::connect();
 
                 $sql = "SELECT sPID, sPName FROM StudyProgram";
@@ -104,15 +96,6 @@ if (!empty($_POST)) {
                 <span><?php echo $sPIDError; ?></span>
             <?php endif; ?>
         </div>
-
-        <label>Time of completion</label>
-        <div>
-            <input name='completed' type="date" placeholder="yyyy-mm-dd" value="<?php echo !empty($completed) ? $completed : ''; ?>">
-            <?php if (!empty($completedError)): ?>
-                <span><?php echo $completedError; ?></span>
-            <?php endif; ?>
-        </div>
-
         <div>
             <button type="submit">Create</button>
             <a href="../show/course_instance.php">Back</a>
