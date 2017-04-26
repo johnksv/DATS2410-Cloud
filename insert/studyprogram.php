@@ -95,7 +95,7 @@ readfile("../htmlTemplate/header.html");
 
         <label>Start year</label>
         <div>
-            <select>
+            <select name="startYear">
                 <?php
                 $time = new DateTime('now');
                 $year = intval($time->format("Y"));
@@ -110,11 +110,6 @@ readfile("../htmlTemplate/header.html");
                 <?php } ?>
 
             </select>
-            <input name="startYear" type="date" placeholder="yyyy-mm-dd"
-                   value="<?php echo !empty($durationSemester) ? $durationSemester : ''; ?>">
-            <?php if (!empty($yearError)): ?>
-                <span><?php echo $yearError; ?></span>
-            <?php endif; ?>
         </div>
 
         <div>
