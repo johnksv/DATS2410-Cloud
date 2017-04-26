@@ -58,8 +58,20 @@ if (empty($_POST["courseCode"])) {
 ?>
 <form action="course.php" method="post">
     Title: <input type="text" name="courseTitle" value="<?php echo $coursetitle; ?>"><br>
-    Semster: <input type="text" name="semester" value="<?php echo $semester; ?>"><br>
-    <br>
+    Semester:
+        <div>
+            <input type="radio" name="semester"
+                   value="S" <?php echo (!empty($semester) && $semester == "S") ? "checked" : ''; ?>>
+            Spring <br>
+            <input type="radio" name="semester"
+                   value="F" <?php echo (!empty($semester) && $semester == "F") ? "checked" : ''; ?>> Fall
+            <p hidden><input type="radio" name="semester" value="" <?php echo (empty($semester)) ? "checked" : ''; ?>>
+            </p>
+        </div>
+		
+	
+	<br>
+	
     <input type="hidden" name="foo" value="<?php echo $_POST["courseCode"]; ?>"/>
     <input type="submit" name="update" Value="Update">
 </form>
