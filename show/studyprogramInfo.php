@@ -38,6 +38,7 @@ $result2 = $conn->query($sql);
                             <th>standardSemester</th>
                             <th>  </th>
                             <th>  </th>
+                            <th>  </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -46,6 +47,7 @@ $result2 = $conn->query($sql);
                                 <td><?php echo $row['sPID'] ?></td>
                                 <td><?php echo $row['courseCode'] ?></td>
                                 <td><?php echo $row['standardSemester'] ?></td>
+                                <td>mandatory</td>
                                 <td> 
                                     <form action="../update/studyprogramInfo.php" method="post">
                                         <input type="hidden" name="sPID" value="<?php echo $row['sPID'] ?>">
@@ -57,6 +59,7 @@ $result2 = $conn->query($sql);
                                     <form action="deleteInfo.php" method="post">
                                         <input type="hidden" name="id" value="<?php echo $row['sPID'] ?>">
                                         <input type="hidden" name="course" value="<?php echo $row['courseCode'] ?>">
+                                        <input type="hidden" name="type" value="mandatory">
                                         <input type="submit"  name="Delete" value="Delete"><br>
 
                                     </form>
@@ -70,6 +73,7 @@ $result2 = $conn->query($sql);
                                 <td><?php echo $row['sPID'] ?></td>
                                 <td><?php echo $row['courseCode'] ?></td>
                                 <td><?php echo $row['standardSemester'] ?></td>
+                                <td>elective</td>
                                 <td> 
                                     <form action="../update/studyprogramInfo.php" method="post">
                                         <input type="hidden" name="sPID" value="<?php echo $row['sPID'] ?>">
@@ -81,6 +85,7 @@ $result2 = $conn->query($sql);
                                     <form action="deleteInfo.php" method="post">
                                         <input type="hidden" name="id" value="<?php echo $row['sPID'] ?>">
                                         <input type="hidden" name="course" value="<?php echo $row['courseCode'] ?>">
+                                        <input type="hidden" name="type" value="elective">
                                         <input type="submit"  name="Delete" value="Delete"><br>
 
                                     </form>
