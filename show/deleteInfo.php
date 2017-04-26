@@ -15,7 +15,7 @@ else if (strcmp($type, "mandatory") == 0) {
 $sql = "DELETE FROM MandatoryCourse WHERE sPID='" . $_POST["id"] . "' and courseCode='" . $_POST["course"] . "'";
 if ($conn->query($sql) === TRUE) {
         Connection::disconnect();
-        header('Location: studentprogramInfo.php?' . $_POST["id"]."&Show=Show+courses");
+        header('Location: studentprogramInfo.php?id='. $_POST["id"]."&Show=Show+courses");
     }
 }
 
