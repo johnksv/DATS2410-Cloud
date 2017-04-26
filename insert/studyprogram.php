@@ -39,12 +39,11 @@ if (!empty($_POST)) {
     // insert data
     if ($valid) {
         $conn = Connection::connect();
-        $sql = "INSERT INTO Studyprogram ('sPID', 'sPName', 'durationSemester', 'startYear') values('$spid', '$spname', '$durationSemester', '$startYear')";
+        $sql = "INSERT INTO Studyprogram (sPID, sPName, durationSemester, startYear) values('$spid', '$spname', '$durationSemester', '$startYear')";
 
         $result = $conn->query($sql);
-        echo $conn->error;
         Connection::disconnect();
-        //header("Location: ../show/studyprogram.php");
+        header("Location: ../show/studyprogram.php");
     }
 }
 ?>
