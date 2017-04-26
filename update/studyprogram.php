@@ -68,8 +68,7 @@ if (empty($_POST["sPID"])) {
 	<select name="startYear">
 		<option value="<?php echo $year; ?>" ><?php echo $year; ?></option>
                 <?php
-				value="">
-                $time = new DateTime('now');
+				$time = new DateTime('now');
                 $year = intval($time->format("Y"));
                 for($i = 5; $i > 0; $i--){?>
                     <option><?php echo $year+$i; ?></option>
