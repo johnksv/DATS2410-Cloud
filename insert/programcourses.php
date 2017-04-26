@@ -1,7 +1,8 @@
 <?php
 
 require '../Connection.php';
-if(empty($_POST['id'])){   
+//if(empty($_POST['id'])){   
+if(false){
 	//header("Location: ../show/studyprogram.php");	
     $standardSemesterError = null;
     $courseCodeError = null;
