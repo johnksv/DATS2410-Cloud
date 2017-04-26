@@ -1,7 +1,4 @@
-<!DOCTYPE HTML>
-<html>
-	<body>
-	<?php
+<?php
 	ini_set('error_reporting', E_ALL);
 	//require_once 'phpcode/connection.php';
 	?>
@@ -22,14 +19,19 @@
         Connection::disconnect();
         header("Location: ../show/course.php");
 	}
-
+?>
+<!DOCTYPE HTML>
+<html>
+	<body>
+	
+	<?php>
 	//If the request is from another webpage
-	if (empty($_POST["courseCode"])) {
+	if (empty($_POST["id"])) {
 		echo "EMPTY";
 	}else{
-		echo "<B>Updating course: ". $_POST["courseCode"] ."</B><br>";
+		echo "<B>Updating course: ". $_POST["id"] ."</B><br>";
 
-		$sql = 'SELECT * FROM Course WHERE courseCode="'.$_POST["courseCode"] . '"';
+		$sql = 'SELECT * FROM Course WHERE courseCode="'.$_POST["id"] . '"';
 		$result = $conn->query($sql);
 
 		if ($result->num_rows > 0) {
@@ -47,10 +49,10 @@
 	}
 	?>
 	<form action="course.php" method="post">
-		Title: <input type="text" name="courseTitle" value="<?php echo $fname; ?>"><br>
-		Semster: <input type="text" name="semester" value="<?php echo $lname; ?>"><br>
+		Title: <input type="text" name="courseTitle" value="<?php echo $coursetitle; ?>"><br>
+		Semster: <input type="text" name="semester" value="<?php echo $semester; ?>"><br>
 		<br>
-		<input type="hidden" name="foo" value="<?php echo $_POST["courseCode"];?>" />
+		<input type="hidden" name="foo" value="<?php echo $_POST["id"];?>" />
 		<input type="submit" name="update" Value="Update">
 	</form>
 
