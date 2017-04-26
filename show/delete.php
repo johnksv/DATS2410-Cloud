@@ -29,13 +29,13 @@ if (strcmp($type, "student") == 0) {
     $sql = "DELETE FROM ElectiveCourse WHERE sPID='$id' AND courseCode='$course'";
     if ($conn->query($sql) === TRUE) {
         Connection::disconnect();
-        header("Location: studentprogramInfo.php?id=$id");
+        header("Location: studyprograminfo.php?id=$id");
     }
 } else if (strcmp($type, "mandatory") == 0) {
     $sql = "DELETE FROM MandatoryCourse WHERE sPID='$id' AND courseCode='$course'";
     if ($conn->query($sql) === TRUE) {
         Connection::disconnect();
-        header("Location: studentprogramInfo.php?id=$id");
+        header("Location: studyprograminfo.php?id=$id");
     }
 }
 echo "Error deleting record: " . $conn->error;
