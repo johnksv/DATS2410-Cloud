@@ -64,7 +64,7 @@ readfile("../htmlTemplate/header.html");
 
     <h3>Create Student Program</h3>
 
-    <form action="student.php" method="post">
+    <form action="studyprogram.php" method="post">
 
         <label>Program ID</label>
         <div>
