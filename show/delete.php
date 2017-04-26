@@ -18,14 +18,7 @@ if (strcmp($type, "student") == 0) {
     }
     
 }
-else if (strcmp($type, "electivecourse") == 0) {
-    $sql = "DELETE FROM Course WHERE sPID='" . $_POST["id"] . "' ";
-    if ($conn->query($sql) === TRUE) {
-        Connection::disconnect();
-        header('Location: electivecourse.php');
-    }
-    
-}
+
 
 echo "Error deleting record: " . $conn->error;
 
