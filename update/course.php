@@ -58,7 +58,6 @@ if (empty($_POST["courseCode"])) {
 ?>
 <form action="course.php" method="post">
     Title: <input type="text" name="courseTitle" value="<?php echo $coursetitle; ?>"><br>
-    Semster: <input type="text" name="semester" value="<?php echo $semester; ?>"><br>
     Semester:
         <div>
             <input type="radio" name="semester"
