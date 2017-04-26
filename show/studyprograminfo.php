@@ -27,7 +27,6 @@ Connection::disconnect();
                 <h3>Elective and mandatory courses</h3>
             </div>
 
-            <div class="row">
                 <table class="table table-striped table-bordered">
                     <thead>
                         <tr>
@@ -35,7 +34,6 @@ Connection::disconnect();
                             <th>sPID</th>
                             <th>courseCode</th>
                             <th>standardSemester</th>
-                            <th>  </th>
                             <th>  </th>
                             <th>  </th>
                         </tr>
@@ -47,13 +45,6 @@ Connection::disconnect();
                                 <td><?php echo $row['courseCode'] ?></td>
                                 <td><?php echo $row['standardSemester'] ?></td>
                                 <td>Elective</td>
-                                <td>
-                                    <form action="../update/studyprogramInfo.php" method="post">
-                                        <input type="hidden" name="sPID" value="<?php echo $row['sPID'] ?>">
-                                        <input type="submit"  name="Change" value="Edit"><br>
-
-                                    </form>
-                                </td>
                                 <td>
                                     <form action="delete.php" method="post">
                                         <input type="hidden" name="id" value="<?php echo $row['sPID'] ?>">
@@ -73,13 +64,7 @@ Connection::disconnect();
                                 <td><?php echo $row['courseCode'] ?></td>
                                 <td><?php echo $row['standardSemester'] ?></td>
                                 <td>mandatory</td>
-                                <td>
-                                    <form action="../update/studyprogramInfo.php" method="post">
-                                        <input type="hidden" name="sPID" value="<?php echo $row['sPID'] ?>">
-                                        <input type="submit"  name="Change" value="Edit"><br>
-
-                                    </form>
-                                </td>
+                                
                                 <td>
                                     <form action="delete.php" method="post">
                                         <input type="hidden" name="id" value="<?php echo $row['sPID'] ?>">
@@ -89,11 +74,24 @@ Connection::disconnect();
 
                                     </form>
                                 </td>
-                            </tr>
+                            </tr>							
                         <?php }?>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>
+								<form action="../insert/programcourses.php" method="post">
+									<input type="hidden" name="id" value="<?php echo $row['sPID'] ?>">
+									<input type="submit" value="ADD"><br>
+								</form>
+							</td>
+						</tr>
                     </tbody>
                 </table>
-            </div>
+				
+            
         </main>
 
     <?php include '../htmlTemplate/footer.php'; ?>
