@@ -47,8 +47,8 @@
 	}
 	?>
 	<form action="course.php" method="post">
-		Title: <input type="text" name="courseTitle" value="<?php echo $fname; ?>"><br>
-		Semster: <input type="text" name="semester" value="<?php echo $lname; ?>"><br>
+		Title: <input type="text" name="courseTitle" value="<?php echo $coursetitle; ?>"><br>
+		Semster: <input type="text" name="semester" value="<?php echo $semester; ?>"><br>
 		<br>
 		<input type="hidden" name="foo" value="<?php echo $_POST["courseCode"];?>" />
 		<input type="submit" name="update" Value="Update">
