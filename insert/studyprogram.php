@@ -1,7 +1,7 @@
 <?php
 
 require '../connection.php';
-
+die('Not implemented yet..!');
 if (!empty($_POST)) {
     // keep track validation errors
     $IDError = null;
