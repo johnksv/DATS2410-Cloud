@@ -2,7 +2,7 @@
 require_once '../connection.php';
 $conn = connection::connect();
 
-$sql = "SELECT * FROM electivecourse";
+$sql = "SELECT * FROM Student";
 $result = $conn->query($sql);
 ?>
 <html>
@@ -14,7 +14,7 @@ $result = $conn->query($sql);
         <div class="container">
             <div class="row">
                 <h3>Students</h3>
-                <button><a href="../insert/electivecourse.php" >Create new entry</a></button>
+                <button><a href="../insert/student.php" >Create new entry</a></button>
             </div>
  
             <div class="row">
@@ -23,8 +23,9 @@ $result = $conn->query($sql);
                         <tr>
 
                             <th>sPID</th>
-                            <th>Course code</th>
-                            <th> Standard semester</th>
+                            <th>sPName</th>
+                            <th>durationSemester</th>
+                            <th>startYear</th>
                             <th>  </th>
                             <th>  </th>
                         </tr>
@@ -33,19 +34,20 @@ $result = $conn->query($sql);
                         <?php while ($row = $result->fetch_assoc()) { ?>
                             <tr>
                                 <td><?php echo $row['sPID'] ?></td>
-                                <td><?php echo $row['courseCode'] ?></td>
-                                <td><?php echo $row['standardSemester'] ?></td>
+                                <td><?php echo $row['sPName'] ?></td>
+                                <td><?php echo $row['durationSemester'] ?></td>
+                                <td><?php echo $row['startYear'] ?></td>
                                 <td> 
-                                    <form action="../update/elective.php" method="post">
-                                        <input type="hidden" name="sPID" value="<?php echo $row['sPID'] ?>">
+                                    <form action="../update/student.php" method="post">
+                                        <input type="hidden" name="studentID" value="<?php echo $row['studentID'] ?>">
                                         <input type="submit"  name="Change" value="Edit"><br>
 
                                     </form>
                                 </td>
                                 <td> 
                                     <form action="delete.php" method="post">
-                                        <input type="hidden" name="id" value="<?php echo $row['sPID'] ?>">
-                                        <input type="hidden" name="type" value="electivecourse">
+                                        <input type="hidden" name="id" value="<?php echo $row['studentID'] ?>">
+                                        <input type="hidden" name="type" value="student">
                                         <input type="submit"  name="Delete" value="Delete"><br>
 
                                     </form>
@@ -60,3 +62,4 @@ $result = $conn->query($sql);
         </div>
     </body>
 </html>
+
