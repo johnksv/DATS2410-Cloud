@@ -2,7 +2,7 @@
 require_once '../Connection.php';
 $conn = Connection::connect();
 
-$sql = "Select * ElectiveCourse WHERE sPID='" . $_POST["id"] . "' ";
+$sql = "Select *  from ElectiveCourse WHERE sPID='" . $_POST["id"] . "' ";
 
 $result = $conn->query($sql);
 ?>
