@@ -74,15 +74,15 @@ readfile("../htmlTemplate/header.html");
 
         <label>Program ID</label>
         <div>
-            <input name="sPID" type="text" placeholder="sxxxxxx" value="
-            <?php echo !empty($spid) ? $spid : ''; ?>">
+            <input name="sPID" type="text"
+                   value="<?php echo !empty($spid) ? $spid : ''; ?>">
             <?php if (!empty($IDError)): ?>
                 <span><?php echo $IDError; ?></span>
             <?php endif; ?>
         </div>
         <label>Program long name</label>
         <div>
-            <input name="sPName" type="text" placeholder="my.example@example.com"
+            <input name="sPName" type="text"
                    value="<?php echo !empty($spname) ? $spname : ''; ?>">
             <?php if (!empty($programNameError)): ?>
                 <span><?php echo $programNameError; ?></span>
@@ -91,7 +91,7 @@ readfile("../htmlTemplate/header.html");
 
         <label>Duration (number of semesters)</label>
         <div>
-            <input name="durationSemester" type="text" placeholder="First Name"
+            <input name="durationSemester" type="text"
                    value="<?php echo !empty($startYear) ? $startYear : ''; ?>">
             <?php if (!empty($durationError)): ?>
                 <span><?php echo $durationError; ?></span>
