@@ -2,17 +2,23 @@
 require_once '../Connection.php';
 $conn = Connection::connect();
 
-$sql = "Select * ElectiveCourse WHERE sPID='" . $_POST["id"] . "' ";
-$sql = "Select * Mandatory.Course WHERE sPID='" . $_POST["id"] . "' ";
-$result = $conn->query($sql);
+$sql = "Select *  from ElectiveCourse WHERE sPID='" . $_POST["id"] . "' ";
+
+$result1 = $conn->query($sql);
+$sql = "Select *  from MandatoryCourse WHERE sPID='" . $_POST["id"] . "' ";
+
+$result2 = $conn->query($sql);
+
 ?>
 <html>
     <head>
         <?php readfile("../htmlTemplate/head.html");  ?>
     </head>
     <body>
+        
     <?php
     //Insert header
+    echo  $_POST["id"] ;
     readfile("../htmlTemplate/header.html");
     ?>
 
@@ -35,13 +41,35 @@ $result = $conn->query($sql);
                         </tr>
                     </thead>
                     <tbody>
-                        <?php while ($row = $result->fetch_assoc()) { ?>
+                        <?php while ($row = $result1->fetch_assoc()) { ?>
                             <tr>
                                 <td><?php echo $row['sPID'] ?></td>
                                 <td><?php echo $row['courseCode'] ?></td>
                                 <td><?php echo $row['standardSemester'] ?></td>
                                 <td> 
-                                    <form action="../update/studyprogramEM.php" method="post">
+                                    <form action="../update/studyprogramInfo.php" method="post">
+                                        <input type="hidden" name="sPID" value="<?php echo $row['sPID'] ?>">
+                                        <input type="submit"  name="Change" value="Edit"><br>
+
+                                    </form>
+                                </td>
+                                <td> 
+                                    <form action="delete.php" method="post">
+                                        <input type="hidden" name="id" value="<?php echo $row['sPID'] ?>">
+                                        <input type="hidden" name="type" value="studyprogramEM">
+                                        <input type="submit"  name="Delete" value="Delete"><br>
+
+                                    </form>
+                                </td>
+                            </tr>
+                        <?php }
+                        while ($row = $result2->fetch_assoc()) { ?>
+                            <tr>
+                                <td><?php echo $row['sPID'] ?></td>
+                                <td><?php echo $row['courseCode'] ?></td>
+                                <td><?php echo $row['standardSemester'] ?></td>
+                                <td> 
+                                    <form action="../update/studyprogramInfo.php" method="post">
                                         <input type="hidden" name="sPID" value="<?php echo $row['sPID'] ?>">
                                         <input type="submit"  name="Change" value="Edit"><br>
 

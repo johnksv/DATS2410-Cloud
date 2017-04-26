@@ -26,12 +26,6 @@ if (!empty($_POST)) {
         $valid = false;
     }
 
-    function validateDate($date)
-    {
-        $d = DateTime::createFromFormat('Y-m-d', $date);
-        return $d && $d->format('Y-m-d') === $date;
-    }
-
     if (empty($durationSemester)) {
         $yearError = 'Please enter duration';
         $valid = false;
