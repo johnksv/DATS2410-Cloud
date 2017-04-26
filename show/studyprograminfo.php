@@ -8,14 +8,14 @@ $result1 = $conn->query($sql);
 $sql = "Select *  from MandatoryCourse WHERE sPID='" . $_GET["id"] . "' ";
 
 $result2 = $conn->query($sql);
-
+Connection::disconnect();
 ?>
 <html>
     <head>
         <?php readfile("../htmlTemplate/head.html");  ?>
     </head>
     <body>
-        
+
     <?php
     //Insert header
     readfile("../htmlTemplate/header.html");
@@ -26,7 +26,7 @@ $result2 = $conn->query($sql);
             <div class="row">
                 <h3>Elective and mandatory courses</h3>
             </div>
- 
+
             <div class="row">
                 <table class="table table-striped table-bordered">
                     <thead>
@@ -47,14 +47,14 @@ $result2 = $conn->query($sql);
                                 <td><?php echo $row['courseCode'] ?></td>
                                 <td><?php echo $row['standardSemester'] ?></td>
                                 <td>Elective</td>
-                                <td> 
+                                <td>
                                     <form action="../update/studyprogramInfo.php" method="post">
                                         <input type="hidden" name="sPID" value="<?php echo $row['sPID'] ?>">
                                         <input type="submit"  name="Change" value="Edit"><br>
 
                                     </form>
                                 </td>
-                                <td> 
+                                <td>
                                     <form action="delete.php" method="post">
                                         <input type="hidden" name="id" value="<?php echo $row['sPID'] ?>">
                                         <input type="hidden" name="course" value="<?php echo $row['courseCode'] ?>">
@@ -63,8 +63,8 @@ $result2 = $conn->query($sql);
 
                                     </form>
                                 </td>
-                                
-                                
+
+
                             </tr>
                         <?php }
                         while ($row = $result2->fetch_assoc()) { ?>
@@ -73,14 +73,14 @@ $result2 = $conn->query($sql);
                                 <td><?php echo $row['courseCode'] ?></td>
                                 <td><?php echo $row['standardSemester'] ?></td>
                                 <td>mandatory</td>
-                                <td> 
+                                <td>
                                     <form action="../update/studyprogramInfo.php" method="post">
                                         <input type="hidden" name="sPID" value="<?php echo $row['sPID'] ?>">
                                         <input type="submit"  name="Change" value="Edit"><br>
 
                                     </form>
                                 </td>
-                                <td> 
+                                <td>
                                     <form action="delete.php" method="post">
                                         <input type="hidden" name="id" value="<?php echo $row['sPID'] ?>">
                                         <input type="hidden" name="course" value="<?php echo $row['courseCode'] ?>">
@@ -90,9 +90,7 @@ $result2 = $conn->query($sql);
                                     </form>
                                 </td>
                             </tr>
-                        <?php }
-                        Connection::disconnect();
-                        ?>
+                        <?php }?>
                     </tbody>
                 </table>
             </div>

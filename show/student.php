@@ -4,6 +4,7 @@ $conn = Connection::connect();
 
 $sql = "SELECT * FROM Student";
 $result = $conn->query($sql);
+Connection::disconnect();
 ?>
 <!DOCTYPE html>
 <html>
@@ -61,9 +62,7 @@ readfile("../htmlTemplate/header.html");
                         </form>
                     </td>
                 </tr>
-            <?php }
-            $conn->close();
-            ?>
+            <?php } ?>
             </tbody>
         </table>
     </div>
