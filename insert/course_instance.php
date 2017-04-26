@@ -38,14 +38,14 @@ if (!empty($_POST)) {
 }
 ?>
 
-<!DCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
 </head>
 <body>
 
-<div class="span10 offset1">
+<div>
 
     <h3>Apply for a course</h3>
 
