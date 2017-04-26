@@ -38,7 +38,7 @@ $result = $conn->query($sql);
                                 <td><?php echo $row['semester'] ?></td>
                                 <td> 
                                     <form action="../update/course.php" method="post">
-                                        <input type="hidden" name="studentID" value="<?php echo $row['courseCode'] ?>">
+                                        <input type="hidden" name="courseCode" value="<?php echo $row['courseCode'] ?>">
                                         <input type="submit"  name="Change" value="Edit"><br>
 
                                     </form>
