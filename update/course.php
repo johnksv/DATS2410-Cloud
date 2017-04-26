@@ -1,7 +1,4 @@
-<!DOCTYPE HTML>
-<html>
-	<body>
-	<?php
+<?php
 	ini_set('error_reporting', E_ALL);
 	//require_once 'phpcode/connection.php';
 	?>
@@ -22,7 +19,12 @@
         Connection::disconnect();
         header("Location: ../show/course.php");
 	}
-
+?>
+<!DOCTYPE HTML>
+<html>
+	<body>
+	
+	<?php
 	//If the request is from another webpage
 	if (empty($_POST["courseCode"])) {
 		echo "EMPTY";
