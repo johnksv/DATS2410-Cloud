@@ -2,8 +2,17 @@
 
 require '../Connection.php';
 if(empty($_POST['id'])){   
-	header("Location: ../show/studyprogram.php");	
-}
+	//header("Location: ../show/studyprogram.php");	
+    $standardSemesterError = null;
+    $courseCodeError = null;
+	$typeError = null;
+
+    // keep track post values
+    $sPID = null;
+    $courseCode = null;
+    $standardSemester = null;
+    $type = null;
+}else{
 if (!empty($_POST)) {
     // keep track validation errors
     $standardSemesterError = null;
@@ -52,6 +61,7 @@ if (!empty($_POST)) {
 		
         header("Location: ../show/studyprograminfo.php?id=$sPID");
     }
+}
 }
 ?>
 
