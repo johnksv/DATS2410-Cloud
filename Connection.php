@@ -1,13 +1,13 @@
 <?php
 
-class connection
+class Connection
 {
 
     private static $con;
-    private static $host = "127.0.0.1";
-    private static $username = "root";
-    private static $password = "";
-    private static $database = "studentinfosys";
+    private static $host = '10.1.0.252' ;
+    private static $username = 'webserver';
+    private static $password = 'placeSundayjudge';
+    private static $database = 'studentinfosys';
 
     private function __construct()
     {

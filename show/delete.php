@@ -1,24 +1,24 @@
 <?php
 
-require_once '../connection.php';
-$conn = connection::connect();
+require_once '../Connection.php';
+$conn = Connection::connect();
 
 $type = filter_input(INPUT_POST, "type");
 if (strcmp($type, "student") == 0) {
     $sql = "DELETE FROM Student WHERE studentID='" . $_POST["id"] . "' ";
     if ($conn->query($sql) === TRUE) {
-        connection::disconnect();
+        Connection::disconnect();
         header('Location: student.php');
     }
 } else if (strcmp($type, "course") == 0) {
     $sql = "DELETE FROM Course WHERE courseCode='" . $_POST["id"] . "' ";
     if ($conn->query($sql) === TRUE) {
-        connection::disconnect();
+        Connection::disconnect();
         header('Location: course.php');
     }    
 }
 echo "Error deleting record: " . $conn->error;
 
-connection::disconnect();
+Connection::disconnect();
 
 

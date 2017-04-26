@@ -1,6 +1,6 @@
 <?php
-require_once '../connection.php';
-$conn = connection::connect();
+require_once '../Connection.php';
+$conn = Connection::connect();
 
 $sql = "SELECT * FROM Student";
 $result = $conn->query($sql);
