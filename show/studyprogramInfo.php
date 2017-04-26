@@ -1,7 +1,7 @@
 <?php
 require_once '../Connection.php';
 $conn = Connection::connect();
-echo  $_POST["id"] ;
+
 $sql = "Select * ElectiveCourse WHERE sPID='" . $_POST["id"] . "' ";
 
 $result = $conn->query($sql);
@@ -11,8 +11,10 @@ $result = $conn->query($sql);
         <?php readfile("../htmlTemplate/head.html");  ?>
     </head>
     <body>
+        
     <?php
     //Insert header
+    echo  $_POST["id"] ;
     readfile("../htmlTemplate/header.html");
     ?>
 
