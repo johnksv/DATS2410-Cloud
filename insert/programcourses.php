@@ -1,4 +1,8 @@
 <?php
+ini_set('error_reporting', E_ALL);
+//require_once 'phpcode/connection.php';
+?>
+<?php
 
 require '../Connection.php';
 if(empty($_POST['id'])){   
