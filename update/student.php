@@ -3,15 +3,15 @@
 	<body>
 	<?php
 	ini_set('error_reporting', E_ALL);
-	//require_once 'phpcode/Connection.php';
+	//require_once 'phpcode/connection.php';
 	?>
 	<?php
-	require '../phpcode/Connection.php';
+	require '../connection.php';
 	$fname = null;
 	$lname = null;
 	$email = null;
 	$year  = null;
-	$conn = Connection::connect();
+	$conn = connection::connect();
 	if(!empty($_POST["update"])){
 		$sql = "UPDATE Student SET email='" . $_POST["email"]. "', startYear='" . $_POST['startYear'] . "', firstName='". $_POST['firstName']."', lastName='" . $_POST['lastName'] . "' WHERE studentId='" . $_POST["foo"] . "'";
 		echo $sql ."<br>";
@@ -41,7 +41,7 @@
 			echo "No such user!";
 		}
 		
-		Connection::disconnect();
+		connection::disconnect();
 	
 	}
 	?>

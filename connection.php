@@ -1,35 +1,42 @@
 <?php
 
-class Connection
+class connection
 {
-    private static $conn  = null;
-    private static $host = '10.1.0.252' ;
-    private static $username = 'webserver';
-    private static $password = 'placeSundayjudge';
-    private static $database = 'studentinfosys';
 
-    public function __construct() {
-        die("Not allowed to create new Connection");
+    private static $con;
+    private static $host = "127.0.0.1";
+    private static $username = "root";
+    private static $password = "";
+    private static $database = "studentinfosys";
+
+    private function __construct()
+    {
     }
 
+    /**
+     * @return \mysqli The connection to the database
+     */
     public static function connect()
     {
-        // One connection through whole application
-        if ( null == self::$conn )
-        {
-               self::$conn =  new mysqli(self::$host, self::$username, self::$password);
-               self::$conn->select_db(self::$database);
-            if (self::$conn->connect_error) {
-                die("Connection failed: " . self::$conn->connect_error);
-            }
+        self::$con = new mysqli(self::$host, self::$username, self::$password);
+        if (self::$con->connect_error) {
+            die("connection failed: " . self::$con->connect_error);
         }
-        return self::$conn;
+        self::$con->select_db(self::$database);
+
+        return self::$con;
     }
 
+    /**
+     * Closes the connection to the database
+     */
     public static function disconnect()
     {
-        self::$conn->close();
-        self::$conn = null;
+        if (self::$con instanceof \mysqli) {
+            self::$con->close();
+        }
+        self::$con = null;
     }
+
+
 }
-?>
