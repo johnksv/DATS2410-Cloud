@@ -78,7 +78,7 @@ if (!empty($_POST)) {
 readfile("../htmlTemplate/header.html");
 ?>
 
-<div>
+<main>
 
     <h3>Create a Student</h3>
 
@@ -133,8 +133,8 @@ readfile("../htmlTemplate/header.html");
             <a href="../show/student.php">Back</a>
         </div>
     </form>
-</div>
+</main>
 
-
+<?php include '../htmlTemplate/footer.php'; ?>
 </body>
 </html>

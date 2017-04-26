@@ -17,7 +17,7 @@ $result = $conn->query($sql);
 readfile("../htmlTemplate/header.html");
 ?>
 
-<div class="container">
+<main class="container">
     <div class="row">
         <h3>Students</h3>
         <button><a href="../insert/student.php">Create new entry</a></button>
@@ -67,7 +67,9 @@ readfile("../htmlTemplate/header.html");
             </tbody>
         </table>
     </div>
-</div>
+</main>
+
+<?php include '../htmlTemplate/footer.php'; ?>
 </body>
 </html>
 
