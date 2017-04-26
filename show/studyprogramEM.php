@@ -1,5 +1,5 @@
 <?php
-require_once '../connection.php';
+require_once '../Connection.php';
 $conn = connection::connect();
 
 $sql = "Select FROM electivecourse.sPID, mandatorycourse.sPID, electivecourse.courseCode, mandatorycourse.courseCode, electivecourse.standardSemester, mandatorycourse.standardSemester  ". "WHERE sPID='" . $_POST["id"] . "' ";
