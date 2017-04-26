@@ -28,10 +28,10 @@ readfile("../htmlTemplate/header.html");
             <thead>
             <tr>
 
-                <th>sPID</th>
-                <th>sPName</th>
-                <th>durationSemester</th>
-                <th>startYear</th>
+                <th>Study Program ID</th>
+                <th>Study Program Name</th>
+                <th>Semester Duration</th>
+                <th>Start Year</th>
                 <th></th>
                 <th></th>
             </tr>
