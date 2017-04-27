@@ -103,13 +103,13 @@ readfile("../htmlTemplate/header.html");
                 $time = new DateTime('now');
                 $year = intval($time->format("Y"));
                 for($i = 5; $i > 0; $i--){?>
-                    <option><?php echo $year+$i; ?></option>
+                    <option <?php if($startYear === $year){ echo "selected"; } ?> ><?php echo $year+$i; ?></option>
                 <?php } ?>
 
-                <option selected><?php if($startYear === ""){echo $year;}else{ echo $startYear;	} ?></option>
+                <option <?php if(empty($startYear)){ echo "selected"; }else if($startYear === $year){ echo "selected"; } ?>><?php echo $year; ?></option>
 
                 <?php for($i = $year-1 ; $i > 1990; $i--){ ?>
-                    <option><?php echo $i; ?></option>
+                    <option <?php if($startYear === $year){ echo "selected"; } ?>><?php echo $i; ?></option>
                 <?php } ?>
 
             </select>
