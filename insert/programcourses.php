@@ -2,25 +2,18 @@
 
 require '../Connection.php';
 if(empty($_POST['id'])){   
-	header("Location: ../show/studyprogram.php");	
-    $standardSemesterError = null;
-    $courseCodeError = null;
-	$typeError = null;
-
-    // keep track post values
-    $sPID = null;
-    $courseCode = null;
-    $standardSemester = null;
-    $type = null;
+	header("Location: ../show/studyprogram.php");
 }else{
-if (!empty($_POST)) {
+
+    $sPID = $_POST['id'];
+
+if (!empty($_POST['courseCode'])) {
     // keep track validation errors
     $standardSemesterError = null;
     $courseCodeError = null;
 	$typeError = null;
 
     // keep track post values
-    $sPID = $_POST['id'];
     $courseCode = $_POST['courseCode'];
     $standardSemester = $_POST['standardSemester'];
     $type = $_POST['type'];
