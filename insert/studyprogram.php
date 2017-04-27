@@ -29,7 +29,10 @@ if (!empty($_POST)) {
     if (empty($durationSemester)) {
         $yearError = 'Please enter duration';
         $valid = false;
-    }
+    } elseif(!is_numeric($durationSemester)){
+		$durationError = 'Be kind and use a number.';
+        $valid = false;
+	}
 
     if (empty($startYear)) {
         $durationError = 'Please enter start year';
@@ -87,7 +90,7 @@ readfile("../htmlTemplate/header.html");
         <label>Duration (number of semesters)</label>
         <div>
             <input name="durationSemester" type="number"
-                   value="<?php echo !empty($startYear) ? $startYear : ''; ?>">
+                   value="<?php echo !empty($durationSemester) ? $durationSemester : ''; ?>">
             <?php if (!empty($durationError)): ?>
                 <span><?php echo $durationError; ?></span>
             <?php endif; ?>
@@ -100,13 +103,13 @@ readfile("../htmlTemplate/header.html");
                 $time = new DateTime('now');
                 $year = intval($time->format("Y"));
                 for($i = 5; $i > 0; $i--){?>
-                    <option><?php echo $year+$i; ?></option>
+                    <option <?php if($startYear === '$year'){ echo "selected"; } ?> ><?php echo $year+$i; ?></option>
                 <?php } ?>
 
-                <option selected><?php echo $year; ?></option>
+                <option <?php if(empty($startYear)){ echo "selected"; }else if($startYear === '$year'){ echo "selected"; } ?>><?php echo $year; ?></option>
 
                 <?php for($i = $year-1 ; $i > 1990; $i--){ ?>
-                    <option><?php echo $i; ?></option>
+                    <option <?php if($startYear === '$year'){ echo "selected"; } ?>><?php echo $i; ?></option>
                 <?php } ?>
 
             </select>

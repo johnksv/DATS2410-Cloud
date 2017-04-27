@@ -31,9 +31,9 @@ Connection::disconnect();
                     <thead>
                         <tr>
 
-                            <th>sPID</th>
-                            <th>courseCode</th>
-                            <th>standardSemester</th>
+                            <th>Student Program ID</th>
+                            <th> Course Code</th>
+                            <th> Standard Semester</th>
                             <th>  </th>
                             <th>  </th>
                         </tr>
