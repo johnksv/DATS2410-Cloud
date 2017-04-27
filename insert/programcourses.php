@@ -40,8 +40,7 @@ if (!empty($_POST)) {
     if (empty($standardSemester)) {
         $standardSemesterError = 'Please choose a standard amount of semesters';
         $valid = false;
-    }
-	if(!is_numeric($standardSemester)){
+    } elseif(!is_numeric($standardSemester)){
 		$standardSemesterError = 'Be kind and use a number.';
         $valid = false;
 	}
