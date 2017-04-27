@@ -14,6 +14,7 @@ if(!empty($_GET)) {
     $sql = "select SC.courseCode, C.courseTitle, SC.startDate, CI.ExamDate 
     from StudentCourse as SC, Course_Instance as CI, Course as C where SC.startDate=CI.startDate and SC.courseCode=CI.courseCode and CI.courseCode=C.courseCode and SC.studentID='$studentID'";
     $courses = $conn->query($sql);
+    Connection::disconnect();
 }
 ?>
 <!DOCTYPE html>
