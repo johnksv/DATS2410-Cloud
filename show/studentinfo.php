@@ -3,7 +3,7 @@ require_once '../Connection.php';
 if(!empty($_GET)) {
     $conn = Connection::connect();
     $studentID = $_GET['id'];
-    $sql = "select * from student where studentID='$studentID'";
+    $sql = "select * from Student where studentID='$studentID'";
     $studentInfo = $conn->query($sql);
 
     $sql = "select SP.sPID, SP.sPName, SP.durationSemester, SP.startYear, SS.completed, SS.terminated 
