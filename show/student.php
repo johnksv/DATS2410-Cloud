@@ -4,6 +4,7 @@ $conn = Connection::connect();
 
 $sql = "SELECT * FROM Student";
 $result = $conn->query($sql);
+Connection::disconnect();
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,14 +18,14 @@ $result = $conn->query($sql);
 readfile("../htmlTemplate/header.html");
 ?>
 
-<main class="container">
-    <div class="row">
+<main>
+    <div>
         <h3>Students</h3>
-        <button><a href="../insert/student.php">Create new entry</a></button>
+        <a href="../insert/student.php"><button>Create new entry</button></a>
     </div>
 
-    <div class="row">
-        <table class="table table-striped table-bordered">
+    <div>
+        <table>
             <thead>
             <tr>
 
@@ -60,10 +61,16 @@ readfile("../htmlTemplate/header.html");
 
                         </form>
                     </td>
+                    <td>
+                        <form action="studentinfo.php" method="get">
+                            <input type="hidden" name="id" value="<?php echo $row['studentID'] ?>">
+                            <input type="hidden" name="type" value="student">
+                            <input type="submit" value="Show Info"><br>
+
+                        </form>
+                    </td>
                 </tr>
-            <?php }
-            $conn->close();
-            ?>
+            <?php } ?>
             </tbody>
         </table>
     </div>

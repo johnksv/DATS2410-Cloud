@@ -4,6 +4,7 @@ $conn = Connection::connect();
 
 $sql = "SELECT * FROM StudyProgram";
 $result = $conn->query($sql);
+Connection::disconnect();
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,21 +18,21 @@ $result = $conn->query($sql);
 readfile("../htmlTemplate/header.html");
 ?>
 
-<main class="container">
-    <div class="row">
+<main>
+    <div>
         <h3>Studyprograms</h3>
-        <button><a href="../insert/studyprogram.php">Create new entry</a></button>
+        <a href="../insert/studyprogram.php"><button>Create new entry</button></a>
     </div>
 
-    <div class="row">
-        <table class="table table-striped table-bordered">
+    <div>
+        <table>
             <thead>
             <tr>
 
-                <th>sPID</th>
-                <th>sPName</th>
-                <th>durationSemester</th>
-                <th>startYear</th>
+                <th>Study Program ID</th>
+                <th>Study Program Name</th>
+                <th>Semester Duration</th>
+                <th>Start Year</th>
                 <th></th>
                 <th></th>
             </tr>
@@ -44,9 +45,9 @@ readfile("../htmlTemplate/header.html");
                     <td><?php echo $row['durationSemester'] ?></td>
                     <td><?php echo $row['startYear'] ?></td>
                     <td>
-                        <form action="studyprogramInfo.php" method="post">
+                        <form action="studyprograminfo.php" method="get">
                             <input type="hidden" name="id" value="<?php echo $row['sPID'] ?>">
-                            <input type="submit" name="Show" value="Show courses"><br>
+                            <input type="submit" value="Show courses"><br>
 
                         </form>
                         <form action="../update/studyprogram.php" method="post">
@@ -64,9 +65,7 @@ readfile("../htmlTemplate/header.html");
                         </form>
                     </td>
                 </tr>
-            <?php }
-            $conn->close();
-            ?>
+            <?php } ?>
             </tbody>
         </table>
     </div>

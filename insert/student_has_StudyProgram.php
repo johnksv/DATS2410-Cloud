@@ -36,14 +36,17 @@ if (!empty($_POST)) {
 }
 ?>
 
-<!DCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="utf-8">
+    <?php readfile("../htmlTemplate/head.html");  ?>
 </head>
 <body>
 
-<div class="span10 offset1">
+<?php
+//Insert header
+readfile("../htmlTemplate/header.html");
+?>
 
     <h3>Apply for study program</h3>
 
@@ -101,8 +104,8 @@ if (!empty($_POST)) {
             <a href="../show/course_instance.php">Back</a>
         </div>
     </form>
-</div>
+</main>
 
-
+<?php include '../htmlTemplate/footer.php'; ?>
 </body>
 </html>
