@@ -51,6 +51,11 @@ readfile("../htmlTemplate/header.html");
                             <input type="submit" name="Delete" value="Delete"><br>
 
                         </form>
+                        <form action="courseinfo.php" method="get">
+                            <input type="hidden" name="id" value="<?php echo $row['courseCode'] ?>">
+                            <input type="submit" value="More info"><br>
+
+                        </form>
                     </div>
                 </div>
             <?php } ?>
