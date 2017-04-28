@@ -32,7 +32,10 @@ include_once '../htmlTemplate/header.php';
 <?php
 //If the request is from another webpage
 if (empty($_POST["sPID"])) {
-    echo "EMPTY";
+    //If direct access, redirect
+    echo "DIrect access not allowed, redirecting";
+    sleep(2);
+    header("Location: ../show/studyprogram.php");
 } else {
     echo "<B>Updating course: " . $_POST["sPID"] . "</B><br>";
 

@@ -31,7 +31,8 @@ include_once '../htmlTemplate/header.php';
 <?php
 //If the request is from another webpage
 if (empty($_POST["courseCode"])) {
-    echo "EMPTY";
+    //If direct access, redirect
+    header("Location: ../show/course.php");
 } else {
     echo "<B>Updating course: " . $_POST["courseCode"] . "</B><br>";
 
