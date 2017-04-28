@@ -28,6 +28,7 @@ if (!empty($_POST["update"])) {
 include_once '../htmlTemplate/header.php';
 ?>
 
+<main>
 <?php
 //If the request is from another webpage
 if (empty($_POST["courseCode"])) {
@@ -50,9 +51,8 @@ if (empty($_POST["courseCode"])) {
         echo "No such course!";
     }
 
-    $conn->close();
-}
-?>
+    $conn->close(); ?>
+
 <form action="course.php" method="post">
     Title: <input type="text" name="courseTitle" value="<?php echo $coursetitle; ?>"><br>
     Semester:
@@ -73,6 +73,9 @@ if (empty($_POST["courseCode"])) {
     <input type="submit" name="update" Value="Update">
 </form>
 
+<?php } ?>
+
+</main>
 
 </body>
 </html>
