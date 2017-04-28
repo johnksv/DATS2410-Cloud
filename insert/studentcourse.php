@@ -70,7 +70,7 @@ include_once '../html/header.php';
             $conn = (new Connection())->connect();
 
             $sql = "SELECT startDate, CI.courseCode, C.courseTitle 
-            FROM Course_instance as CI, Course as C 
+            FROM Course_Instance as CI, Course as C 
             where CI.courseCode = C.courseCode";
 
             $result = $conn->query($sql);
