@@ -33,6 +33,7 @@ header {
     flex-direction: column;
     padding: 1em;
     background: #202c36;
+}
 
 header nav {
     display: -webkit-box;
