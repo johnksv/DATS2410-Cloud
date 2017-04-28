@@ -37,6 +37,8 @@ readfile("../htmlTemplate/header.html");
             <tr>
                 <th> Course Code</th>
                 <th> Standard Semester</th>
+                <th></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>

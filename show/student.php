@@ -35,6 +35,7 @@ readfile("../htmlTemplate/header.html");
                 <th>Email</th>
                 <th>StartYear</th>
                 <th>StudentID</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>

@@ -38,6 +38,7 @@ readfile("../htmlTemplate/header.html");
             <tr>
                 <th>Start date</th>
                 <th>Exam date</th>
+                <th></th>
             </tr>
             </thead>
 

@@ -33,6 +33,7 @@ readfile("../htmlTemplate/header.html");
                 <th>Course code</th>
                 <th>Course title</th>
                 <th>Semester</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>

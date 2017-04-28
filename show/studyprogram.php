@@ -32,6 +32,7 @@ readfile("../htmlTemplate/header.html");
                 <th>Program Name</th>
                 <th>Semester Duration</th>
                 <th>Start Year</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
