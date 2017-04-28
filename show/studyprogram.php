@@ -19,6 +19,7 @@ include_once '../html/header.php';
 ?>
 
 <main>
+	<div class="shadow">
     <div>
         <h2>Studyprograms</h2>
         <a href="../insert/studyprogram.php"><button>Create new entry</button></a>
@@ -67,6 +68,7 @@ include_once '../html/header.php';
             </tbody>
         </table>
     </div>
+	</div>
 </main>
 
 

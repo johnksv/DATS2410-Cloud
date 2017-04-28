@@ -39,6 +39,8 @@ include_once '../html/header.php';
 ?>
 
 <main>
+
+	<div class="shadow">
     <div>
         <h2>Info about <?php echo $courseID ?></h2>
     </div>
@@ -88,7 +90,7 @@ include_once '../html/header.php';
         </table>
     </div>
 
-
+	</div>
 </main>
 
 

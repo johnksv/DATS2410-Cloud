@@ -25,7 +25,8 @@ $conn->close();
 include_once '../html/header.php';
 ?>
 
-<main class="container">
+<main>
+	<div class="shadow">
     <div class="row">
         <h2><?php echo $_GET["id"]; ?> - Elective and mandatory courses</h2>
     </div>
@@ -89,7 +90,7 @@ include_once '../html/header.php';
             </tbody>
         </table>
     </div>
-
+	</div>
 </main>
 
 

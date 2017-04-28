@@ -52,20 +52,28 @@ nav a {
     border-bottom: solid 1px;
     color: white;
 }
-
+table {
+		background: white;
+}
 nav a.active {
     background: #e3791c;
 }
 
 main {
     margin: 0 auto;
-	padding: 1em;
     width: 65%;
 	background: white;
-	display: inline-table;
+	display:inline-block;
 
 }
 
+div.shadow {
+    margin: 0 auto;
+	padding: 1em;
+	background: white;
+	
+
+}
 main div {
     margin-bottom: 2em;
 }

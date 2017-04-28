@@ -30,6 +30,7 @@ include_once '../html/header.php';
 ?>
 
 <main>
+	<div class="shadow">
     <div>
         <h2>Info about <?php echo $studentID ?></h2>
     </div>
@@ -117,7 +118,7 @@ include_once '../html/header.php';
             </tbody>
         </table>
     </div>
-
+	</div>
 </main>
 
 

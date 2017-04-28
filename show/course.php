@@ -18,6 +18,8 @@ $conn->close();
 include_once '../html/header.php';
 ?>
 <main>
+	
+<div class="shadow">
     <div>
         <h2>Courses</h2>
         <a href="../insert/course.php">
@@ -69,6 +71,7 @@ include_once '../html/header.php';
             </tbody>
         </table>
     </div>
+	</div>
 </main>
 
 
