@@ -28,10 +28,12 @@ $program = "/show/studyprogram.php";
 
 <header>
     <nav>
-        <a class="active" href="/">Home</a><a <?php if ($site === $student) { ?> class="active" <?php } ?>
-                href="<?php echo $student; ?>">Students</a><a <?php if ($site === $course) { ?> class="active" <?php } ?>
-                href="<?php echo $course; ?>">Courses</a><a <?php if ($site === $program){ ?> class="active"
-                                                                                              <?php } ?>href="<?php echo $program; ?>">Programs</a>
+        <!-- Need this ugly formating to render correctly without padding between the tags -->
+        <a <?php if ($site === ""){ ?> class="active"
+                                       <?php } ?>href="<?php echo $home; ?>">Home</a><a <?php if ($site === $student) { ?> class="active" <?php } ?>
+                href="<?php echo $student; ?>">Students</a><a <?php if ($site === $program) { ?> class="active" <?php } ?>
+                href="<?php echo $program; ?>">Programs</a><a <?php if ($site === $course) { ?> class="active" <?php } ?>
+                href="<?php echo $course; ?>">Courses</a>
     </nav>
 
     <div>
@@ -43,6 +45,7 @@ $program = "/show/studyprogram.php";
         <p>Group 8</p>
     </div>
 </header>
+
 <main>
 	<h2>
 		Oblig 3 Group 8
