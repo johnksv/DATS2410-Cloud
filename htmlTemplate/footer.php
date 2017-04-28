@@ -4,7 +4,7 @@ $conn = Connection::connect();
 $dbHostInfo = $conn->host_info;
 Connection::disconnect();
 
-$datetime = date("j F, Y, G:i");
+$datetime = date("j F, Y, H:i");
 
 ?>
 <footer>
