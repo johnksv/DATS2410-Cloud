@@ -19,6 +19,7 @@ nav a {
     background: #FF9800;
     margin: 0;
     text-decoration: none;
+    color: #242730;
 }
 
 nav a.active {
