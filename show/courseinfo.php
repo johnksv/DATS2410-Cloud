@@ -3,7 +3,7 @@ require_once '../Connection.php';
 if (!empty($_GET)) {
     $conn = Connection::connect();
     $courseID = $_GET['id'];
-    $sql = "select startDate, examDate from Course_instance as CI where CI.courseCode='$courseID'";
+    $sql = "select startDate, examDate from Course_Instance where courseCode='$courseID'";
     $studentInfo = $conn->query($sql);
     Connection::disconnect();
 } else {
