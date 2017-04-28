@@ -38,7 +38,7 @@ include_once '../htmlTemplate/header.php';
         <?php if (!empty($studentInfo)) {
             while ($row = $studentInfo->fetch_assoc()) { ?>
                 <p><b>ID:</b> <?php echo $row['studentID'] ?></p>
-                <p><b>Name:</b> <?php echo $row['firstName']; echo $row['lastName']; ?></p>
+                <p><b>Name:</b> <?php echo $row['firstName']; echo ' '; echo $row['lastName']; ?></p>
                 <p><b>E-mail:</b> <?php echo $row['email'] ?></p>
                 <p><b>Start year:</b> <?php echo $row['startYear'] ?></p>
             <?php }
@@ -56,6 +56,7 @@ include_once '../htmlTemplate/header.php';
                 <th>Start year</th>
                 <th>Completed</th>
                 <th>Terminated</th>
+                <th> </th>
             </tr>
             </thead>
             <tbody>
@@ -68,6 +69,14 @@ include_once '../htmlTemplate/header.php';
                         <td><?php echo $row['startYear'] ?></td>
                         <td><?php echo $row['completed'] ?></td>
                         <td><?php echo $row['terminated'] ?></td>
+                        <td>
+                            <form action="../update/studentstudyprogram.php" method="post">
+                            <input type="hidden" name="sPID" value="<?php echo $row['sPID'] ?>">
+                            <input type="submit" name="Change" value="Edit"><br>
+
+                        </form>
+                            
+                        </td>
                     </tr>
                 <?php }
             } ?>
