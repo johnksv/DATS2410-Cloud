@@ -33,8 +33,6 @@ header {
     flex-direction: column;
     padding: 1em;
     background: #202c36;
-	padding-bottom: 100%;
-}
 
 header nav {
     display: -webkit-box;
@@ -64,7 +62,6 @@ main {
     width: 65%;
 	background: white;
 	padding-bottom: 100%;
-	padding-right: 100%;
 
 }
 
