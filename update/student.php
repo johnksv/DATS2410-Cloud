@@ -31,7 +31,7 @@ if (!empty($_POST["update"])) {
 
 <?php
 //Insert header
-include '../htmlTemplate/header.php';
+include_once '../htmlTemplate/header.php';
 ?>
 
 <?php

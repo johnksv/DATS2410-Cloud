@@ -45,7 +45,7 @@ if (!empty($_POST)) {
 
 <?php
 //Insert header
-include '../htmlTemplate/header.php';
+include_once '../htmlTemplate/header.php';
 ?>
 
     <h3>Apply for study program</h3>

@@ -1,8 +1,4 @@
 <?php
-ini_set('error_reporting', E_ALL);
-//require_once 'phpcode/connection.php';
-?>
-<?php
 require '../Connection.php';
 $coursetitle = null;
 $semester = null;
@@ -29,7 +25,7 @@ if (!empty($_POST["update"])) {
 
 <?php
 //Insert header
-include '../htmlTemplate/header.php';
+include_once '../htmlTemplate/header.php';
 ?>
 
 <?php
