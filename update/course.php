@@ -76,6 +76,6 @@ if (empty($_POST["courseCode"])) {
     <input type="submit" name="update" Value="Update">
 </form>
 
-<?php include '../htmlTemplate/footer.php'; ?>
+
 </body>
 </html>

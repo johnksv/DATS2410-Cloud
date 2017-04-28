@@ -74,7 +74,7 @@ include '../htmlTemplate/header.php';
 
 </main>
 
-<?php include '../htmlTemplate/footer.php'; ?>
+
 </body>
 </html>
 

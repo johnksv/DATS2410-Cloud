@@ -106,6 +106,6 @@ include '../htmlTemplate/header.php';
     </form>
 </main>
 
-<?php include '../htmlTemplate/footer.php'; ?>
+
 </body>
 </html>

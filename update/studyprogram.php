@@ -87,6 +87,6 @@ if (empty($_POST["sPID"])) {
     <input type="submit" name="update" Value="Update">
 </form>
 
-<?php include '../htmlTemplate/footer.php'; ?>
+
 </body>
 </html>

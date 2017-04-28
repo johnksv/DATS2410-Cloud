@@ -69,7 +69,7 @@ include '../htmlTemplate/header.php';
     </div>
 </main>
 
-<?php include '../htmlTemplate/footer.php'; ?>
+
 </body>
 </html>
 
