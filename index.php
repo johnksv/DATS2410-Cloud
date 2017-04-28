@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <?php
+//		require_once '../Connection.php';
+		readfile("htmlTemplate/head.html"); 
+		?>
 </head>
 <body>
 
