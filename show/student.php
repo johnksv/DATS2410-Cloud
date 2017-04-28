@@ -50,7 +50,6 @@ include_once '../htmlTemplate/header.php';
 
                         <form action="studentinfo.php" method="get">
                             <input type="hidden" name="id" value="<?php echo $row['studentID'] ?>">
-                            <input type="hidden" name="type" value="student">
                             <input type="submit" value="Show Info"><br>
 
                         </form>
