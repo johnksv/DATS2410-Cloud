@@ -40,11 +40,11 @@ else{
 
     // insert data
     if ($valid) {
-        $conn = Connection::connect();
+        $conn = (new Connection())->connect();
         $sql = "INSERT INTO Course_Instance (courseCode, startDate, examDate) values('$courseCode', '$startDate', '$examDate')";
 
         $result = $conn->query($sql);
-        Connection::disconnect();
+        $conn->close();
         header("Location: ../show/courseinfo.php?id=$courseCode");
     }
     }

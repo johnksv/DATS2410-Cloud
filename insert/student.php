@@ -56,11 +56,11 @@ if (!empty($_POST)) {
 
     // insert data
     if ($valid) {
-        $conn = Connection::connect();
+        $conn = (new Connection())->connect();
         $sql = "INSERT INTO Student (studentId, email, startYear, firstName, lastName) values('$studentID', '$email', '$startYear', '$firstName', '$lastName')";
 
         $result = $conn->query($sql);
-        Connection::disconnect();
+        $conn->close();
         header("Location: ../show/student.php");
     }
 }

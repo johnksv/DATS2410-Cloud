@@ -1,7 +1,7 @@
 <?php
 require_once '../Connection.php';
 if (!empty($_GET)) {
-    $conn = Connection::connect();
+    $conn = (new Connection())->connect();
     $studentID = $_GET['id'];
     $sql = "select * from Student where studentID='$studentID'";
     $studentInfo = $conn->query($sql);
@@ -14,7 +14,7 @@ if (!empty($_GET)) {
     $sql = "select SC.courseCode, C.courseTitle, SC.startDate, CI.ExamDate 
     from StudentCourse as SC, Course_Instance as CI, Course as C where SC.startDate=CI.startDate and SC.courseCode=CI.courseCode and CI.courseCode=C.courseCode and SC.studentID='$studentID'";
     $courses = $conn->query($sql);
-    Connection::disconnect();
+    $conn->close();
 }
 ?>
 <!DOCTYPE html>

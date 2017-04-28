@@ -4,7 +4,7 @@ $fname = null;
 $lname = null;
 $email = null;
 $year = null;
-$conn = Connection::connect();
+$conn = (new Connection())->connect();
 
 if (!empty($_POST["update"])) {
 
@@ -16,7 +16,7 @@ if (!empty($_POST["update"])) {
         "'";
 
     $result = $conn->query($sql);
-    Connection::disconnect();
+    $conn->close();
     header("Location: ../show/student.php");
 }
 ?>
@@ -44,7 +44,7 @@ if (empty($_POST["studentID"])) {
     $sql = 'SELECT * FROM Student WHERE studentID="' . $_POST["studentID"] . '"';
 	echo $sql. "<br>";
     $result = $conn->query($sql);
-    Connection::disconnect();
+    $conn->close();
 
     if ($result->num_rows > 0) {
         // output data of each row

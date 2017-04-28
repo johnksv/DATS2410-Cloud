@@ -26,11 +26,11 @@ if (!empty($_POST)) {
 
     // insert data
     if ($valid) {
-        $conn = Connection::connect();
+        $conn = (new Connection())->connect();
         $sql = "INSERT INTO Student_has_StudyProgram (studentID, sPID) values('$studentID', '$sPID')";
 
         $result = $conn->query($sql);
-        Connection::disconnect();
+        $conn->close();
         header("Location: ../show/student_has_StudyProgram.php");
     }
 }
@@ -57,7 +57,7 @@ include_once '../htmlTemplate/header.php';
                 <option value="" >Student</option>
                 <?php
                 require_once '../Connection.php';
-                $conn = Connection::connect();
+                $conn = (new Connection())->connect();
 
                 $sql = "SELECT studentID, firstName, lastName FROM Student";
                 $result = $conn->query($sql);
@@ -66,7 +66,7 @@ include_once '../htmlTemplate/header.php';
                     $selected = (!empty($studentID) && $studentID == $row['studentID']) ? 'selected' : ' ';
                     echo "<option value='". $row['studentID']."' ".$selected.">". $row['studentID'] . " " .$row['firstName'] . " " .$row['lastName'] ."</option>";
                 }
-                Connection::disconnect();
+                $conn->close();
                 ?>
 
             </select>
@@ -82,7 +82,7 @@ include_once '../htmlTemplate/header.php';
                 <option value="" >Choose course</option>
                 <?php
                 require_once '../Connection.php';
-                $conn = Connection::connect();
+                $conn = (new Connection())->connect();
 
                 $sql = "SELECT sPID, sPName FROM StudyProgram";
                 $result = $conn->query($sql);
@@ -91,7 +91,7 @@ include_once '../htmlTemplate/header.php';
                     $selected = (!empty($sPID) && $sPID == $row['sPID']) ? 'selected' : ' ';
                     echo "<option value='". $row['sPID']."' ".$selected.">". $row['sPID'] . " " .$row['sPName'] ."</option>";
                 }
-                Connection::disconnect();
+                $conn->close();
                 ?>
             </select>
 
