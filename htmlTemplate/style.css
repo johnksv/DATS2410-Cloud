@@ -15,7 +15,7 @@ header {
     justify-content: center;
     padding-top: 2em;
     padding-bottom: 1em;
-    background: beige;
+    background: #202c36;
 }
 
 header nav {
@@ -29,14 +29,14 @@ header nav {
 
 nav a {
     padding: 0.8em;
-    background: #FF9800;
+    background: #e4a166;
     margin: 0;
     text-decoration: none;
-    color: #242730;
+    color: white;
 }
 
 nav a.active {
-    background: #03A9F4;
+    background: #99551b;
 }
 
 main {
@@ -70,7 +70,8 @@ footer {
     left: 0;
     right: 0;
     text-align: center;
-    background: dimgrey;
+    background: #202c36;
+	color: white;
 }
 
 footer div {
