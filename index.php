@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <?php readfile("../htmlTemplate/head.html"); ?>
+    <?php readfile("htmlTemplate/head.html"); ?>
 </head>
 <body>
 
 <?php
 //Insert header
-include_once '../htmlTemplate/header.php';
+include_once 'htmlTemplate/header.php';
 ?>
 
 <main>
@@ -24,7 +24,6 @@ include_once '../htmlTemplate/header.php';
 	<p>	The backend is designed as following:</p>
 	<img src="backend.PNG" alt="Backend design">
 </main>
-
 
 </body>
 </html>
