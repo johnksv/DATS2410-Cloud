@@ -34,7 +34,7 @@ include_once '../htmlTemplate/header.php';
 if (empty($_POST["sPID"])) {
     //If direct access, redirect
     echo "DIrect access not allowed, redirecting";
-    header('Refresh: 5;URL=../show/studyprogram.php'); // refresh header
+    header('Refresh: 2;URL=../show/studyprogram.php'); // refresh header
     //header("Location: ../show/studyprogram.php");
 } else {
     echo "<B>Updating course: " . $_POST["sPID"] . "</B><br>";
