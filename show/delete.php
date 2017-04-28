@@ -32,7 +32,7 @@ if (strcmp($type, "student") == 0) {
         $conn->close();
         header("Location: studyprogram.php");
     }
-} else if (strcmp($type, "studyProgram") == 0) {
+} else if (strcmp($type, "studyprograminfo") == 0) {
     if (strcmp($type, "elective") == 0) {
         $sql = "DELETE FROM ElectiveCourse WHERE sPID='$id' AND courseCode='$course'";
         if ($conn->query($sql) === TRUE) {
@@ -46,7 +46,7 @@ if (strcmp($type, "student") == 0) {
             header("Location: studyprograminfo.php?id=$course");
         }
     }
-} else if (strcmp($type, "course") == 0) {
+} else if (strcmp($type, "courseinfo") == 0) {
     $sql = "DELETE FROM Course_Instance WHERE startDate='$id' AND courseCode='$course'";
     if ($conn->query($sql) === TRUE) {
         $conn->close();

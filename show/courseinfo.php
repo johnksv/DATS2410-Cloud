@@ -75,7 +75,7 @@ include_once '../html/header.php';
                             <form action="delete.php" method="post">
                                 <input type="hidden" name="id" value="<?php echo $row['startDate'] ?>">
                                 <input type="hidden" name="course" value="<?php echo $courseID?>">
-                                <input type="hidden" name="type" value="course">
+                                <input type="hidden" name="type" value="courseinfo">
                                 <input type="submit" name="Delete" value="Delete"><br>
 
                             </form>
