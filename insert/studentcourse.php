@@ -56,7 +56,8 @@ if(empty($_POST['id'])){
 //Insert header
 include_once '../html/header.php';
 ?>
-
+<main>
+	<div class="shadow">
 <h3>Apply for course</h3>
 
 <form action="studentcourse.php" method="post">
@@ -93,6 +94,7 @@ include_once '../html/header.php';
         <a href="../show/course_instance.php">Back</a>
     </div>
 </form>
+</div>
 </main>
 
 
