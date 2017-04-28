@@ -26,7 +26,7 @@ if (!empty($_GET)) {
 
 <?php
 //Insert header
-include_once '../htmlTemplate/header.php';
+include_once '../html/header.php';
 ?>
 
 <main>

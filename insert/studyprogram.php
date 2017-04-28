@@ -61,7 +61,7 @@ if (!empty($_POST)) {
 
 <?php
 //Insert header
-include_once '../htmlTemplate/header.php';
+include_once '../html/header.php';
 ?>
 
 <main>
