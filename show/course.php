@@ -20,25 +20,26 @@ readfile("../htmlTemplate/header.html");
 <main>
     <div>
         <h3>Courses</h3>
-        <a href="../insert/course.php">
-            <button>Create new entry</button>
-        </a>
+        <a href="../insert/course.php"><button>Create new entry</button></a>
     </div>
 
+    <div>
+        <table>
+            <thead>
+            <tr>
 
-        <div class="table">
-            <div class="row table-header">
-                <div>Course code</div>
-                <div>Course title</div>
-                <div>Semester</div>
-            </div>
-
+                <th>Course code</th>
+                <th>Course title</th>
+                <th>Semester</th>
+            </tr>
+            </thead>
+            <tbody>
             <?php while ($row = $result->fetch_assoc()) { ?>
-                <div class="row">
-                    <div><?php echo $row['courseCode'] ?></div>
-                    <div><?php echo $row['courseTitle'] ?></div>
-                    <div><?php echo $row['semester'] ?></div>
-                    <div>
+                <tr>
+                    <td><?php echo $row['courseCode'] ?></td>
+                    <td><?php echo $row['courseTitle'] ?></td>
+                    <td><?php echo $row['semester'] ?></td>
+                    <td>
                         <form action="../update/course.php" method="post">
                             <input type="hidden" name="courseCode" value="<?php echo $row['courseCode'] ?>">
                             <input type="submit" name="Change" value="Edit"><br>
@@ -51,16 +52,18 @@ readfile("../htmlTemplate/header.html");
                             <input type="submit" name="Delete" value="Delete"><br>
 
                         </form>
+
                         <form action="courseinfo.php" method="get">
                             <input type="hidden" name="id" value="<?php echo $row['courseCode'] ?>">
                             <input type="submit" value="More info"><br>
 
                         </form>
-                    </div>
-                </div>
+                    </td>
+                </tr>
             <?php } ?>
-
-        </div>
+            </tbody>
+        </table>
+    </div>
 </main>
 
 <?php include '../htmlTemplate/footer.php'; ?>

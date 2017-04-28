@@ -25,24 +25,26 @@ readfile("../htmlTemplate/header.html");
     </div>
 
     <div>
+        <table>
+            <thead>
+            <tr>
 
-
-            <div class="row table-header">
-
-                <div>Study Program ID</div>
-                <div>Study Program Name</div>
-                <div>Semester Duration</div>
-                <div>Start Year</div>
-            </div>
-
-
+                <th>Study Program ID</th>
+                <th>Study Program Name</th>
+                <th>Semester Duration</th>
+                <th>Start Year</th>
+                <th></th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
             <?php while ($row = $result->fetch_assoc()) { ?>
-                <div class="row">
-                    <div><?php echo $row['sPID'] ?></div>
-                    <div><?php echo $row['sPName'] ?></div>
-                    <div><?php echo $row['durationSemester'] ?></div>
-                    <div><?php echo $row['startYear'] ?></div>
-                    <div>
+                <tr>
+                    <td><?php echo $row['sPID'] ?></td>
+                    <td><?php echo $row['sPName'] ?></td>
+                    <td><?php echo $row['durationSemester'] ?></td>
+                    <td><?php echo $row['startYear'] ?></td>
+                    <td>
                         <form action="studyprograminfo.php" method="get">
                             <input type="hidden" name="id" value="<?php echo $row['sPID'] ?>">
                             <input type="submit" value="Show courses"><br>
@@ -53,17 +55,19 @@ readfile("../htmlTemplate/header.html");
                             <input type="submit" name="Change" value="Edit"><br>
 
                         </form>
-
+                    </td>
+                    <td>
                         <form action="delete.php" method="post">
                             <input type="hidden" name="id" value="<?php echo $row['sPID'] ?>">
                             <input type="hidden" name="type" value="studyprogram">
                             <input type="submit" name="Delete" value="Delete"><br>
 
                         </form>
-                    </div>
-                </div>
+                    </td>
+                </tr>
             <?php } ?>
-
+            </tbody>
+        </table>
     </div>
 </main>
 
