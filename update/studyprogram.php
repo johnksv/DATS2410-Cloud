@@ -46,7 +46,6 @@ if (!empty($_POST["update"])) {
                     $name = $row['sPName'];
                     $dur = $row['durationSemester'];
                     $year = $row['startYear'];
-                    $coursetitle = $row['courseTitle'];
                 }
 
             } else {
