@@ -42,7 +42,7 @@ if (empty($_POST["studentID"])) {
     <b>Updating student: <?php echo $_POST["studentID"] ?> </b><br>
     <?php
     $sql = 'SELECT * FROM Student WHERE studentID="' . $_POST["studentID"] . '"';
-	echo $sql. "<br>";
+
     $result = $conn->query($sql);
     $conn->close();
 
@@ -67,6 +67,7 @@ if (empty($_POST["studentID"])) {
     <br>
     <input type="hidden" name="foo" value="<?php echo $_POST["studentID"]; ?>"/>
     <input type="submit" name="update" Value="Update">
+    <a href="../show/student.php">Back</a>
 </form>
 
 <?php } ?>

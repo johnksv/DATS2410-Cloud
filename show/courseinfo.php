@@ -9,6 +9,22 @@ if (!empty($_GET)) {
 } else {
     header("location:course.php");
 }
+
+$coursetitle = null;
+$semester = null;
+$conn = (new Connection())->connect();
+
+if (!empty($_POST["update"])) {
+
+    $sql = "UPDATE Course SET courseTitle='" . $_POST["courseTitle"] .
+        "', semester='" . $_POST['semester'] .
+        "' WHERE courseCode='" . $_POST["foo"] .
+        "'";
+
+    $result = $conn->query($sql);
+    $conn->close();
+    header("Location: ../show/course.php");
+}
 ?>
 <!DOCTYPE html>
 <html>
