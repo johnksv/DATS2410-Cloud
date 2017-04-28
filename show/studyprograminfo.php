@@ -2,10 +2,14 @@
 require_once '../Connection.php';
 $conn = Connection::connect();
 
-$sql = "SELECT *  FROM ElectiveCourse WHERE sPID='" . $_GET["id"] . "' ";
+$sql = "Select Course.courseTitle, ElectiveCourse.courseCode, ElectiveCourse.standardSemester from Course 
+    join ElectiveCourse on ElectiveCourse.courseCode = Course.courseCode 
+    where sPID='" . $_GET["id"] . "' ";
 
 $result1 = $conn->query($sql);
-$sql = "SELECT *  FROM MandatoryCourse WHERE sPID='" . $_GET["id"] . "' ";
+$sql = "Select Course.courseTitle, MandatoryCourse.courseCode, Mandatory.standardSemester from Course 
+    join MandatoryCourse on Mandatory.courseCode = Course.courseCode 
+    where sPID='" . $_GET["id"] . "' ";
 
 $result2 = $conn->query($sql);
 Connection::disconnect();
@@ -35,6 +39,7 @@ include_once '../htmlTemplate/header.php';
         <table>
             <thead>
             <tr>
+                <th> Course Title</th> 
                 <th> Course Code</th>
                 <th> Standard Semester</th>
                 <th></th>
@@ -44,6 +49,7 @@ include_once '../htmlTemplate/header.php';
             <tbody>
             <?php while ($row = $result1->fetch_assoc()) { ?>
                 <tr>
+                    <td><?php echo $row['courseTitle'] ?></td>
                     <td><?php echo $row['courseCode'] ?></td>
                     <td><?php echo $row['standardSemester'] ?></td>
                     <td>Elective</td>
@@ -62,6 +68,7 @@ include_once '../htmlTemplate/header.php';
             <?php }
             while ($row = $result2->fetch_assoc()) { ?>
                 <tr>
+                    <td><?php echo $row['courseTitle'] ?></td>
                     <td><?php echo $row['courseCode'] ?></td>
                     <td><?php echo $row['standardSemester'] ?></td>
                     <td>Mandatory</td>
