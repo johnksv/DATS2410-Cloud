@@ -37,11 +37,10 @@ include_once '../htmlTemplate/header.php';
     <div>
         <?php if (!empty($studentInfo)) {
             while ($row = $studentInfo->fetch_assoc()) { ?>
-                <p>StudentID: <?php echo $row['studentID'] ?></p>
-                <p>Firstname: <?php echo $row['firstName'] ?></p>
-                <p>Lastname: <?php echo $row['lastName'] ?></p>
-                <p>E-mail: <?php echo $row['email'] ?></p>
-                <p>Start year:<?php echo $row['startYear'] ?></p>
+                <p><b>ID:</b> <?php echo $row['studentID'] ?></p>
+                <p><b>Name:</b> <?php echo '$row["firstName"] $row["lastName"]' ?></p>
+                <p><b>E-mail:</b> <?php echo $row['email'] ?></p>
+                <p><b>Start year:</b> <?php echo $row['startYear'] ?></p>
             <?php }
         } ?>
 
