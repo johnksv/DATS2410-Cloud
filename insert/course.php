@@ -52,7 +52,7 @@ if (!empty($_POST)) {
 
 <?php
 //Insert header
-readfile("../htmlTemplate/header.html");
+include '../htmlTemplate/header.php';
 ?>
 
 <main>

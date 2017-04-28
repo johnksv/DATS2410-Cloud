@@ -60,7 +60,7 @@ else{
 
 <?php
 //Insert header
-readfile("../htmlTemplate/header.html");
+include '../htmlTemplate/header.php';
 ?>
 
 <main>

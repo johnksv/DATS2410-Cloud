@@ -31,7 +31,7 @@ if (!empty($_POST["update"])) {
 
 <?php
 //Insert header
-readfile("../htmlTemplate/header.html");
+include '../htmlTemplate/header.php';
 ?>
 
 <?php

@@ -65,7 +65,7 @@ if (!empty($_POST['courseCode'])) {
 
 <?php
 //Insert header
-readfile("../htmlTemplate/header.html");
+include '../htmlTemplate/header.php';
 ?>
 
     <h3>Add a course to <?php echo $sPID; ?></h3>
