@@ -7,7 +7,7 @@ if (empty($_POST['courseCode'])) {
 } else {
 
     $courseCode = $_POST['courseCode'];
-    if (!Empty($_POST['startDate'])) {
+    if (count($_POST) > 1) {
 
         // keep track validation errors
         $courseCodeError = null;
@@ -22,13 +22,13 @@ if (empty($_POST['courseCode'])) {
 
         // validate input
         $valid = true;
-        if (empty($courseCode)) {
-            $courseCodeError = 'Please choose course code';
-            $valid = false;
-        }
 
         if (empty($startDate)) {
-            $startDateError = 'Please enter course startDate';
+            $startDateError = 'Please enter start date';
+            $valid = false;
+        }
+        if (empty($examDate)) {
+            $examDateError = 'Please enter exam date';
             $valid = false;
         }
 

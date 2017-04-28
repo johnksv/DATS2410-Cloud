@@ -7,7 +7,7 @@ if(empty($_POST['id'])){
 
     $sPID = $_POST['id'];
 
-if (!empty($_POST['courseCode'])) {
+if (count($_POST) > 1) {
     // keep track validation errors
     $standardSemesterError = null;
     $courseCodeError = null;

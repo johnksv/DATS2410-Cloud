@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', '1');
+ini_set('error_reporting', E_ALL);
+?>
+<?php
 require_once '../Connection.php';
 $fname = null;
 $lname = null;
@@ -23,15 +27,15 @@ if (!empty($_POST["update"])) {
 <!DOCTYPE html>
 <html>
 <head>
-    <?php readfile("../htmlTemplate/head.html");  ?>
+    <?php readfile("../html/head.html");  ?>
 </head>
 <body>
 
 <?php
 //Insert header
-include_once '../htmlTemplate/header.php';
+include_once '../html/header.php';
 ?>
-
+<main>
 <?php
 //If the request is from another webpage
 if (empty($_POST["studentID"]) || empty($_POST["sPID"])) {
@@ -40,31 +44,33 @@ if (empty($_POST["studentID"]) || empty($_POST["sPID"])) {
 } else { ?>
     <b>Updating <?php echo $_POST["sPID"] ?> student: <?php echo $_POST["studentID"] ?> </b><br>
     <?php
-    $sql = 'SELECT * FROM Student_has_StudyProgram WHERE studentID="' . $_POST["studentID"] . '" AND sPID="' . $_POST["sPID"] . "'";
-    
+	$sPID=$_POST['sPID'];
+	$studentID=$_POST['studentID'];
+    $sql = "SELECT * FROM Student_has_StudyProgram WHERE studentID='$studentID' AND sPID='$sPID'";
     $result = $conn->query($sql);
     $conn->close();
 
     if ($result->num_rows > 0) {
         // output data of each row
         while ($row = $result->fetch_assoc()) {
-            $year = $row['completed'];
-            $year = $row['terminated'];
+            $comyear = $row['completed'];
+            $teryear = $row['terminated'];
         }
     } else {
         echo "No such user!";
     }
 }
 ?>
+	<br>
     <form action="studentstudyprogram.php" method="post">
-    Start Year: <input name="completed" type="date" value="<?php echo $completed; ?>"><br>
-    Start Year: <input name="terminated" type="date" value="<?php echo $terminated; ?>"><br>
+    Completed Date: <input name="completed" type="date" value="<?php echo $comyear; ?>"><br>
+    Terminated Date: <input name="terminated" type="date" value="<?php echo $teryear; ?>"><br>
     <br>
     <input type="hidden" name="studentID" value="<?php echo $_POST["studentID"]; ?>"/>   
     <input type="hidden" name="sPID" value="<?php echo $_POST["sPID"]; ?>"/>
     <input type="submit" name="update" Value="Update">
 </form>
-
+</main>
 
 </body>
 </html>
