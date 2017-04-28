@@ -1,6 +1,5 @@
 <?php
-ini_set('error_reporting', E_ALL);
-require '../Connection.php';
+require_once '../Connection.php';
 $fname = null;
 $lname = null;
 $email = null;

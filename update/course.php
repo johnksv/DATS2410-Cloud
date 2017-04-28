@@ -1,5 +1,5 @@
 <?php
-require '../Connection.php';
+require_once '../Connection.php';
 $coursetitle = null;
 $semester = null;
 $conn = Connection::connect();
