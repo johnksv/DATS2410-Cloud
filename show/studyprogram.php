@@ -20,7 +20,7 @@ include_once '../html/header.php';
 
 <main>
     <div>
-        <h3>Studyprograms</h3>
+        <h2>Studyprograms</h2>
         <a href="../insert/studyprogram.php"><button>Create new entry</button></a>
     </div>
 

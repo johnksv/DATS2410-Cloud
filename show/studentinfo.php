@@ -31,7 +31,7 @@ include_once '../html/header.php';
 
 <main>
     <div>
-        <h3>Info about <?php echo $studentID ?></h3>
+        <h2>Info about <?php echo $studentID ?></h2>
     </div>
 
     <div>

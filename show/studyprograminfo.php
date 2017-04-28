@@ -27,7 +27,7 @@ include_once '../html/header.php';
 
 <main class="container">
     <div class="row">
-        <h3><?php echo $_GET["id"]; ?> - Elective and mandatory courses</h3>
+        <h2><?php echo $_GET["id"]; ?> - Elective and mandatory courses</h2>
     </div>
 
     <form action="../insert/programcourses.php" method="post">

@@ -40,7 +40,7 @@ include_once '../html/header.php';
 
 <main>
     <div>
-        <h3>Info about <?php echo $courseID ?></h3>
+        <h2>Info about <?php echo $courseID ?></h2>
     </div>
 
     <form action="../insert/course_instance.php" method="post">

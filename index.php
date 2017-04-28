@@ -44,9 +44,9 @@ $program = "/show/studyprogram.php";
     </div>
 </header>
 <main>
-	<h1>
+	<h2>
 		Oblig 3 Group 8
-	</h1>
+	</h2>
 	<p>This page is made by group 8 and there four members:</p>
 	<ul>
 		<li>s305046 - Benjamin Holsten</li>
