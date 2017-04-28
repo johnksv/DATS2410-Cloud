@@ -28,8 +28,8 @@ readfile("../htmlTemplate/header.html");
         <table>
             <thead>
             <tr>
-                <th>Study Program ID</th>
-                <th>Study Program Name</th>
+                <th>Program ID</th>
+                <th>Program Name</th>
                 <th>Semester Duration</th>
                 <th>Start Year</th>
             </tr>

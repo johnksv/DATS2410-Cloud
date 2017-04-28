@@ -23,7 +23,7 @@ readfile("../htmlTemplate/header.html");
 
 <main class="container">
     <div class="row">
-        <h3><?php echo $_GET["id"]; ?> Elective and mandatory courses</h3>
+        <h3><?php echo $_GET["id"]; ?> - Elective and mandatory courses</h3>
     </div>
 
     <form action="../insert/programcourses.php" method="post">
