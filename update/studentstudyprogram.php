@@ -47,15 +47,14 @@ if (empty($_POST["studentID"]) || empty($_POST["sPID"])) {
 	$sPID=$_POST['sPID'];
 	$studentID=$_POST['studentID'];
     $sql = "SELECT * FROM Student_has_StudyProgram WHERE studentID='$studentID' AND sPID='$sPID'";
-    echo $sql;
     $result = $conn->query($sql);
     $conn->close();
 
     if ($result->num_rows > 0) {
         // output data of each row
         while ($row = $result->fetch_assoc()) {
-            $year = $row['completed'];
-            $year = $row['terminated'];
+            $comyear = $row['completed'];
+            $teryear = $row['terminated'];
         }
     } else {
         echo "No such user!";
@@ -63,8 +62,8 @@ if (empty($_POST["studentID"]) || empty($_POST["sPID"])) {
 }
 ?>
     <form action="studentstudyprogram.php" method="post">
-    Start Year: <input name="completed" type="date" value="<?php echo $completed; ?>"><br>
-    Start Year: <input name="terminated" type="date" value="<?php echo $terminated; ?>"><br>
+    Start Year: <input name="completed" type="date" value="<?php echo comyear; ?>"><br>
+    Start Year: <input name="terminated" type="date" value="<?php echo $teryear; ?>"><br>
     <br>
     <input type="hidden" name="studentID" value="<?php echo $_POST["studentID"]; ?>"/>   
     <input type="hidden" name="sPID" value="<?php echo $_POST["sPID"]; ?>"/>
