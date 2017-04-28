@@ -1,6 +1,6 @@
 <?php
 require_once '../Connection.php';
-if(!empty($_GET)) {
+if (!empty($_GET)) {
     $conn = Connection::connect();
     $studentID = $_GET['id'];
     $sql = "select * from Student where studentID='$studentID'";
@@ -20,7 +20,7 @@ if(!empty($_GET)) {
 <!DOCTYPE html>
 <html>
 <head>
-    <?php readfile("../htmlTemplate/head.html");  ?>
+    <?php readfile("../htmlTemplate/head.html"); ?>
 </head>
 <body>
 
@@ -35,30 +35,18 @@ readfile("../htmlTemplate/header.html");
     </div>
 
     <div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Firstname</th>
-                    <th>Lastname</th>
-                    <th>Email</th>
-                    <th>StartYear</th>
-                    <th>StudentID</th>
-                </tr>
-            </thead>
-            <tbody>
-            <?php if(!empty($studentInfo)){
-                while($row = $studentInfo->fetch_assoc()) { ?>
-                <tr>
-                    <td><?php echo $row['firstName'] ?></td>
-                    <td><?php echo $row['lastName'] ?></td>
-                    <td><?php  echo $row['email'] ?></td>
-                    <td><?php echo $row['startYear'] ?></td>
-                    <td><?php echo $row['studentID'] ?></td>
-            <?php }}?>
-            </tbody>
-        </table>
+        <?php if (!empty($studentInfo)) {
+            while ($row = $studentInfo->fetch_assoc()) { ?>
+                <p>StudentID: <?php echo $row['studentID'] ?></p>
+                <p>Firstname: <?php echo $row['firstName'] ?></p>
+                <p>Lastname: <?php echo $row['lastName'] ?></p>
+                <p>E-mail: <?php echo $row['email'] ?></p>
+                <p>Start year:<?php echo $row['startYear'] ?></p>
+            <?php }
+        } ?>
+
     </div>
-<h3>Study program(s)</h3>
+    <h3>Study program(s)</h3>
     <div>
         <table>
             <thead>
@@ -72,21 +60,22 @@ readfile("../htmlTemplate/header.html");
             </tr>
             </thead>
             <tbody>
-            <?php if(!empty($studyProgram)){
-                while($row = $studyProgram->fetch_assoc()) { ?>
+            <?php if (!empty($studyProgram)) {
+                while ($row = $studyProgram->fetch_assoc()) { ?>
                     <tr>
                         <td><?php echo $row['sPID'] ?></td>
                         <td><?php echo $row['sPName'] ?></td>
-                        <td><?php  echo $row['durationSemester'] ?></td>
+                        <td><?php echo $row['durationSemester'] ?></td>
                         <td><?php echo $row['startYear'] ?></td>
                         <td><?php echo $row['completed'] ?></td>
                         <td><?php echo $row['terminated'] ?></td>
                     </tr>
-                <?php }}?>
+                <?php }
+            } ?>
             </tbody>
         </table>
     </div>
-<h3>Courses</h3>
+    <h3>Courses</h3>
     <div>
         <table>
             <thead>
@@ -98,15 +87,16 @@ readfile("../htmlTemplate/header.html");
             </tr>
             </thead>
             <tbody>
-            <?php if(!empty($courses)){
-                while($row = $courses->fetch_assoc()) { ?>
+            <?php if (!empty($courses)) {
+                while ($row = $courses->fetch_assoc()) { ?>
                     <tr>
                         <td><?php echo $row['courseCode'] ?></td>
                         <td><?php echo $row['courseTitle'] ?></td>
-                        <td><?php  echo $row['startDate'] ?></td>
+                        <td><?php echo $row['startDate'] ?></td>
                         <td><?php echo $row['ExamDate'] ?></td>
                     </tr>
-                <?php }}?>
+                <?php }
+            } ?>
             </tbody>
         </table>
     </div>
