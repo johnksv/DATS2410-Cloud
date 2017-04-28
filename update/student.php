@@ -1,6 +1,5 @@
 <?php
-ini_set('error_reporting', E_ALL);
-require '../Connection.php';
+require_once '../Connection.php';
 $fname = null;
 $lname = null;
 $email = null;
@@ -31,7 +30,7 @@ if (!empty($_POST["update"])) {
 
 <?php
 //Insert header
-include '../htmlTemplate/header.php';
+include_once '../htmlTemplate/header.php';
 ?>
 
 <?php
