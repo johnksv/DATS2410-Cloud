@@ -35,6 +35,10 @@ th, td {
     border: 1px solid #ccc;
 }
 
+table td form {
+    display: inline-block;
+}
+
 footer {
     position: absolute;
     bottom: 0;
