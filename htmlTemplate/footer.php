@@ -1,13 +1,19 @@
+<?php
+require_once '../Connection.php';
+$conn = Connection::connect();
+$dbHostInfo = $conn->host_info;
+Connection::disconnect();
+
+$datetime = date("j F, Y, G:i");
+
+?>
 <footer>
     <div>
-        <?php
-        echo "You are served by the server IP: <b>" . $_SERVER['SERVER_ADDR'] . "</b></br>";
+        <p>You are served by the server IP: <b><?php echo $_SERVER['SERVER_ADDR']; ?> </b></p>
+        <p>Database IP: <b><?php echo "$dbHostInfo" ?> </b></p>
 
-        $datetime = date("j F, Y, g:i a");
+        <p> On: <b> <?php echo "$datetime" ?></b> </p>
 
-        echo "on: <b>" . $datetime . "</b>";
-
-        ?>
-
+        <p>Group 8</p>
     </div>
 </footer>
