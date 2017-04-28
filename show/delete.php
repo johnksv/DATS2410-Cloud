@@ -6,6 +6,10 @@ $conn = (new Connection())->connect();
 $type = filter_input(INPUT_POST, "type");
 $id = filter_input(INPUT_POST, "id");
 $course = filter_input(INPUT_POST, "course");
+
+
+echo "<p>$type</p>>";
+echo "<p>$id</p>";
 echo "<h1>Deleting course from database</h1>";
 
 if (strcmp($type, "student") == 0) {
