@@ -1,4 +1,8 @@
 <?php
+ini_set('display_errors', '1');
+ini_set('error_reporting', E_ALL);
+?>
+<?php
 require_once '../Connection.php';
 $fname = null;
 $lname = null;
@@ -40,8 +44,10 @@ if (empty($_POST["studentID"]) || empty($_POST["sPID"])) {
 } else { ?>
     <b>Updating <?php echo $_POST["sPID"] ?> student: <?php echo $_POST["studentID"] ?> </b><br>
     <?php
-    $sql = 'SELECT * FROM Student_has_StudyProgram WHERE studentID="' . $_POST["studentID"] . '" AND sPID="' . $_POST["sPID"] . "'";
-    
+	$sPID=$_POST['sPID'];
+	$studentID=$_POST['studentID'];
+    $sql = "SELECT * FROM Student_has_StudyProgram WHERE studentID='$studentID' AND sPID='$sPID'";
+    echo $sql;
     $result = $conn->query($sql);
     $conn->close();
 
