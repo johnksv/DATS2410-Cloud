@@ -35,7 +35,7 @@ if (!empty($_POST["update"])) {
 //Insert header
 include_once '../html/header.php';
 ?>
-
+<main>
 <?php
 //If the request is from another webpage
 if (empty($_POST["studentID"]) || empty($_POST["sPID"])) {
@@ -61,15 +61,16 @@ if (empty($_POST["studentID"]) || empty($_POST["sPID"])) {
     }
 }
 ?>
+	<br>
     <form action="studentstudyprogram.php" method="post">
-    Start Year: <input name="completed" type="date" value="<?php echo comyear; ?>"><br>
-    Start Year: <input name="terminated" type="date" value="<?php echo $teryear; ?>"><br>
+    Completed Date: <input name="completed" type="date" value="<?php echo $comyear; ?>"><br>
+    Terminated Date: <input name="terminated" type="date" value="<?php echo $teryear; ?>"><br>
     <br>
     <input type="hidden" name="studentID" value="<?php echo $_POST["studentID"]; ?>"/>   
     <input type="hidden" name="sPID" value="<?php echo $_POST["sPID"]; ?>"/>
     <input type="submit" name="update" Value="Update">
 </form>
-
+</main>
 
 </body>
 </html>
