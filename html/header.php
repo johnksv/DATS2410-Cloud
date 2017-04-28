@@ -8,6 +8,8 @@ $datetime = date("j F, Y, H:i");
 
 $site = $_SERVER['REQUEST_URI'];
 echo $site;
+if ($site === "") echo "den er ''";
+if (strcmp($site, "") == 0 ) echo "strcmp";
 $home = "/";
 $student = "/show/student.php";
 $course = "/show/course.php";
