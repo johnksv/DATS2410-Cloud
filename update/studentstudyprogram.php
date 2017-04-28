@@ -9,18 +9,34 @@ $lname = null;
 $email = null;
 $year = null;
 $conn = (new Connection())->connect();
-
 if (!empty($_POST["update"])) {
 
     $terminated = $_POST['terminated'];
     $completed = $_POST["completed"];
     $sPID = $_POST["sPID"];
     $id = $_POST["studentID"];
-
-    $sql = "update Student_has_StudyProgram 
+	$sql=null;
+	if(!(empty($completed) || empty($terminated))){
+		$sql = "update Student_has_StudyProgram 
             set completed = '$completed', Student_has_StudyProgram.terminated = '$terminated' 
             where studentID = '$id' and sPID = '$sPID'";
-
+	}else if(!empty($completed)){
+		$sql = "update Student_has_StudyProgram 
+            set completed = '$completed', Student_has_StudyProgram.terminated = NULL 
+            where studentID = '$id' and sPID = '$sPID'";		
+	}else if(!empty($terminated)){
+		$sql = "update Student_has_StudyProgram 
+            set completed = NULL, Student_has_StudyProgram.terminated = '$terminated' 
+            where studentID = '$id' and sPID = '$sPID'";
+	}else if(empty($terminated) && empty($completed)){
+		$sql = "update Student_has_StudyProgram 
+            set completed = NULL, Student_has_StudyProgram.terminated = NULL 
+            where studentID = '$id' and sPID = '$sPID'";
+	}else{
+		$sql = "update Student_has_StudyProgram 
+            set completed = 'null', Student_has_StudyProgram.terminated = 'null' 
+            where studentID = '$id' and sPID = '$sPID'";
+	}
     $result = $conn->query($sql);
     $conn->close();
 
