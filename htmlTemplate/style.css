@@ -24,8 +24,7 @@ header {
     display: -webkit-flex;
     display: flex;
     flex-direction: column;
-    padding-top: 2em;
-    padding-bottom: 1em;
+    padding: 1em;
     background: #202c36;
 }
 
