@@ -49,15 +49,16 @@ include_once '../html/header.php';
                         <td><?php echo $row['startDate'] ?></td>
                         <td><?php echo $row['examDate'] ?></td>
                         <td>
-                            <form action="../update/course.php" method="post">
-                                <input type="hidden" name="courseCode" value="<?php echo $row['courseCode'] ?>">
+                            <form action="../update/courseinstance.php" method="post">
+                                <input type="hidden" name="courseCode" value="<?php echo $courseID?>">
+                                <input type="hidden" name="startDate" value="<?php echo $row['startDate'] ?>">
                                 <input type="submit" name="Change" value="Edit"><br>
 
                             </form>
 
                             <form action="delete.php" method="post">
-                                <input type="hidden" name="id" value="<?php echo $row['sPID'] ?>">
-                                <input type="hidden" name="course" value="<?php echo $row['courseCode'] ?>">
+                                <input type="hidden" name="id" value="<?php echo $row['startDate'] ?>">
+                                <input type="hidden" name="course" value="<?php echo $courseID?>">
                                 <input type="hidden" name="type" value="elective">
                                 <input type="submit" name="Delete" value="Delete"><br>
 
