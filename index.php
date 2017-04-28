@@ -47,18 +47,20 @@ $program = "/show/studyprogram.php";
 </header>
 
 <main>
-	<h2>
-		Oblig 3 Group 8
-	</h2>
-	<p>This page is made by group 8 and there four members:</p>
-	<ul>
-		<li>s305046 - Benjamin Holsten</li>
-		<li>s305080 - Truls Stenrud</li> 
-		<li>s305084 - Stian Stensli</li>
-		<li>s305089 - John Kasper Svergja</li>
-	</ul>
-	<p>	The backend is designed as following:</p>
-	<img src="backend.PNG" alt="Backend design" style="width:50%;height:50%;">
+	<div class="shadow">
+		<h2>
+			Oblig 3 Group 8
+		</h2>
+		<p>This page is made by group 8 and there four members:</p>
+		<ul>
+			<li>s305046 - Benjamin Holsten</li>
+			<li>s305080 - Truls Stenrud</li> 
+			<li>s305084 - Stian Stensli</li>
+			<li>s305089 - John Kasper Svergja</li>
+		</ul>
+		<p>	The backend is designed as following:</p>
+		<img src="backend.PNG" alt="Backend design" style="width:50%;height:50%;">
+	</div>
 </main>
 
 </body>
