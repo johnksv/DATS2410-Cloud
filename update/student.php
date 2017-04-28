@@ -32,12 +32,12 @@ if (!empty($_POST["update"])) {
 //Insert header
 include_once '../htmlTemplate/header.php';
 ?>
-
+<main>
 <?php
 //If the request is from another webpage
 if (empty($_POST["studentID"])) {
-    //If direct access, redirect
-    header("Location: ../show/student.php");
+    echo "<h1>Direct access not allowed, redirecting</h1>";
+    header('Refresh: 2;URL=../show/student.php');
 } else { ?>
     <b>Updating student: <?php echo $_POST["studentID"] ?> </b><br>
     <?php
@@ -56,9 +56,8 @@ if (empty($_POST["studentID"])) {
         }
     } else {
         echo "No such user!";
-    }
-}
-?>
+    } ?>
+
 <form action="student.php" method="post">
     First Name: <input type="text" name="firstName" value="<?php echo $fname; ?>"><br>
     Last Name: <input type="text" name="lastName" value="<?php echo $lname; ?>"><br>
@@ -70,6 +69,8 @@ if (empty($_POST["studentID"])) {
     <input type="submit" name="update" Value="Update">
 </form>
 
+<?php } ?>
 
+</main>
 </body>
 </html>
