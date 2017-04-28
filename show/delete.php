@@ -7,9 +7,6 @@ $type = filter_input(INPUT_POST, "type");
 $id = filter_input(INPUT_POST, "id");
 $course = filter_input(INPUT_POST, "course");
 
-
-echo "<p>type: $type</p>";
-echo "<p>id: $id</p>";
 echo "<h1>Deleting course from database</h1>";
 
 if (strcmp($type, "student") == 0) {
@@ -42,9 +39,9 @@ if (strcmp($type, "student") == 0) {
         $conn->close();
         header("Refresh: 1;URL=studyprograminfo.php?id=$id");
     }
+}else{
+    echo "Error deleting record: " . $conn->error;
 }
-echo "Error deleting record: " . $conn->error;
-
 $conn->close();
 
 
