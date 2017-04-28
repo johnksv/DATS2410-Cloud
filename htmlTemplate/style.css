@@ -21,10 +21,13 @@ nav a {
     text-decoration: none;
 }
 
+nav a.active {
+    background: #03A9F4;
+}
+
 nav a:first-of-type {
     border-radius: 10px 0 0 10px;
 }
-
 
 nav a:last-of-type {
     border-radius: 0 10px 10px 0;
@@ -43,6 +46,7 @@ table {
     border-collapse: collapse;
     width: 100%;
 }
+
 th, td {
     padding: 0.25em;
     text-align: left;
