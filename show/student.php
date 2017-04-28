@@ -52,16 +52,14 @@ readfile("../htmlTemplate/header.html");
                             <input type="submit" name="Change" value="Edit"><br>
 
                         </form>
-                    </td>
-                    <td>
+
                         <form action="delete.php" method="post">
                             <input type="hidden" name="id" value="<?php echo $row['studentID'] ?>">
                             <input type="hidden" name="type" value="student">
                             <input type="submit" name="Delete" value="Delete"><br>
 
                         </form>
-                    </td>
-                    <td>
+
                         <form action="studentinfo.php" method="get">
                             <input type="hidden" name="id" value="<?php echo $row['studentID'] ?>">
                             <input type="hidden" name="type" value="student">

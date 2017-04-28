@@ -28,13 +28,10 @@ readfile("../htmlTemplate/header.html");
         <table>
             <thead>
             <tr>
-
                 <th>Study Program ID</th>
                 <th>Study Program Name</th>
                 <th>Semester Duration</th>
                 <th>Start Year</th>
-                <th></th>
-                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -50,13 +47,13 @@ readfile("../htmlTemplate/header.html");
                             <input type="submit" value="Show courses"><br>
 
                         </form>
+
                         <form action="../update/studyprogram.php" method="post">
                             <input type="hidden" name="sPID" value="<?php echo $row['sPID'] ?>">
                             <input type="submit" name="Change" value="Edit"><br>
 
                         </form>
-                    </td>
-                    <td>
+
                         <form action="delete.php" method="post">
                             <input type="hidden" name="id" value="<?php echo $row['sPID'] ?>">
                             <input type="hidden" name="type" value="studyprogram">
