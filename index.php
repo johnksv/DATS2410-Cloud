@@ -1,34 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <?php
+//		require_once '../Connection.php';
+		readfile("html/head.html");
+		?>
+</head>
+<body>
+
 <?php
-ini_set('display_errors', '1');
-ini_set('error_reporting', E_ALL);
+require_once 'Connection.php';
+$footerConn = (new Connection())->connect();
+$dbHostInfo = $footerConn->host_info;
+$footerConn->close();
+
+$datetime = date("j F, Y, H:i");
+
+$site = $_SERVER['REQUEST_URI'];
+
+$student = "/show/student.php";
+$course = "/show/course.php";
+$program = "/show/studyprogram.php";
+
+
 ?>
 
-<head>
-</head>
-<body style=margin:0>
-  <div id="overlay" style="
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    justify-content: center;
-    top: 40%;
-    left: 45%;
-    z-index: 9999;
-    color: white;
-    margin: 0 auto;
-    transform: translate(-50%, -50%);
-    border-left-width: 20px;
-    padding: 20px;
-    background-color: rgba(0,0,0,0.8);
-">
-	<h1>Group 08</h1>
-	<p>Private IP: <?php echo $_SERVER['SERVER_ADDR'] ?></p>
-	<p>Public IP: 128.39.121.59:8008</p>
-  </div>
-<canvas id="q" width="100%" height="1080">
-<script>var q=document.getElementById('q'),s=window.screen,w=q.width=s.width,h=q.height=s.height,p=Array(256).join(1).split(''),c=q.getContext("2d"),m=Math;setInterval(function(){c.fillStyle="rgba(0,0,0,0.05)";c.fillRect(0,0,w,h);c.fillStyle="rgba(0,255,0,1)";p=p.map(function(v,i){r=m.random();c.fillText(String.fromCharCode(m.floor(2720+r*33)),i*10,v);v+=10; return v>768+r*1e4?0:v})},33)</script>
 
-</canvas>
+<header>
+    <nav>
+        <a class="active" href="/">Home</a><a <?php if ($site === $student) { ?> class="active" <?php } ?>
+                href="<?php echo $student; ?>">Students</a><a <?php if ($site === $course) { ?> class="active" <?php } ?>
+                href="<?php echo $course; ?>">Courses</a><a <?php if ($site === $program){ ?> class="active"
+                                                                                              <?php } ?>href="<?php echo $program; ?>">Programs</a>
+    </nav>
+
+    <div>
+        <p>You are served by the server IP: <b><?php echo $_SERVER['SERVER_ADDR']; ?> </b></p>
+        <p>Database IP: <b><?php echo "$dbHostInfo" ?> </b></p>
+
+        <p> On: <b> <?php echo "$datetime" ?></b></p>
+
+        <p>Group 8</p>
+    </div>
+</header>
+<main>
+	<h1>
+		Oblig 3 Group 8
+	</h1>
+	<p>This page is made by group 8 and there four members:</p>
+	<ul>
+		<li>s305046 - Benjamin Holsten</li>
+		<li>s305080 - Truls Stenrud</li> 
+		<li>s305084 - Stian Stensli</li>
+		<li>s305089 - John Kasper Svergja</li>
+	</ul>
+	<p>	The backend is designed as following:</p>
+	<img src="backend.PNG" alt="Backend design">
+</main>
 
 </body>
-
+</html>

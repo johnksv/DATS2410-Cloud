@@ -19,20 +19,21 @@ if (!empty($_POST["update"])) {
 <!DOCTYPE html>
 <html>
 <head>
-    <?php readfile("../htmlTemplate/head.html");  ?>
+    <?php readfile("../html/head.html");  ?>
 </head>
 <body>
 
 <?php
 //Insert header
-include_once '../htmlTemplate/header.php';
+include_once '../html/header.php';
 ?>
 
+<main>
 <?php
 //If the request is from another webpage
 if (empty($_POST["courseCode"])) {
-    //If direct access, redirect
-    header("Location: ../show/course.php");
+    echo "<h1>Direct access not allowed, redirecting</h1>";
+    header('Refresh: 2;URL=../show/course.php');
 } else {
     echo "<B>Updating course: " . $_POST["courseCode"] . "</B><br>";
 
@@ -50,9 +51,8 @@ if (empty($_POST["courseCode"])) {
         echo "No such course!";
     }
 
-    $conn->close();
-}
-?>
+    $conn->close(); ?>
+
 <form action="course.php" method="post">
     Title: <input type="text" name="courseTitle" value="<?php echo $coursetitle; ?>"><br>
     Semester:
@@ -71,8 +71,13 @@ if (empty($_POST["courseCode"])) {
 	
     <input type="hidden" name="foo" value="<?php echo $_POST["courseCode"]; ?>"/>
     <input type="submit" name="update" Value="Update">
+    <a href="../show/course.php">Back</a>
 </form>
 
+
+<?php } ?>
+
+</main>
 
 </body>
 </html>

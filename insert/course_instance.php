@@ -4,49 +4,50 @@ require '../Connection.php';
 
 if (empty($_POST['courseCode'])) {
     header("location:../show/course.php");
-}
-else{
+} else {
 
     $courseCode = $_POST['courseCode'];
-    if(!Empty($_POST['startDate'])){
+    if (!Empty($_POST['startDate'])) {
 
-    // keep track validation errors
-    $courseCodeError = null;
-    $startDateError = null;
-    $examDateError = null;
-
-
-    // keep track post values
-    $startDate = $_POST['startDate'];
-    $examDate = $_POST['examDate'];
+        // keep track validation errors
+        $courseCodeError = null;
+        $startDateError = null;
+        $examDateError = null;
 
 
-    // validate input
-    $valid = true;
-    if (empty($courseCode)) {
-        $courseCodeError = 'Please choose course code';
-        $valid = false;
-    }
+        // keep track post values
+        $startDate = $_POST['startDate'];
+        $examDate = $_POST['examDate'];
 
-    if (empty($startDate)) {
-        $startDateError = 'Please enter course startDate';
-        $valid = false;
-    }
 
-    if (empty($examDate)) {
-            $examDateError = 'Please enter course examDate';
+        // validate input
+        $valid = true;
+        if (empty($courseCode)) {
+            $courseCodeError = 'Please choose course code';
             $valid = false;
         }
 
-    // insert data
-    if ($valid) {
-        $conn = (new Connection())->connect();
-        $sql = "INSERT INTO Course_Instance (courseCode, startDate, examDate) values('$courseCode', '$startDate', '$examDate')";
+        if (empty($startDate)) {
+            $startDateError = 'Please enter course startDate';
+            $valid = false;
+        }
 
-        $result = $conn->query($sql);
-        $conn->close();
-        header("Location: ../show/courseinfo.php?id=$courseCode");
-    }
+
+        // insert data
+        if ($valid) {
+            $conn = (new Connection())->connect();
+            $sql = "";
+            if (empty($examDate)) {
+                $sql = "INSERT INTO Course_Instance (courseCode, startDate) values('$courseCode', '$startDate')";
+            } else {
+                $sql = "INSERT INTO Course_Instance (courseCode, startDate, examDate) values('$courseCode', '$startDate', '$examDate')";
+            }
+
+
+            $result = $conn->query($sql);
+            $conn->close();
+            header("Location: ../show/courseinfo.php?id=$courseCode");
+        }
     }
 }
 ?>
@@ -54,18 +55,18 @@ else{
 <!DOCTYPE html>
 <html>
 <head>
-    <?php readfile("../htmlTemplate/head.html");  ?>
+    <?php readfile("../html/head.html"); ?>
 </head>
 <body>
 
 <?php
 //Insert header
-include_once '../htmlTemplate/header.php';
+include_once '../html/header.php';
 ?>
 
 <main>
 
-    <h3>Start <?php echo $courseCode?></h3>
+    <h3>Start <?php echo $courseCode ?></h3>
 
 
     <form action="course_instance.php" method="post">
@@ -79,21 +80,21 @@ include_once '../htmlTemplate/header.php';
             <?php endif; ?>
         </div>
 
-    <label>Start date</label>
-    <div>
-        <input name='examDate' type="date" placeholder="yyyy-mm-dd"
-               value="<?php echo !empty($examDate) ? $examDate : ''; ?>">
-        <?php if (!empty($examDateError)): ?>
-            <span><?php echo $examDateError; ?></span>
-        <?php endif; ?>
-    </div>
+        <label>Exam date (optional)</label>
+        <div>
+            <input name='examDate' type="date" placeholder="yyyy-mm-dd"
+                   value="<?php echo !empty($examDate) ? $examDate : ''; ?>">
+            <?php if (!empty($examDateError)): ?>
+                <span><?php echo $examDateError; ?></span>
+            <?php endif; ?>
+        </div>
 
-    <div>
+        <div>
 
-        <input type="hidden" name="courseCode" value="<?php echo $courseCode?>">
-        <button type="submit">Create</button>
-        <a href="../show/courseinfo.php?id=<?php echo $courseCode?>">Back</a>
-    </div>
+            <input type="hidden" name="courseCode" value="<?php echo $courseCode ?>">
+            <button type="submit">Create</button>
+            <a href="../show/courseinfo.php?id=<?php echo $courseCode ?>">Back</a>
+        </div>
     </form>
 </main>
 

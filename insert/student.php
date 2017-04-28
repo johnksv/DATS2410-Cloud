@@ -69,13 +69,13 @@ if (!empty($_POST)) {
 <!DOCTYPE html>
 <html>
 <head>
-    <?php readfile("../htmlTemplate/head.html");  ?>
+    <?php readfile("../html/head.html");  ?>
 </head>
 <body>
 
 <?php
 //Insert header
-include_once '../htmlTemplate/header.php';
+include_once '../html/header.php';
 ?>
 
 <main>
