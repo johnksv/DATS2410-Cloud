@@ -54,7 +54,7 @@ else{
 <!DOCTYPE html>
 <html>
 <head>
-    <?php readfile("../htmlTemplate/head.html");  ?>
+    <?php readfile("../html/head.html");  ?>
 </head>
 <body>
 

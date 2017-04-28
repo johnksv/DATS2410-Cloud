@@ -3,7 +3,7 @@
 <head>
     <?php
 //		require_once '../Connection.php';
-		readfile("htmlTemplate/head.html"); 
+		readfile("html/head.html");
 		?>
 </head>
 <body>

@@ -16,7 +16,7 @@ $conn->close();
 ?>
 <html>
 <head>
-    <?php readfile("../htmlTemplate/head.html"); ?>
+    <?php readfile("../html/head.html"); ?>
 </head>
 <body>
 
