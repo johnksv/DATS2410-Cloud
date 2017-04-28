@@ -9,14 +9,14 @@ class Connection
     private static $password = 'placeSundayjudge';
     private static $database = 'studentinfosys';
 
-    private function __construct()
+    public function __construct()
     {
     }
 
     /**
      * @return \mysqli The connection to the database
      */
-    public static function connect()
+    public function connect()
     {
         self::$con = new mysqli(self::$host, self::$username, self::$password);
         if (self::$con->connect_error) {
@@ -26,17 +26,4 @@ class Connection
 
         return self::$con;
     }
-
-    /**
-     * Closes the connection to the database
-     */
-    public static function disconnect()
-    {
-        if (self::$con instanceof \mysqli) {
-            self::$con->close();
-        }
-        self::$con = null;
-    }
-
-
 }

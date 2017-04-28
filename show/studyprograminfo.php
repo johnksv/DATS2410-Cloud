@@ -1,6 +1,6 @@
 <?php
 require_once '../Connection.php';
-$conn = Connection::connect();
+$conn = (new Connection())->connect();
 
 $sql = "Select Course.courseTitle, ElectiveCourse.courseCode, ElectiveCourse.standardSemester from Course 
     join ElectiveCourse on ElectiveCourse.courseCode = Course.courseCode 
@@ -12,7 +12,7 @@ $sql = "Select Course.courseTitle, MandatoryCourse.courseCode, MandatoryCourse.s
     where sPID='" . $_GET["id"] . "' ";
 
 $result2 = $conn->query($sql);
-Connection::disconnect();
+$conn->close();
 ?>
 <html>
 <head>

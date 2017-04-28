@@ -40,7 +40,7 @@ if (!empty($_POST['courseCode'])) {
 
     // insert data
     if ($valid) {
-        $conn = Connection::connect();
+        $conn = (new Connection())->connect();
 		$sql = null;
         if($type == "M"){
 			$sql = "INSERT INTO MandatoryCourse (sPID, courseCode, standardSemester) values('$sPID', '$courseCode', '$standardSemester')";
@@ -48,7 +48,7 @@ if (!empty($_POST['courseCode'])) {
 				$sql = "INSERT INTO ElectiveCourse (sPID, courseCode, standardSemester) values('$sPID', '$courseCode', '$standardSemester')";
 		}
         $result = $conn->query($sql);
-        Connection::disconnect();
+        $conn->close();
 		
         header("Location: ../show/studyprograminfo.php?id=$sPID");
     }
@@ -78,7 +78,7 @@ include_once '../htmlTemplate/header.php';
                 <option value="">Choose course</option>
                 <?php
                 require_once '../Connection.php';
-                $conn = Connection::connect();
+                $conn = (new Connection())->connect();
 
                 $sql = "SELECT courseCode, courseTitle FROM Course";
                 $result = $conn->query($sql);
@@ -87,7 +87,7 @@ include_once '../htmlTemplate/header.php';
                     $selected = (!empty($courseCode) && $courseCode == $row['courseCode']) ? 'selected' : ' ';
                     echo "<option value='" . $row['courseCode'] . "' " . $selected . ">" . $row['courseCode'] . " " . $row['courseTitle'] . "</option>";
                 }
-                Connection::disconnect();
+                $conn->close();
                 ?>
 
             </select>

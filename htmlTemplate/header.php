@@ -1,8 +1,8 @@
 <?php
-//require_once '../Connection.php';
-//$conn = Connection::connect();
-//$dbHostInfo = $conn->host_info;
-//Connection::disconnect();
+require_once '../Connection.php';
+$footerConn = (new Connection())->connect();
+$dbHostInfo = $footerConn->host_info;
+$footerConn->close();
 
 $datetime = date("j F, Y, H:i");
 

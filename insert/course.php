@@ -33,11 +33,11 @@ if (!empty($_POST)) {
 
     // insert data
     if ($valid) {
-        $conn = Connection::connect();
+        $conn = (new Connection())->connect();
         $sql = "INSERT INTO Course (courseCode, courseTitle, Semester) values('$courseCode', '$courseTitle', '$semester')";
 
         $result = $conn->query($sql);
-        Connection::disconnect();
+        $conn->close();
         header("Location: ../show/course.php");
     }
 }

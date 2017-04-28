@@ -1,10 +1,10 @@
 <?php
 require_once '../Connection.php';
-$conn = Connection::connect();
+$conn = (new Connection())->connect();
 
 $sql = "SELECT * FROM Course";
 $result = $conn->query($sql);
-Connection::disconnect();
+$conn->close();
 ?>
 <!DOCTYPE html>
 <html>

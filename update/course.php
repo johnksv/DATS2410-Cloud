@@ -2,7 +2,7 @@
 require_once '../Connection.php';
 $coursetitle = null;
 $semester = null;
-$conn = Connection::connect();
+$conn = (new Connection())->connect();
 
 if (!empty($_POST["update"])) {
 
@@ -12,7 +12,7 @@ if (!empty($_POST["update"])) {
         "'";
 
     $result = $conn->query($sql);
-    Connection::disconnect();
+    $conn->close();
     header("Location: ../show/course.php");
 }
 ?>
@@ -50,7 +50,7 @@ if (empty($_POST["courseCode"])) {
         echo "No such course!";
     }
 
-    Connection::disconnect();
+    $conn->close();
 }
 ?>
 <form action="course.php" method="post">

@@ -1,11 +1,11 @@
 <?php
 require_once '../Connection.php';
 if (!empty($_GET)) {
-    $conn = Connection::connect();
+    $conn = (new Connection())->connect();
     $courseID = $_GET['id'];
     $sql = "select startDate, examDate from Course_Instance where courseCode='$courseID'";
     $studentInfo = $conn->query($sql);
-    Connection::disconnect();
+    $conn->close();
 } else {
     header("location:course.php");
 }
