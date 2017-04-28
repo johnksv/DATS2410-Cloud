@@ -55,9 +55,8 @@ if (empty($_POST["sPID"])) {
         echo "No such course!";
     }
 
-    $conn->close();
-}
-?>
+    $conn->close(); ?>
+
 <form action="studyprogram.php" method="post">
     Program name: <br>
 	<input name="name" type="text" value="<?php echo $name; ?>"><br>
@@ -86,6 +85,7 @@ if (empty($_POST["sPID"])) {
     <input type="submit" name="update" Value="Update">
 </form>
 
+<?php } ?>
 
 </body>
 </html>
