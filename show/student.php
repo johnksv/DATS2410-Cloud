@@ -9,7 +9,7 @@ Connection::disconnect();
 <!DOCTYPE html>
 <html>
 <head>
-    <?php readfile("../htmlTemplate/head.html");  ?>
+    <?php readfile("../htmlTemplate/head.html"); ?>
 </head>
 <body>
 
@@ -21,14 +21,15 @@ readfile("../htmlTemplate/header.html");
 <main>
     <div>
         <h3>Students</h3>
-        <a href="../insert/student.php"><button>Create new entry</button></a>
+        <a href="../insert/student.php">
+            <button>Create new entry</button>
+        </a>
     </div>
 
     <div>
         <table>
             <thead>
             <tr>
-
                 <th>Firstname</th>
                 <th>Lastname</th>
                 <th>Email</th>
@@ -45,6 +46,14 @@ readfile("../htmlTemplate/header.html");
                     <td><?php echo $row['startYear'] ?></td>
                     <td><?php echo $row['studentID'] ?></td>
                     <td>
+
+                        <form action="studentinfo.php" method="get">
+                            <input type="hidden" name="id" value="<?php echo $row['studentID'] ?>">
+                            <input type="hidden" name="type" value="student">
+                            <input type="submit" value="Show Info"><br>
+
+                        </form>
+
                         <form action="../update/student.php" method="post">
                             <input type="hidden" name="studentID" value="<?php echo $row['studentID'] ?>">
                             <input type="submit" name="Change" value="Edit"><br>
@@ -58,12 +67,6 @@ readfile("../htmlTemplate/header.html");
 
                         </form>
 
-                        <form action="studentinfo.php" method="get">
-                            <input type="hidden" name="id" value="<?php echo $row['studentID'] ?>">
-                            <input type="hidden" name="type" value="student">
-                            <input type="submit" value="Show Info"><br>
-
-                        </form>
                     </td>
                 </tr>
             <?php } ?>

@@ -20,7 +20,9 @@ readfile("../htmlTemplate/header.html");
 <main>
     <div>
         <h3>Courses</h3>
-        <a href="../insert/course.php"><button>Create new entry</button></a>
+        <a href="../insert/course.php">
+            <button>Create new entry</button>
+        </a>
     </div>
 
     <div>
@@ -40,6 +42,13 @@ readfile("../htmlTemplate/header.html");
                     <td><?php echo $row['courseTitle'] ?></td>
                     <td><?php echo $row['semester'] ?></td>
                     <td>
+
+                        <form action="courseinfo.php" method="get">
+                            <input type="hidden" name="id" value="<?php echo $row['courseCode'] ?>">
+                            <input type="submit" value="More info"><br>
+
+                        </form>
+
                         <form action="../update/course.php" method="post">
                             <input type="hidden" name="courseCode" value="<?php echo $row['courseCode'] ?>">
                             <input type="submit" name="Change" value="Edit"><br>
@@ -53,11 +62,6 @@ readfile("../htmlTemplate/header.html");
 
                         </form>
 
-                        <form action="courseinfo.php" method="get">
-                            <input type="hidden" name="id" value="<?php echo $row['courseCode'] ?>">
-                            <input type="submit" value="More info"><br>
-
-                        </form>
                     </td>
                 </tr>
             <?php } ?>
