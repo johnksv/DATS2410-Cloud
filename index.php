@@ -1,18 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <?php
-		require_once '../Connection.php';
-		readfile("htmlTemplate/head.html"); 
-		?>
 </head>
 <body>
 
-<?php
-//Insert header
-
-include_once 'htmlTemplate/header.php';
-?>
 
 <main>
 	<h1>
