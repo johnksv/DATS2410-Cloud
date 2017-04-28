@@ -71,7 +71,7 @@ div.shadow {
     margin: 0 auto;
 	padding: 1em;
 	background: white;
-	display: inline-block;
+	display: inline-table;
 
 }
 main div {
