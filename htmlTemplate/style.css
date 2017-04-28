@@ -15,9 +15,19 @@ header {
 }
 
 nav a {
-    padding: 0.2em;
-    background: ghostwhite;
-    margin: 15px;
+    padding: 0.8em;
+    background: #FF9800;
+    margin: 0;
+    text-decoration: none;
+}
+
+nav a:first-of-type {
+    border-radius: 10px 0 0 10px;
+}
+
+
+nav a:last-of-type {
+    border-radius: 0 10px 10px 0;
 }
 
 main {
@@ -41,6 +51,7 @@ th, td {
 
 table td form {
     display: inline-block;
+    padding-top: 5px;
 }
 
 footer {
