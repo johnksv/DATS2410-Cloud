@@ -7,7 +7,7 @@ $footerConn->close();
 $datetime = date("j F, Y, H:i");
 
 $site = $_SERVER['REQUEST_URI'];
-
+echo $site;
 $home = "/";
 $student = "/show/student.php";
 $course = "/show/course.php";
