@@ -1,8 +1,8 @@
 <?php
-require_once '../Connection.php';
-$conn = Connection::connect();
-$dbHostInfo = $conn->host_info;
-Connection::disconnect();
+//require_once '../Connection.php';
+//$conn = Connection::connect();
+//$dbHostInfo = $conn->host_info;
+//Connection::disconnect();
 
 $datetime = date("j F, Y, H:i");
 
