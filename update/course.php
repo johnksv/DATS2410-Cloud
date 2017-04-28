@@ -71,7 +71,9 @@ if (empty($_POST["courseCode"])) {
 	
     <input type="hidden" name="foo" value="<?php echo $_POST["courseCode"]; ?>"/>
     <input type="submit" name="update" Value="Update">
+    <a href="../show/course.php">Back</a>
 </form>
+
 
 <?php } ?>
 
