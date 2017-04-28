@@ -1,5 +1,5 @@
 <?php
-require_once '/Connection.php';
+require_once '../Connection.php';
 $footerConn = (new Connection())->connect();
 $dbHostInfo = $footerConn->host_info;
 $footerConn->close();
