@@ -25,6 +25,10 @@ main {
     width: 75%;
 }
 
+main div {
+    margin-bottom: 2em;
+}
+
 table {
     border-collapse: collapse;
     width: 100%;
