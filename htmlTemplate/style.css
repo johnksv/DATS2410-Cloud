@@ -4,12 +4,17 @@ html {
 
 body {
     margin: 0;
+    height: 100%;
     display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
 
+}
+
+p {
+    color: white;
 }
 
 header {
@@ -69,19 +74,4 @@ th, td {
 table td form {
     display: inline-block;
     padding-top: 5px;
-}
-
-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    text-align: center;
-    background: #202c36;
-	color: white;
-}
-
-footer div {
-    margin-bottom: 1em;
-    margin-top: 1em;
 }
