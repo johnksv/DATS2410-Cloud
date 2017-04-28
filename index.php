@@ -28,7 +28,7 @@ $program = "/show/studyprogram.php";
 
 <header>
     <nav>
-        <a href="/">Home</a><a <?php if ($site === $student) { ?> class="active" <?php } ?>
+        <a class="active" href="/">Home</a><a <?php if ($site === $student) { ?> class="active" <?php } ?>
                 href="<?php echo $student; ?>">Students</a><a <?php if ($site === $course) { ?> class="active" <?php } ?>
                 href="<?php echo $course; ?>">Courses</a><a <?php if ($site === $program){ ?> class="active"
                                                                                               <?php } ?>href="<?php echo $program; ?>">Programs</a>
