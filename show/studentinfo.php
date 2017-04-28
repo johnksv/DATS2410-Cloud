@@ -71,6 +71,7 @@ include_once '../htmlTemplate/header.php';
                         <td><?php echo $row['terminated'] ?></td>
                         <td>
                             <form action="../update/studentstudyprogram.php" method="post">
+                            <input type="hidden" name="studentID" value="<?php echo $row['studentID'] ?>">
                             <input type="hidden" name="sPID" value="<?php echo $row['sPID'] ?>">
                             <input type="submit" name="Change" value="Edit"><br>
 
