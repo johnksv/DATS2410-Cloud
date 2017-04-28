@@ -7,8 +7,8 @@ $sql = "Select Course.courseTitle, ElectiveCourse.courseCode, ElectiveCourse.sta
     where sPID='" . $_GET["id"] . "' ";
 
 $result1 = $conn->query($sql);
-$sql = "Select Course.courseTitle, MandatoryCourse.courseCode, Mandatory.standardSemester from Course 
-    join MandatoryCourse on Mandatory.courseCode = Course.courseCode 
+$sql = "Select Course.courseTitle, MandatoryCourse.courseCode, MandatoryCourse.standardSemester from Course 
+    join MandatoryCourse on MandatoryCourse.courseCode = Course.courseCode 
     where sPID='" . $_GET["id"] . "' ";
 
 $result2 = $conn->query($sql);
