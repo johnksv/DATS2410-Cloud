@@ -12,15 +12,19 @@ $conn = (new Connection())->connect();
 
 if (!empty($_POST["update"])) {
 
-    $sql = "UPDATE Student_has_StudyProgram SET completed='" . $_POST["completed"] .
-        "', terminated='" . $_POST['terminated'] .
-        "' WHERE studentId='" . $_POST["studentID"] .
-        "' AND sPID='" . $_POST["sPID"] ."'";
+    $terminated = $_POST['terminated'];
+    $completed = $_POST["completed"];
+    $sPID = $_POST["sPID"];
+    $id = $_POST["studentID"];
+
+    $sql = "update Student_has_StudyProgram 
+            set completed = '$completed', Student_has_StudyProgram.terminated = '$terminated' 
+            where studentID = '$id' and sPID = '$sPID'";
 
     $result = $conn->query($sql);
     $conn->close();
-    $id=$_POST["studentID"];
-    header("Location: ../show/studentinfo.php?id=$id");
+
+        header("Location: ../show/studentinfo.php?id=$id");
 }
 ?>
 
@@ -63,10 +67,10 @@ if (empty($_POST["studentID"]) || empty($_POST["sPID"])) {
 ?>
 	<br>
     <form action="studentstudyprogram.php" method="post">
-    Completed Date: <input name="completed" type="date" value="<?php echo $comyear; ?>"><br>
-    Terminated Date: <input name="terminated" type="date" value="<?php echo $teryear; ?>"><br>
+    Completed Date: <input name="completed" type="date" placeholder="yyyy-mm-dd" value="<?php echo $comyear; ?>"><br>
+    Terminated Date: <input name="terminated" type="date" placeholder="yyyy-mm-dd" value="<?php echo $teryear; ?>"><br>
     <br>
-    <input type="hidden" name="studentID" value="<?php echo $_POST["studentID"]; ?>"/>   
+    <input type="hidden" name="studentID" value="<?php echo $_POST["studentID"]; ?>"/>
     <input type="hidden" name="sPID" value="<?php echo $_POST["sPID"]; ?>"/>
     <input type="submit" name="update" Value="Update">
 </form>

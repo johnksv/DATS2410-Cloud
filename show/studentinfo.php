@@ -47,6 +47,10 @@ include_once '../html/header.php';
     </div>
     <h3>Study program(s)</h3>
     <div>
+        <form action="../insert/student_has_StudyProgram.php" method="post">
+            <input type="hidden" name="id" value="<?php echo $_GET["id"] ?>">
+            <input type="submit" value="Add new program"><br>
+        </form>
         <table>
             <thead>
             <tr>
@@ -86,6 +90,10 @@ include_once '../html/header.php';
     </div>
     <h3>Courses</h3>
     <div>
+        <form action="../insert/studentcourse.php" method="post">
+            <input type="hidden" name="id" value="<?php echo $_GET["id"] ?>">
+            <input type="submit" value="Add new course"><br>
+        </form>
         <table>
             <thead>
             <tr>

@@ -1,23 +1,24 @@
 <?php
 
 require '../Connection.php';
+if(empty($_POST['id'])){
+    header("Location: ../show/student.php");
+}else{
 
-if (!empty($_POST)) {
+$studentID = $_POST['id'];
+
+if (count($_POST) > 1) {
     // keep track validation errors
     $studentIDError = null;
     $sPIDError = null;
 
     // keep track post values
-    $studentID = $_POST['studentID'];
+    $studentID = $_POST['id'];
     $sPID = $_POST['sPID'];
 
 
     // validate input
     $valid = true;
-    if (empty($studentID)) {
-        $studentIDError = 'Please choose a student';
-        $valid = false;
-    }
 
     if (empty($sPID)) {
         $sPIDError = 'Please choose a program';
@@ -30,9 +31,11 @@ if (!empty($_POST)) {
         $sql = "INSERT INTO Student_has_StudyProgram (studentID, sPID) values('$studentID', '$sPID')";
 
         $result = $conn->query($sql);
+
         $conn->close();
-        header("Location: ../show/student_has_StudyProgram.php");
+        header("Location: ../show/studentinfo.php?id=$studentID");
     }
+}
 }
 ?>
 
@@ -51,30 +54,6 @@ include_once '../html/header.php';
     <h3>Apply for study program</h3>
 
     <form action="student_has_StudyProgram.php" method="post">
-        <label>Choose student</label>
-        <div>
-            <select name='studentID'>
-                <option value="" >Student</option>
-                <?php
-                require_once '../Connection.php';
-                $conn = (new Connection())->connect();
-
-                $sql = "SELECT studentID, firstName, lastName FROM Student";
-                $result = $conn->query($sql);
-                // output data of each row
-                while($row = $result->fetch_assoc()) {
-                    $selected = (!empty($studentID) && $studentID == $row['studentID']) ? 'selected' : ' ';
-                    echo "<option value='". $row['studentID']."' ".$selected.">". $row['studentID'] . " " .$row['firstName'] . " " .$row['lastName'] ."</option>";
-                }
-                $conn->close();
-                ?>
-
-            </select>
-
-            <?php if (!empty($studentIDError)): ?>
-                <span><?php echo $studentIDError; ?></span>
-            <?php endif; ?>
-        </div>
 
         <label>Choose program</label>
         <div>
@@ -100,6 +79,7 @@ include_once '../html/header.php';
             <?php endif; ?>
         </div>
         <div>
+            <input type="hidden" name="id" value="<?php echo $studentID ?>">
             <button type="submit">Create</button>
             <a href="../show/course_instance.php">Back</a>
         </div>
