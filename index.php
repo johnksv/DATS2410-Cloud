@@ -55,7 +55,7 @@ $program = "/show/studyprogram.php";
 		<li>s305089 - John Kasper Svergja</li>
 	</ul>
 	<p>	The backend is designed as following:</p>
-	<img src="backend.PNG" alt="Backend design" style="width:50%;height:50%;>
+	<img src="backend.PNG" alt="Backend design" style="width:50%;height:50%;">
 </main>
 
 </body>
