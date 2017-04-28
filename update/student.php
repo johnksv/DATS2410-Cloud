@@ -42,7 +42,7 @@ if (empty($_POST["studentID"])) {
     <b>Updating student: <?php echo $_POST["studentID"] ?> </b><br>
     <?php
     $sql = 'SELECT * FROM Student WHERE studentID="' . $_POST["studentID"] . '"';
-	echo $sql. "<br>";
+
     $result = $conn->query($sql);
     $conn->close();
 
