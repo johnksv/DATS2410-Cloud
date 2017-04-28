@@ -9,6 +9,10 @@ $course = filter_input(INPUT_POST, "course");
 $courseInfo = filter_input(INPUT_POST, "courseInfo");
 
 echo "<h1>Deleting course from database</h1>";
+echo "Type: $type";
+echo "course: $course";
+echo "courseInfo: $courseInfo";
+echo "Id: $id";
 
 if (strcmp($type, "student") == 0) {
     $sql = "DELETE FROM Student WHERE studentID='$id' ";
