@@ -38,7 +38,7 @@ include_once '../htmlTemplate/header.php';
         <?php if (!empty($studentInfo)) {
             while ($row = $studentInfo->fetch_assoc()) { ?>
                 <p><b>ID:</b> <?php echo $row['studentID'] ?></p>
-                <p><b>Name:</b> <?php echo '$row["firstName"] $row["lastName"]' ?></p>
+                <p><b>Name:</b> <?php echo "$row['firstName'] $row['lastName']" ?></p>
                 <p><b>E-mail:</b> <?php echo $row['email'] ?></p>
                 <p><b>Start year:</b> <?php echo $row['startYear'] ?></p>
             <?php }
