@@ -57,7 +57,8 @@ include_once '../html/header.php';
                         <form action="delete.php" method="post">
                             <input type="hidden" name="id" value="<?php echo $row['sPID'] ?>">
                             <input type="hidden" name="course" value="<?php echo $row['courseCode'] ?>">
-                            <input type="hidden" name="type" value="elective">
+                            <input type="hidden" name="courseInfo" value="elective">
+                            <input type="hidden" name="type" value="studyProgram">
                             <input type="submit" name="Delete" value="Delete"><br>
 
                         </form>
@@ -77,7 +78,8 @@ include_once '../html/header.php';
                         <form action="delete.php" method="post">
                             <input type="hidden" name="id" value="<?php echo $row['sPID'] ?>">
                             <input type="hidden" name="course" value="<?php echo $row['courseCode'] ?>">
-                            <input type="hidden" name="type" value="mandatory">
+                            <input type="hidden" name="courseInfo" value="mandatory">
+                            <input type="hidden" name="type" value="studyProgram">
                             <input type="submit" name="Delete" value="Delete"><br>
 
                         </form>
