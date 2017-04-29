@@ -5,7 +5,7 @@ if(empty($_POST['id'])){
 	header("Location: ../show/studyprogram.php");
 }else{
 
-    $sPID = $_POST['id'];
+    $sPID = filter_input(INPUT_POST, 'id');
 
 if (count($_POST) > 1) {
     // keep track validation errors
@@ -14,9 +14,9 @@ if (count($_POST) > 1) {
 	$typeError = null;
 
     // keep track post values
-    $courseCode = $_POST['courseCode'];
-    $standardSemester = $_POST['standardSemester'];
-    $type = $_POST['type'];
+    $courseCode = filter_input(INPUT_POST, 'courseCode');
+    $standardSemester = filter_input(INPUT_POST, 'standardSemester');
+    $type = filter_input(INPUT_POST, 'type');
 
 
     // validate input
@@ -31,7 +31,7 @@ if (count($_POST) > 1) {
     }
 
     if (empty($standardSemester)) {
-        $standardSemesterError = 'Please choose a standard amount of semesters';
+        $standardSemesterError = 'Please choose a semester';
         $valid = false;
     } elseif(!is_numeric($standardSemester)){
 		$standardSemesterError = 'Be kind and use a number.';
@@ -41,13 +41,15 @@ if (count($_POST) > 1) {
     // insert data
     if ($valid) {
         $conn = (new Connection())->connect();
-		$sql = null;
+		$stat = null;
         if($type == "M"){
-			$sql = "INSERT INTO MandatoryCourse (sPID, courseCode, standardSemester) values('$sPID', '$courseCode', '$standardSemester')";
+            $stat = $conn->prepare("INSERT INTO MandatoryCourse (sPID, courseCode, standardSemester) values(?, ?, ?)");
+
 		}else{
-				$sql = "INSERT INTO ElectiveCourse (sPID, courseCode, standardSemester) values('$sPID', '$courseCode', '$standardSemester')";
+            $stat =  $conn->prepare("INSERT INTO ElectiveCourse (sPID, courseCode, standardSemester)  values(?, ?, ?)");
 		}
-        $result = $conn->query($sql);
+        $stat->bind_param("sss", $sPID, $courseCode, $standardSemester);
+        $stat->execute();
         $conn->close();
 		
         header("Location: ../show/studyprograminfo.php?id=$sPID");
@@ -99,7 +101,7 @@ include_once '../html/header.php';
         </div>
 		<label>Standard Semester</label>
 		<div>
-            <input name="standardSemester" type="number"
+            <input name="standardSemester" type="number" min="0" max="5"
                    value="<?php echo !empty($standardSemester) ? $standardSemester : ''; ?>">
             <?php if (!empty($standardSemesterError)): ?>
                 <span><?php echo $standardSemesterError; ?></span>
@@ -121,7 +123,7 @@ include_once '../html/header.php';
         <div>
 			<input type="hidden" name="id" value="<?php echo $sPID ?>">
             <button type="submit">Add</button>
-            <a href="../show/studyprograminfo.php?id=$sPID">Back</a>
+            <a href="../show/studyprograminfo.php?id=<?php echo $sPID ?>">Back</a>
         </div>
     </form>
 	</div>
