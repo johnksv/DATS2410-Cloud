@@ -2,18 +2,22 @@
 require_once '../Connection.php';
 if (!empty($_GET)) {
     $conn = (new Connection())->connect();
-    $studentID = $_GET['id'];
-    $sql = "select * from Student where studentID='$studentID'";
-    $studentInfo = $conn->query($sql);
+    $studentID = filter_input(INPUT_GET, 'id');
 
-    $sql = "select SP.sPID, SP.sPName, SP.durationSemester, SP.startYear, SS.completed, SS.terminated 
-    From StudyProgram as  SP, Student_has_StudyProgram as SS 
-    where SS.studentID='$studentID' and SS.sPID=SP.sPID";
-    $studyProgram = $conn->query($sql);
+    $stat = $conn->prepare("select * from Student where studentID=?");
+    $stat->bind_param("s", $studentID);
+    $stat->execute();
+    $studentInfo = $stat->get_result();
 
-    $sql = "select SC.courseCode, C.courseTitle, SC.startDate, CI.ExamDate 
-    from StudentCourse as SC, Course_Instance as CI, Course as C where SC.startDate=CI.startDate and SC.courseCode=CI.courseCode and CI.courseCode=C.courseCode and SC.studentID='$studentID'";
-    $courses = $conn->query($sql);
+    $stat = $conn->prepare("select SP.sPID, SP.sPName, SP.durationSemester, SP.startYear, SS.completed, SS.terminated From StudyProgram as  SP, Student_has_StudyProgram as SS where SS.studentID=? and SS.sPID=SP.sPID");
+    $stat->bind_param("s", $studentID);
+    $stat->execute();
+    $studyProgram = $stat->get_result();
+
+    $stat = $conn->prepare("select SC.courseCode, C.courseTitle, SC.startDate, CI.ExamDate from StudentCourse as SC, Course_Instance as CI, Course as C where SC.startDate=CI.startDate and SC.courseCode=CI.courseCode and CI.courseCode=C.courseCode and SC.studentID=?");
+    $stat->bind_param("s", $studentID);
+    $stat->execute();
+    $courses = $stat->get_result();
     $conn->close();
 }
 ?>
@@ -30,95 +34,97 @@ include_once '../html/header.php';
 ?>
 
 <main>
-	<div class="shadow">
-    <div>
-        <h2>Info about <?php echo $studentID ?></h2>
-    </div>
+    <div class="shadow">
+        <div>
+            <h2>Info about <?php echo $studentID ?></h2>
+        </div>
 
-    <div>
-        <?php if (!empty($studentInfo)) {
-            while ($row = $studentInfo->fetch_assoc()) { ?>
-                <p><b>ID:</b> <?php echo $row['studentID'] ?></p>
-                <p><b>Name:</b> <?php echo $row['firstName']; echo ' '; echo $row['lastName']; ?></p>
-                <p><b>E-mail:</b> <?php echo $row['email'] ?></p>
-                <p><b>Start year:</b> <?php echo $row['startYear'] ?></p>
-            <?php }
-        } ?>
-
-    </div>
-    <h3>Study program(s)</h3>
-    <div>
-        <form action="../insert/student_has_StudyProgram.php" method="post">
-            <input type="hidden" name="id" value="<?php echo $_GET["id"] ?>">
-            <input type="submit" value="Add new program"><br>
-        </form>
-        <table>
-            <thead>
-            <tr>
-                <th>Program ID</th>
-                <th>Name</th>
-                <th>Duration</th>
-                <th>Start year</th>
-                <th>Completed</th>
-                <th>Terminated</th>
-                <th> </th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php if (!empty($studyProgram)) {
-                while ($row = $studyProgram->fetch_assoc()) { ?>
-                    <tr>
-                        <td><?php echo $row['sPID'] ?></td>
-                        <td><?php echo $row['sPName'] ?></td>
-                        <td><?php echo $row['durationSemester'] ?></td>
-                        <td><?php echo $row['startYear'] ?></td>
-                        <td><?php echo $row['completed'] ?></td>
-                        <td><?php echo $row['terminated'] ?></td>
-                        <td>
-                            <form action="../update/studentstudyprogram.php" method="post">
-                            <input type="hidden" name="studentID" value="<?php echo $studentID ?>">
-                            <input type="hidden" name="sPID" value="<?php echo $row['sPID'] ?>">
-                            <input type="submit" name="Change" value="Edit"><br>
-
-                        </form>
-                            
-                        </td>
-                    </tr>
+        <div>
+            <?php if (!empty($studentInfo)) {
+                while ($row = $studentInfo->fetch_assoc()) { ?>
+                    <p><b>ID:</b> <?php echo $row['studentID'] ?></p>
+                    <p><b>Name:</b> <?php echo $row['firstName'];
+                        echo ' ';
+                        echo $row['lastName']; ?></p>
+                    <p><b>E-mail:</b> <?php echo $row['email'] ?></p>
+                    <p><b>Start year:</b> <?php echo $row['startYear'] ?></p>
                 <?php }
             } ?>
-            </tbody>
-        </table>
+
+        </div>
+        <h3>Study program(s)</h3>
+        <div>
+            <form action="../insert/student_has_StudyProgram.php" method="post">
+                <input type="hidden" name="id" value="<?php echo $_GET["id"] ?>">
+                <input type="submit" value="Add new program"><br>
+            </form>
+            <table>
+                <thead>
+                <tr>
+                    <th>Program ID</th>
+                    <th>Name</th>
+                    <th>Duration</th>
+                    <th>Start year</th>
+                    <th>Completed</th>
+                    <th>Terminated</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php if (!empty($studyProgram)) {
+                    while ($row = $studyProgram->fetch_assoc()) { ?>
+                        <tr>
+                            <td><?php echo $row['sPID'] ?></td>
+                            <td><?php echo $row['sPName'] ?></td>
+                            <td><?php echo $row['durationSemester'] ?></td>
+                            <td><?php echo $row['startYear'] ?></td>
+                            <td><?php echo $row['completed'] ?></td>
+                            <td><?php echo $row['terminated'] ?></td>
+                            <td>
+                                <form action="../update/studentstudyprogram.php" method="post">
+                                    <input type="hidden" name="studentID" value="<?php echo $studentID ?>">
+                                    <input type="hidden" name="sPID" value="<?php echo $row['sPID'] ?>">
+                                    <input type="submit" name="Change" value="Edit"><br>
+
+                                </form>
+
+                            </td>
+                        </tr>
+                    <?php }
+                } ?>
+                </tbody>
+            </table>
+        </div>
+        <h3>Courses</h3>
+        <div>
+            <form action="../insert/studentcourse.php" method="post">
+                <input type="hidden" name="id" value="<?php echo $_GET["id"] ?>">
+                <input type="submit" value="Add new course"><br>
+            </form>
+            <table>
+                <thead>
+                <tr>
+                    <th>Course code</th>
+                    <th>Course title</th>
+                    <th>Start date</th>
+                    <th>Exam date</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php if (!empty($courses)) {
+                    while ($row = $courses->fetch_assoc()) { ?>
+                        <tr>
+                            <td><?php echo $row['courseCode'] ?></td>
+                            <td><?php echo $row['courseTitle'] ?></td>
+                            <td><?php echo $row['startDate'] ?></td>
+                            <td><?php echo $row['ExamDate'] ?></td>
+                        </tr>
+                    <?php }
+                } ?>
+                </tbody>
+            </table>
+        </div>
     </div>
-    <h3>Courses</h3>
-    <div>
-        <form action="../insert/studentcourse.php" method="post">
-            <input type="hidden" name="id" value="<?php echo $_GET["id"] ?>">
-            <input type="submit" value="Add new course"><br>
-        </form>
-        <table>
-            <thead>
-            <tr>
-                <th>Course code</th>
-                <th>Course title</th>
-                <th>Start date</th>
-                <th>Exam date</th>
-            </tr>
-            </thead>
-            <tbody>
-            <?php if (!empty($courses)) {
-                while ($row = $courses->fetch_assoc()) { ?>
-                    <tr>
-                        <td><?php echo $row['courseCode'] ?></td>
-                        <td><?php echo $row['courseTitle'] ?></td>
-                        <td><?php echo $row['startDate'] ?></td>
-                        <td><?php echo $row['ExamDate'] ?></td>
-                    </tr>
-                <?php }
-            } ?>
-            </tbody>
-        </table>
-    </div>
-	</div>
 </main>
 
 
