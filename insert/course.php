@@ -9,9 +9,9 @@ if (!empty($_POST)) {
     $semesterError = null;
 
     // keep track post values
-    $courseCode = $_POST['courseCode'];
-    $courseTitle = $_POST['courseTitle'];
-    $semester = $_POST['semester'];
+    $courseCode = filter_input(INPUT_POST, 'courseCode');
+    $courseTitle = filter_input(INPUT_POST, 'courseTitle');
+    $semester = filter_input(INPUT_POST, 'semester');
 
 
     // validate input
@@ -34,9 +34,9 @@ if (!empty($_POST)) {
     // insert data
     if ($valid) {
         $conn = (new Connection())->connect();
-        $sql = "INSERT INTO Course (courseCode, courseTitle, Semester) values('$courseCode', '$courseTitle', '$semester')";
-
-        $result = $conn->query($sql);
+        $stat = $conn->prepare("INSERT INTO Course (courseCode, courseTitle, Semester) values(?, ?, ?)");
+        $stat->bind_param("sss", $courseCode, $courseTitle, $semester);
+        $stat->execute();
         $conn->close();
         header("Location: ../show/course.php");
     }
@@ -46,7 +46,7 @@ if (!empty($_POST)) {
 <!DOCTYPE html>
 <html>
 <head>
-    <?php readfile("../html/head.html");  ?>
+    <?php readfile("../html/head.html"); ?>
 </head>
 <body>
 
