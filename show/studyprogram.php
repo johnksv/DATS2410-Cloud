@@ -50,12 +50,6 @@ include_once '../html/header.php';
 
                         </form>
 
-                        <form action="../update/studyprogram.php" method="post">
-                            <input type="hidden" name="sPID" value="<?php echo $row['sPID'] ?>">
-                            <input type="submit" name="Change" value="Edit"><br>
-
-                        </form>
-
                         <form action="delete.php" method="post">
                             <input type="hidden" name="id" value="<?php echo $row['sPID'] ?>">
                             <input type="hidden" name="type" value="studyprogram">
