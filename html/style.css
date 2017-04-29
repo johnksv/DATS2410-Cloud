@@ -11,7 +11,7 @@ body {
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
-	background: #e2e2e2;
+    background: #e2e2e2;
     background: -moz-linear-gradient(left, #e2e2e2 0%, #dbdbdb 50%, #d1d1d1 51%, #fefefe 100%);
     background: -webkit-linear-gradient(left, #e2e2e2 0%, #dbdbdb 50%, #d1d1d1 51%, #fefefe 100%);
     background: -o-linear-gradient(left, #e2e2e2 0%, #dbdbdb 50%, #d1d1d1 51%, #fefefe 100%);
@@ -20,9 +20,14 @@ body {
 
 }
 
+h3 {
+    margin-top: 2em;
+    margin-bottom: 0.25em;
+}
+
 header p {
     color: white;
-	
+
 }
 
 header {
@@ -53,9 +58,11 @@ nav a {
     border-bottom: solid 1px;
     color: white;
 }
+
 table {
-		background: white;
+    background: white;
 }
+
 nav a.active {
     background: #e3791c;
 }
@@ -63,8 +70,8 @@ nav a.active {
 main {
     margin: 0 auto;
     width: 65%;
-	background: white;
-	overflow: auto;
+    background: white;
+    overflow: auto;
 }
 
 div.innerMain {
@@ -73,6 +80,10 @@ div.innerMain {
 }
 
 main div {
+    margin-bottom: 1em;
+}
+
+.innerMain div form {
     margin-bottom: 1em;
 }
 
