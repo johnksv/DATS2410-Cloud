@@ -141,6 +141,7 @@ include_once '../html/header.php';
                     <th>Start date</th>
                     <th>Exam date</th>
                     <th>Grade</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
