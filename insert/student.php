@@ -1,7 +1,7 @@
 <?php
 
 require '../Connection.php';
-$startYear = 0;
+
 if (!empty($_POST)) {
     // keep track validation errors
     $IDError = null;
@@ -106,36 +106,11 @@ include_once '../html/header.php';
 
         <label>Start year</label>
         <div>
-            <select name="startYear">
-                <?php
-                $time = new DateTime('now');
-                $year = intval($time->format("Y"));
-                for ($i = 5; $i > 0; $i--) {
-                    ?>
-                    <option <?php if ($startYear === strval($year + $i)) {
-                        echo "selected";
-                    } ?> >
-                        <?php echo $year + $i; ?>
-                    </option>
-                <?php } ?>
-
-                <option <?php if (empty($startYear)) {
-                    echo "selected";
-                } else if ($startYear === strval($year)) {
-                    echo "selected";
-                } ?>>
-                    <?php echo $year; ?>
-                </option>
-
-                <?php for ($i = $year - 1; $i > 1990; $i--) { ?>
-                    <option <?php if ($startYear === strval($i)) {
-                        echo "selected";
-                    } ?>>
-                        <?php echo $i; ?>
-                    </option>
-                <?php } ?>
-
-            </select>
+            <input name="startYear" type="date" placeholder="yyyy-mm-dd"
+                   value="<?php echo !empty($startYear) ? $startYear : ''; ?>">
+            <?php if (!empty($yearError)): ?>
+                <span><?php echo $yearError; ?></span>
+            <?php endif; ?>
         </div>
 
         <label>First Name</label>
