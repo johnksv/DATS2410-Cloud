@@ -58,37 +58,38 @@ include_once '../html/header.php';
 ?>
 
 <main>
+    <div class="innerMain">
+        <h3>Start <?php echo $courseCode ?></h3>
 
-    <h3>Start <?php echo $courseCode ?></h3>
 
+        <form action="course_instance.php" method="post">
 
-    <form action="course_instance.php" method="post">
+            <label>Start date</label>
+            <div>
+                <input name='startDate' type="date" placeholder="yyyy-mm-dd"
+                       value="<?php echo !empty($startDate) ? $startDate : ''; ?>">
+                <?php if (!empty($startDateError)): ?>
+                    <span><?php echo $startDateError; ?></span>
+                <?php endif; ?>
+            </div>
 
-        <label>Start date</label>
-        <div>
-            <input name='startDate' type="date" placeholder="yyyy-mm-dd"
-                   value="<?php echo !empty($startDate) ? $startDate : ''; ?>">
-            <?php if (!empty($startDateError)): ?>
-                <span><?php echo $startDateError; ?></span>
-            <?php endif; ?>
-        </div>
+            <label>Exam date (optional)</label>
+            <div>
+                <input name='examDate' type="date" placeholder="yyyy-mm-dd"
+                       value="<?php echo !empty($examDate) ? $examDate : ''; ?>">
+                <?php if (!empty($examDateError)): ?>
+                    <span><?php echo $examDateError; ?></span>
+                <?php endif; ?>
+            </div>
 
-        <label>Exam date (optional)</label>
-        <div>
-            <input name='examDate' type="date" placeholder="yyyy-mm-dd"
-                   value="<?php echo !empty($examDate) ? $examDate : ''; ?>">
-            <?php if (!empty($examDateError)): ?>
-                <span><?php echo $examDateError; ?></span>
-            <?php endif; ?>
-        </div>
+            <div>
 
-        <div>
-
-            <input type="hidden" name="courseCode" value="<?php echo $courseCode ?>">
-            <button type="submit">Create</button>
-            <a href="../show/courseinfo.php?id=<?php echo $courseCode ?>">Back</a>
-        </div>
-    </form>
+                <input type="hidden" name="courseCode" value="<?php echo $courseCode ?>">
+                <button type="submit">Create</button>
+                <a href="../show/courseinfo.php?id=<?php echo $courseCode ?>">Back</a>
+            </div>
+        </form>
+    </div>
 </main>
 
 

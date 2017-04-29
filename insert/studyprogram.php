@@ -67,76 +67,77 @@ include_once '../html/header.php';
 ?>
 
 <main>
+    <div class="innerMain">
+        <h3>Create Student Program</h3>
 
-    <h3>Create Student Program</h3>
+        <form action="studyprogram.php" method="post">
 
-    <form action="studyprogram.php" method="post">
+            <label>Program ID</label>
+            <div>
+                <input name="sPID" type="text"
+                       value="<?php echo !empty($spid) ? $spid : ''; ?>">
+                <?php if (!empty($IDError)): ?>
+                    <span><?php echo $IDError; ?></span>
+                <?php endif; ?>
+            </div>
+            <label>Program long name</label>
+            <div>
+                <input name="sPName" type="text"
+                       value="<?php echo !empty($spname) ? $spname : ''; ?>">
+                <?php if (!empty($programNameError)): ?>
+                    <span><?php echo $programNameError; ?></span>
+                <?php endif; ?>
+            </div>
 
-        <label>Program ID</label>
-        <div>
-            <input name="sPID" type="text"
-                   value="<?php echo !empty($spid) ? $spid : ''; ?>">
-            <?php if (!empty($IDError)): ?>
-                <span><?php echo $IDError; ?></span>
-            <?php endif; ?>
-        </div>
-        <label>Program long name</label>
-        <div>
-            <input name="sPName" type="text"
-                   value="<?php echo !empty($spname) ? $spname : ''; ?>">
-            <?php if (!empty($programNameError)): ?>
-                <span><?php echo $programNameError; ?></span>
-            <?php endif; ?>
-        </div>
+            <label>Duration (number of semesters)</label>
+            <div>
+                <input name="durationSemester" type="number" min="1" max="5"
+                       value="<?php echo !empty($durationSemester) ? $durationSemester : ''; ?>">
+                <?php if (!empty($durationError)): ?>
+                    <span><?php echo $durationError; ?></span>
+                <?php endif; ?>
+            </div>
 
-        <label>Duration (number of semesters)</label>
-        <div>
-            <input name="durationSemester" type="number" min="1" max="5"
-                   value="<?php echo !empty($durationSemester) ? $durationSemester : ''; ?>">
-            <?php if (!empty($durationError)): ?>
-                <span><?php echo $durationError; ?></span>
-            <?php endif; ?>
-        </div>
+            <label>Start year</label>
+            <div>
+                <select name="startYear">
+                    <?php
+                    $time = new DateTime('now');
+                    $year = intval($time->format("Y"));
+                    for ($i = 5; $i > 0; $i--) {
+                        ?>
+                        <option <?php if ($startYear === strval($year + $i)) {
+                            echo "selected";
+                        } ?> >
+                            <?php echo $year + $i; ?>
+                        </option>
+                    <?php } ?>
 
-        <label>Start year</label>
-        <div>
-            <select name="startYear">
-                <?php
-                $time = new DateTime('now');
-                $year = intval($time->format("Y"));
-                for ($i = 5; $i > 0; $i--) {
-                    ?>
-                    <option <?php if ($startYear === strval($year + $i)) {
+                    <option <?php if (empty($startYear)) {
                         echo "selected";
-                    } ?> >
-                        <?php echo $year + $i; ?>
-                    </option>
-                <?php } ?>
-
-                <option <?php if (empty($startYear)) {
-                    echo "selected";
-                } else if ($startYear === strval($year)) {
-                    echo "selected";
-                } ?>>
-                    <?php echo $year; ?>
-                </option>
-
-                <?php for ($i = $year - 1; $i > 1990; $i--) { ?>
-                    <option <?php if ($startYear === strval($i)) {
+                    } else if ($startYear === strval($year)) {
                         echo "selected";
                     } ?>>
-                        <?php echo $i; ?>
+                        <?php echo $year; ?>
                     </option>
-                <?php } ?>
 
-            </select>
-        </div>
+                    <?php for ($i = $year - 1; $i > 1990; $i--) { ?>
+                        <option <?php if ($startYear === strval($i)) {
+                            echo "selected";
+                        } ?>>
+                            <?php echo $i; ?>
+                        </option>
+                    <?php } ?>
 
-        <div>
-            <button type="submit">Create</button>
-            <a href="../show/studyprogram.php">Back</a>
-        </div>
-    </form>
+                </select>
+            </div>
+
+            <div>
+                <button type="submit">Create</button>
+                <a href="../show/studyprogram.php">Back</a>
+            </div>
+        </form>
+    </div>
 </main>
 
 
