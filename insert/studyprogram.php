@@ -1,6 +1,7 @@
 <?php
 
 require '../Connection.php';
+$startYear = 0;
 if (!empty($_POST)) {
     // keep track validation errors
     $IDError = null;
@@ -9,10 +10,11 @@ if (!empty($_POST)) {
     $durationError = null;
 
     // keep track post values
-    $spid = $_POST['sPID'];
-    $spname = $_POST['sPName'];
-    $durationSemester = $_POST['durationSemester'];
-    $startYear = $_POST['startYear'];
+
+    $spid = filter_input(INPUT_POST, 'sPID');
+    $spname = filter_input(INPUT_POST, 'sPName');
+    $durationSemester = filter_input(INPUT_POST, 'durationSemester');
+    $startYear = filter_input(INPUT_POST, 'startYear');
 
     // validate input
     $valid = true;
@@ -29,10 +31,10 @@ if (!empty($_POST)) {
     if (empty($durationSemester)) {
         $yearError = 'Please enter duration';
         $valid = false;
-    } elseif(!is_numeric($durationSemester)){
-		$durationError = 'Be kind and use a number.';
+    } elseif (!is_numeric($durationSemester)) {
+        $durationError = 'Be kind and use a number.';
         $valid = false;
-	}
+    }
 
     if (empty($startYear)) {
         $durationError = 'Please enter start year';
@@ -42,10 +44,10 @@ if (!empty($_POST)) {
     // insert data
     if ($valid) {
         $conn = (new Connection())->connect();
-        $sql = "INSERT INTO StudyProgram (sPID, sPName, durationSemester, startYear) values('$spid', '$spname', '$durationSemester', '$startYear')";
 
-        $result = $conn->query($sql);
-
+        $stat = $conn->prepare("INSERT INTO StudyProgram (sPID, sPName, durationSemester, startYear) values(?, ?, ?, ?)");
+        $stat->bind_param("ssis", $spid, $spname, $durationSemester, $startYear);
+        $stat->execute();
         $conn->close();
         header("Location: ../show/studyprogram.php");
     }
@@ -55,7 +57,7 @@ if (!empty($_POST)) {
 <!DOCTYPE html>
 <html>
 <head>
-    <?php readfile("../html/head.html");  ?>
+    <?php readfile("../html/head.html"); ?>
 </head>
 <body>
 
@@ -89,7 +91,7 @@ include_once '../html/header.php';
 
         <label>Duration (number of semesters)</label>
         <div>
-            <input name="durationSemester" type="number"
+            <input name="durationSemester" type="number" min="1" max="5"
                    value="<?php echo !empty($durationSemester) ? $durationSemester : ''; ?>">
             <?php if (!empty($durationError)): ?>
                 <span><?php echo $durationError; ?></span>
@@ -102,14 +104,29 @@ include_once '../html/header.php';
                 <?php
                 $time = new DateTime('now');
                 $year = intval($time->format("Y"));
-                for($i = 5; $i > 0; $i--){?>
-                    <option <?php if($startYear === strval($year+$i)){ echo "selected"; } ?> ><?php echo $year+$i; ?></option>
+                for ($i = 5; $i > 0; $i--) {
+                    ?>
+                    <option <?php if ($startYear === strval($year + $i)) {
+                        echo "selected";
+                    } ?> >
+                        <?php echo $year + $i; ?>
+                    </option>
                 <?php } ?>
 
-                <option <?php if(empty($startYear)){ echo "selected"; }else if($startYear === strval($year)){ echo "selected"; } ?>><?php echo $year; ?></option>
+                <option <?php if (empty($startYear)) {
+                    echo "selected";
+                } else if ($startYear === strval($year)) {
+                    echo "selected";
+                } ?>>
+                    <?php echo $year; ?>
+                </option>
 
-                <?php for($i = $year-1 ; $i > 1990; $i--){ ?>
-                    <option <?php if($startYear === strval($i)){ echo "selected"; } ?>><?php echo $i; ?></option>
+                <?php for ($i = $year - 1; $i > 1990; $i--) { ?>
+                    <option <?php if ($startYear === strval($i)) {
+                        echo "selected";
+                    } ?>>
+                        <?php echo $i; ?>
+                    </option>
                 <?php } ?>
 
             </select>
