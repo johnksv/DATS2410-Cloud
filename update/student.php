@@ -63,7 +63,7 @@ if (empty($_POST["studentID"])) {
     Last Name: <input type="text" name="lastName" value="<?php echo $lname; ?>"><br>
     E-mail: <input type="text" name="email" value="<?php echo $email; ?>"><br>
 
-    Start Year: <input name="startYear" type="date" value="<?php echo $year; ?>"><br>
+    Start date: <input name="startYear" type="date" value="<?php echo $year; ?>"><br>
     <br>
     <input type="hidden" name="foo" value="<?php echo $_POST["studentID"]; ?>"/>
     <input type="submit" name="update" Value="Update">

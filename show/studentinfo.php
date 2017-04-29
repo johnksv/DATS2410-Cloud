@@ -1,5 +1,6 @@
 <?php
 require_once '../Connection.php';
+
 if (!empty($_GET)) {
     $conn = (new Connection())->connect();
     $studentID = filter_input(INPUT_GET, 'id');
@@ -20,6 +21,21 @@ if (!empty($_GET)) {
     $courses = $stat->get_result();
     $conn->close();
 }
+
+if (!empty($_POST["update"])) {
+    $conn = (new Connection())->connect();
+    $stat = $conn->prepare("UPDATE Student SET email=?, startYear=? WHERE studentId=?");
+
+    $email = filter_input(INPUT_POST, "email");
+    $startyear = filter_input(INPUT_POST, "startYear");
+
+    $stat->bind_param("sss", $email, $startyear, $studentID);
+    $stat->execute();
+    $conn->close();
+    header("Location: ../show/studentinfo.php?id=$studentID&updated=true");
+}
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -36,18 +52,34 @@ include_once '../html/header.php';
 <main>
     <div class="shadow">
         <div>
-            <h2>Info about <?php echo $studentID ?></h2>
+            <h2>Info about <?php echo "$studentID"; ?></h2>
         </div>
 
         <div>
             <?php if (!empty($studentInfo)) {
                 while ($row = $studentInfo->fetch_assoc()) { ?>
-                    <p><b>ID:</b> <?php echo $row['studentID'] ?></p>
+                    <p><b>ID:</b> <?php echo $studentID ?></p>
                     <p><b>Name:</b> <?php echo $row['firstName'];
                         echo ' ';
                         echo $row['lastName']; ?></p>
-                    <p><b>E-mail:</b> <?php echo $row['email'] ?></p>
-                    <p><b>Start year:</b> <?php echo $row['startYear'] ?></p>
+                    <form action="studentinfo.php?id=<?php echo "$studentID"; ?>" method="post">
+                        <p><b>E-mail:</b>
+                            <input type="text" name="email" value="<?php echo $row['email']; ?>">
+                        </p>
+                        <p><b>Start date:</b>
+                            <input name="startYear" type="date" value="<?php echo $row['startYear']; ?>">
+                        </p>
+                        <p><b>
+                                <?php
+                                if (isset($_GET["updated"]))
+                                    if (strcmp($_GET["updated"], "true") == 0)
+                                        echo "Succesfully updated!";
+                                ?>
+
+                            </b>
+                        </p>
+                        <input type="submit" name="update" value="Update">
+                    </form>
                 <?php }
             } ?>
 
@@ -55,7 +87,7 @@ include_once '../html/header.php';
         <h3>Study program(s)</h3>
         <div>
             <form action="../insert/student_has_StudyProgram.php" method="post">
-                <input type="hidden" name="id" value="<?php echo $_GET["id"] ?>">
+                <input type="hidden" name="id" value="<?php echo "$studentID" ?>">
                 <input type="submit" value="Add new program"><br>
             </form>
             <table>
@@ -98,7 +130,7 @@ include_once '../html/header.php';
         <h3>Courses</h3>
         <div>
             <form action="../insert/studentcourse.php" method="post">
-                <input type="hidden" name="id" value="<?php echo $_GET["id"] ?>">
+                <input type="hidden" name="id" value="<?php echo "$studentID"; ?>">
                 <input type="submit" value="Add new course"><br>
             </form>
             <table>
