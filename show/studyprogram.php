@@ -21,7 +21,7 @@ include_once '../html/header.php';
 <main>
 	<div class="innerMain">
     <div>
-        <h2>Studyprograms</h2>
+        <h2>Programs</h2>
         <a href="../insert/studyprogram.php"><button>Create new entry</button></a>
     </div>
 
