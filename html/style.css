@@ -69,12 +69,10 @@ main {
 }
 
 div.shadow {
+    padding: 1em 2em 0 2em;
     margin: 0 auto;
-	padding: 1em;
-	background: white;
-	display: inline-table;
-
 }
+
 main div {
     margin-bottom: 1em;
 }
