@@ -6,7 +6,7 @@ if (empty($_POST['courseCode'])) {
     header("location:../show/course.php");
 } else {
 
-    $courseCode = $_POST['courseCode'];
+    $courseCode = filter_input(INPUT_POST, 'courseCode');
     if (count($_POST) > 1) {
 
         // keep track validation errors
@@ -16,35 +16,28 @@ if (empty($_POST['courseCode'])) {
 
 
         // keep track post values
-        $startDate = $_POST['startDate'];
-        $examDate = $_POST['examDate'];
+        $startDate = filter_input(INPUT_POST, 'startDate');
+        $examDate = filter_input(INPUT_POST, 'examDate');
 
 
         // validate input
         $valid = true;
 
-        if (empty($startDate)) {
-            $startDateError = 'Please enter start date';
-            $valid = false;
-        }
-        if (empty($examDate)) {
-            $examDateError = 'Please enter exam date';
-            $valid = false;
-        }
-
-
         // insert data
         if ($valid) {
             $conn = (new Connection())->connect();
-            $sql = "";
+            $stat = "";
             if (empty($examDate)) {
                 $sql = "INSERT INTO Course_Instance (courseCode, startDate) values('$courseCode', '$startDate')";
+                $stat = $conn->prepare("INSERT INTO Course_Instance (courseCode, startDate) values(?, ?)");
+                $stat->bind_param("ss", $courseCode, $startDate);
             } else {
                 $sql = "INSERT INTO Course_Instance (courseCode, startDate, examDate) values('$courseCode', '$startDate', '$examDate')";
+                $stat = $conn->prepare("INSERT INTO Course_Instance (courseCode, startDate, examDate) values(?, ?, ?)");
+                $stat->bind_param("sss", $courseCode, $startDate, $examDate);
             }
 
-
-            $result = $conn->query($sql);
+            $stat->execute();
             $conn->close();
             header("Location: ../show/courseinfo.php?id=$courseCode");
         }
@@ -52,7 +45,7 @@ if (empty($_POST['courseCode'])) {
 }
 ?>
 
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
 <head>
     <?php readfile("../html/head.html"); ?>
