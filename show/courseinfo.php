@@ -94,7 +94,7 @@ include_once '../html/header.php';
                 <h3>Start & Exam Dates</h3>
                 <form action="../insert/course_instance.php" method="post">
                     <input type="hidden" name="courseCode" value="<?php echo $_GET["id"] ?>">
-                    <input type="submit" value="Add new start date"><br>
+                    <input type="submit" value="Add new class"><br>
                 </form>
             </div>
 

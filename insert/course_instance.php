@@ -59,7 +59,7 @@ include_once '../html/header.php';
 
 <main>
     <div class="innerMain">
-        <h3>Start <?php echo $courseCode ?></h3>
+        <h3>New class for <?php echo $courseCode ?></h3>
 
 
         <form action="course_instance.php" method="post">
