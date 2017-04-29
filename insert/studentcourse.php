@@ -63,7 +63,7 @@ $conn->close();
 include_once '../html/header.php';
 ?>
 <main>
-    <div class="shadow">
+    <div class="innerMain">
         <h3>Apply for course</h3>
 
         <form action="studentcourse.php" method="post">

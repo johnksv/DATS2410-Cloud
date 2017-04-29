@@ -28,7 +28,7 @@ include_once '../html/header.php';
 ?>
 
 <main>
-    <div class="shadow">
+    <div class="innerMain">
     <?php
     //If the request is from another webpage
     if (empty($_POST["courseCode"])) {

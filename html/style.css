@@ -65,10 +65,9 @@ main {
     width: 65%;
 	background: white;
 	overflow: auto;
-
 }
 
-div.shadow {
+div.innerMain {
     padding: 1em 2em 0 2em;
     margin: 0 auto;
 }

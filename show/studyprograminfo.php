@@ -67,7 +67,7 @@ include_once '../html/header.php';
 ?>
 
 <main>
-    <div class="shadow">
+    <div class="innerMain">
         <div class="row">
             <h2><?php echo $id; ?> - Elective and mandatory courses</h2>
         </div>

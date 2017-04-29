@@ -54,7 +54,7 @@ $conn->close();
 include_once '../html/header.php';
 ?>
 <main>
-    <div class="shadow">
+    <div class="innerMain">
         <h3>Apply for study program</h3>
 
         <form action="student_has_StudyProgram.php" method="post">

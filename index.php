@@ -39,7 +39,7 @@ $program = "/show/studyprogram.php";
 </header>
 
 <main>
-    <div class="shadow">
+    <div class="innerMain">
         <h2>
             Networking and Cloud Computing - Oblig 3 - Group 8
         </h2>

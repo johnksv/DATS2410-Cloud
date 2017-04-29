@@ -70,7 +70,7 @@ if (count($_POST) > 1) {
 include_once '../html/header.php';
 ?>
 <main>
-	<div class="shadow">
+	<div class="innerMain">
     <h3>Add a course to <?php echo $sPID; ?></h3>
 
     <form action="programcourses.php" method="post">
