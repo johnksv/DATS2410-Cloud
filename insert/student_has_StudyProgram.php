@@ -1,48 +1,51 @@
 <?php
 
-require '../Connection.php';
-if(empty($_POST['id'])){
+require_once '../Connection.php';
+
+if (empty($_POST['id'])) {
     header("Location: ../show/student.php");
-}else{
+} else {
 
-$studentID = $_POST['id'];
+    $studentID = filter_input(INPUT_POST, "id");
 
-if (count($_POST) > 1) {
-    // keep track validation errors
-    $studentIDError = null;
-    $sPIDError = null;
+    if (count($_POST) > 1) {
+        // keep track validation errors
+        $studentIDError = null;
+        $sPIDError = null;
 
-    // keep track post values
-    $studentID = $_POST['id'];
-    $sPID = $_POST['sPID'];
+        // keep track post values
+        $sPID = filter_input(INPUT_POST, "sPID");
 
+        // validate input
+        $valid = true;
 
-    // validate input
-    $valid = true;
+        if (empty($sPID)) {
+            $sPIDError = 'Please choose a program';
+            $valid = false;
+        }
 
-    if (empty($sPID)) {
-        $sPIDError = 'Please choose a program';
-        $valid = false;
-    }
-
-    // insert data
-    if ($valid) {
-        $conn = (new Connection())->connect();
-        $sql = "INSERT INTO Student_has_StudyProgram (studentID, sPID) values('$studentID', '$sPID')";
-
-        $result = $conn->query($sql);
-
-        $conn->close();
-        header("Location: ../show/studentinfo.php?id=$studentID");
+        // insert data
+        if ($valid) {
+            $conn = (new Connection())->connect();
+            $stat = $conn->prepare("INSERT INTO Student_has_StudyProgram (studentID, sPID) values(?,?)");
+            $stat->bind_param("ss", $studentID, $sPID);
+            $stat->execute();
+            $conn->close();
+            header("Location: ../show/studentinfo.php?id=$studentID");
+        }
     }
 }
-}
+
+$conn = (new Connection())->connect();
+$sql = "SELECT sPID, sPName FROM StudyProgram";
+$result = $conn->query($sql);
+$conn->close();
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-    <?php readfile("../html/head.html");  ?>
+    <?php readfile("../html/head.html"); ?>
 </head>
 <body>
 
@@ -51,41 +54,35 @@ if (count($_POST) > 1) {
 include_once '../html/header.php';
 ?>
 <main>
-	<div class="shadow">
-    <h3>Apply for study program</h3>
+    <div class="shadow">
+        <h3>Apply for study program</h3>
 
-    <form action="student_has_StudyProgram.php" method="post">
+        <form action="student_has_StudyProgram.php" method="post">
 
-        <label>Choose program</label>
-        <div>
-            <select name='sPID'>
-                <option value="" >Choose course</option>
-                <?php
-                require_once '../Connection.php';
-                $conn = (new Connection())->connect();
+            <label>Choose program</label>
+            <div>
+                <select name='sPID'>
+                    <option value="">Choose course</option>
+                    <?php
+                    // output data of each row
+                    while ($row = $result->fetch_assoc()) {
+                        $selected = (!empty($sPID) && $sPID == $row['sPID']) ? 'selected' : ' ';
+                        echo "<option value='" . $row['sPID'] . "' " . $selected . ">" . $row['sPID'] . " " . $row['sPName'] . "</option>";
+                    }
+                    ?>
+                </select>
 
-                $sql = "SELECT sPID, sPName FROM StudyProgram";
-                $result = $conn->query($sql);
-                // output data of each row
-                while($row = $result->fetch_assoc()) {
-                    $selected = (!empty($sPID) && $sPID == $row['sPID']) ? 'selected' : ' ';
-                    echo "<option value='". $row['sPID']."' ".$selected.">". $row['sPID'] . " " .$row['sPName'] ."</option>";
-                }
-                $conn->close();
-                ?>
-            </select>
-
-            <?php if (!empty($sPIDError)): ?>
-                <span><?php echo $sPIDError; ?></span>
-            <?php endif; ?>
-        </div>
-        <div>
-            <input type="hidden" name="id" value="<?php echo $studentID ?>">
-            <button type="submit">Create</button>
-            <a href="../show/course_instance.php">Back</a>
-        </div>
-    </form>
-	</div>
+                <?php if (!empty($sPIDError)): ?>
+                    <span><?php echo $sPIDError; ?></span>
+                <?php endif; ?>
+            </div>
+            <div>
+                <input type="hidden" name="id" value="<?php echo $studentID ?>">
+                <button type="submit">Create</button>
+                <a href="../show/course_instance.php">Back</a>
+            </div>
+        </form>
+    </div>
 </main>
 
 
