@@ -1,90 +1,77 @@
 <?php
 require_once '../Connection.php';
-$coursetitle = null;
-$semester = null;
 $conn = (new Connection())->connect();
 
-if (!empty($_POST["update"])) {
-
-    $sql = "UPDATE StudyProgram SET sPName='" . $_POST["name"] .
-        "', startYear='" . $_POST['startYear'] .
-        "', durationSemester='" . $_POST['duration'] .
-        "' WHERE sPID='" . $_POST["foo"] .
-        "'";
-
-    $result = $conn->query($sql);
-    $conn->close();
-    header("Location: ../show/studyprogram.php");
-}
+$sql = "SELECT * FROM StudyProgram";
+$result = $conn->query($sql);
+$conn->close();
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <?php readfile("../html/head.html"); ?>
+    <?php readfile("../html/head.html");  ?>
 </head>
 <body>
 
-    <?php
-    //Insert header
-    include_once '../html/header.php';
-    ?>
-    <main>
-        <?php
-        //If the request is from another webpage
-        if (empty($_POST["sPID"])) {
-            echo "<h1>Direct access not allowed, redirecting</h1>";
-            header('Refresh: 2;URL=../show/studyprogram.php');
-        } else {
-            echo "<B>Updating course: " . $_POST["sPID"] . "</B><br>";
+<?php
+//Insert header
+include_once '../html/header.php';
+?>
 
-            $sql = 'SELECT * FROM StudyProgram WHERE sPID="' . $_POST["sPID"] . '"';
-            $result = $conn->query($sql);
+<main>
+	<div class="shadow">
+    <div>
+        <h2>Studyprograms</h2>
+        <a href="../insert/studyprogram.php"><button>Create new entry</button></a>
+    </div>
 
-            if ($result->num_rows > 0) {
-                // output data of each row
-                while ($row = $result->fetch_assoc()) {
-                    $name = $row['sPName'];
-                    $dur = $row['durationSemester'];
-                    $year = $row['startYear'];
-                }
+    <div>
+        <table>
+            <thead>
+            <tr>
+                <th>Program ID</th>
+                <th>Program Name</th>
+                <th>Semester Duration</th>
+                <th>Start Year</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php while ($row = $result->fetch_assoc()) { ?>
+                <tr>
+                    <td><?php echo $row['sPID'] ?></td>
+                    <td><?php echo $row['sPName'] ?></td>
+                    <td><?php echo $row['durationSemester'] ?></td>
+                    <td><?php echo $row['startYear'] ?></td>
+                    <td>
+                        <form action="studyprograminfo.php" method="get">
+                            <input type="hidden" name="id" value="<?php echo $row['sPID'] ?>">
+                            <input type="submit" value="Show courses"><br>
 
-            } else {
-                echo "No such course!";
-            }
+                        </form>
 
-            $conn->close(); ?>
+                        <form action="../update/studyprogram.php" method="post">
+                            <input type="hidden" name="sPID" value="<?php echo $row['sPID'] ?>">
+                            <input type="submit" name="Change" value="Edit"><br>
 
-            <form action="studyprogram.php" method="post">
-                Program name: <br>
-                <input name="name" type="text" value="<?php echo $name; ?>"><br>
-                Duration (number of semesters): <br>
-                <input name="duration" type="text" value="<?php echo $dur; ?>"><br>
-                Start Year<br>
-                <select name="startYear">
-                    <option value="<?php echo $year; ?>"><?php echo $year; ?></option>
-                    <?php
-                    $time = new DateTime('now');
-                    $year = intval($time->format("Y"));
-                    for ($i = 5; $i > 0; $i--) {
-                        ?>
-                        <option><?php echo $year + $i; ?></option>
-                    <?php } ?>
+                        </form>
 
-                    <option selected><?php echo $year; ?></option>
+                        <form action="delete.php" method="post">
+                            <input type="hidden" name="id" value="<?php echo $row['sPID'] ?>">
+                            <input type="hidden" name="type" value="studyprogram">
+                            <input type="submit" name="Delete" value="Delete"><br>
 
-                    <?php for ($i = $year - 1; $i > 1990; $i--) { ?>
-                        <option><?php echo $i; ?></option>
-                    <?php } ?>
+                        </form>
+                    </td>
+                </tr>
+            <?php } ?>
+            </tbody>
+        </table>
+    </div>
+	</div>
+</main>
 
-                </select>
-                <br>
-                <br>
-                <input type="hidden" name="foo" value="<?php echo $_POST["sPID"]; ?>"/>
-                <input type="submit" name="update" Value="Update">
-                <a href="../show/studyprogram.php">Back</a>
-            </form>
 
-        <?php } ?>
-    </main>
 </body>
 </html>
+

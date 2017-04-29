@@ -29,6 +29,7 @@ include_once '../html/header.php';
 ?>
 
 <main>
+    <div class="shadow">
 <?php
 //If the request is from another webpage
 if (empty($_POST["courseCode"])) {
@@ -76,7 +77,7 @@ if (empty($_POST["courseCode"])) {
 
 
 <?php } ?>
-
+    </div>
 </main>
 
 </body>

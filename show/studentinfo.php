@@ -15,7 +15,7 @@ if (!empty($_GET)) {
     $stat->execute();
     $studyProgram = $stat->get_result();
 
-    $stat = $conn->prepare("select SC.courseCode, C.courseTitle, SC.startDate, CI.ExamDate from StudentCourse as SC, Course_Instance as CI, Course as C where SC.startDate=CI.startDate and SC.courseCode=CI.courseCode and CI.courseCode=C.courseCode and SC.studentID=?");
+    $stat = $conn->prepare("select SC.courseCode, C.courseTitle, SC.startDate, CI.ExamDate, SC.grade from StudentCourse as SC, Course_Instance as CI, Course as C where SC.startDate=CI.startDate and SC.courseCode=CI.courseCode and CI.courseCode=C.courseCode and SC.studentID=?");
     $stat->bind_param("s", $studentID);
     $stat->execute();
     $courses = $stat->get_result();
@@ -140,6 +140,7 @@ include_once '../html/header.php';
                     <th>Course title</th>
                     <th>Start date</th>
                     <th>Exam date</th>
+                    <th>Grade</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -150,6 +151,18 @@ include_once '../html/header.php';
                             <td><?php echo $row['courseTitle'] ?></td>
                             <td><?php echo $row['startDate'] ?></td>
                             <td><?php echo $row['ExamDate'] ?></td>
+                            <td><?php echo $row['grade'] ?></td>
+                            <td>
+                                <form action="../update/studentcourse.php" method="post">
+                                    <input type="hidden" name="studentID" value="<?php echo $studentID ?>">
+                                    <input type="hidden" name="courseCode" value="<?php echo $row['courseCode'] ?>">
+                                    <input type="hidden" name="startDate" value="<?php echo $row['startDate'] ?>">
+                                    <input type="hidden" name="grade" value="<?php echo $row['grade'] ?>">
+                                    <input type="submit" name="Change" value="Edit"><br>
+
+                                </form>
+
+                            </td>
                         </tr>
                     <?php }
                 } ?>
