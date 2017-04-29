@@ -21,7 +21,7 @@ if (!empty($_POST)) {
     // validate input
     $valid = true;
     if (empty($studentID)) {
-        $IDError = 'Please enter student ID';
+        $IDError = 'Please enter a student ID';
         $valid = false;
     } elseif (preg_match('/^s\d{6}$/', $studentID) != 1) {
         $IDError = 'Please enter valid student ID (sXXXXXX)';
@@ -29,10 +29,10 @@ if (!empty($_POST)) {
     }
 
     if (empty($email)) {
-        $emailError = 'Please enter Email Address';
+        $emailError = 'Please enter email address';
         $valid = false;
     } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $emailError = 'Please enter a valid Email Address';
+        $emailError = 'Please enter a valid email address';
         $valid = false;
     }
 
@@ -48,12 +48,12 @@ if (!empty($_POST)) {
     }
 
     if (empty($firstName)) {
-        $firstNameError = 'Please enter Name';
+        $firstNameError = 'Please enter name';
         $valid = false;
     }
 
     if (empty($lastName)) {
-        $lastNameError = 'Please enter Mobile Number';
+        $lastNameError = 'Please enter mobile number';
         $valid = false;
     }
 
