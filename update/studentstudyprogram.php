@@ -56,6 +56,7 @@ if (!empty($_POST["update"])) {
 include_once '../html/header.php';
 ?>
 <main>
+    <div class="shadow">
 <?php
 //If the request is from another webpage
 if (empty($_POST["studentID"]) || empty($_POST["sPID"])) {
@@ -90,6 +91,7 @@ if (empty($_POST["studentID"]) || empty($_POST["sPID"])) {
     <input type="hidden" name="sPID" value="<?php echo $_POST["sPID"]; ?>"/>
     <input type="submit" name="update" Value="Update">
 </form>
+    </div>
 </main>
 
 </body>
