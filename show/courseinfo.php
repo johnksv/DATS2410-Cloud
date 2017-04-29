@@ -31,7 +31,7 @@ if (!empty($_GET) && isset($_GET["id"])) {
 
 if (!empty($_POST["update"])) {
     $conn = (new Connection())->connect();
-    $sql = "UPDATE Course SET courseTitle='', semester='' WHERE courseCode='";
+
     $newcoursetitle = filter_input(INPUT_POST, "courseTitle");
     $semester = filter_input(INPUT_POST, "semester");
 
