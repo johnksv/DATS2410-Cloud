@@ -56,47 +56,49 @@ include_once '../html/header.php';
 ?>
 
 <main>
+    <div class="innerMain">
+        <h3>Create a Course</h3>
 
-    <h3>Create a Course</h3>
+        <form action="course.php" method="post">
+            <label>Course code</label>
+            <div>
+                <input name="courseCode" type="text" placeholder="Course code"
+                       value="<?php echo !empty($courseCode) ? $courseCode : ''; ?>">
+                <?php if (!empty($courseCodeError)): ?>
+                    <span><?php echo $courseCodeError; ?></span>
+                <?php endif; ?>
+            </div>
 
-    <form action="course.php" method="post">
-        <label>Course code</label>
-        <div>
-            <input name="courseCode" type="text" placeholder="Course code"
-                   value="<?php echo !empty($courseCode) ? $courseCode : ''; ?>">
-            <?php if (!empty($courseCodeError)): ?>
-                <span><?php echo $courseCodeError; ?></span>
-            <?php endif; ?>
-        </div>
+            <label>Course title</label>
+            <div>
+                <input name="courseTitle" type="text" placeholder="Course title"
+                       value="<?php echo !empty($courseTitle) ? $courseTitle : ''; ?>">
+                <?php if (!empty($courseTitleError)): ?>
+                    <span><?php echo $courseTitleError; ?></span>
+                <?php endif; ?>
+            </div>
 
-        <label>Course title</label>
-        <div>
-            <input name="courseTitle" type="text" placeholder="Course title"
-                   value="<?php echo !empty($courseTitle) ? $courseTitle : ''; ?>">
-            <?php if (!empty($courseTitleError)): ?>
-                <span><?php echo $courseTitleError; ?></span>
-            <?php endif; ?>
-        </div>
+            <label>Semester</label>
+            <div>
+                <input type="radio" name="semester"
+                       value="S" <?php echo (!empty($semester) && $semester == "S") ? "checked" : ''; ?>>
+                Spring <?php if (!empty($semesterError)): ?>
+                    <span><?php echo $semesterError; ?></span>
+                <?php endif; ?><br>
+                <input type="radio" name="semester"
+                       value="F" <?php echo (!empty($semester) && $semester == "F") ? "checked" : ''; ?>> Fall
+                <p hidden><input type="radio" name="semester"
+                                 value="" <?php echo (empty($semester)) ? "checked" : ''; ?>>
+                </p>
 
-        <label>Semester</label>
-        <div>
-            <input type="radio" name="semester"
-                   value="S" <?php echo (!empty($semester) && $semester == "S") ? "checked" : ''; ?>>
-            Spring <?php if (!empty($semesterError)): ?>
-                <span><?php echo $semesterError; ?></span>
-            <?php endif; ?><br>
-            <input type="radio" name="semester"
-                   value="F" <?php echo (!empty($semester) && $semester == "F") ? "checked" : ''; ?>> Fall
-            <p hidden><input type="radio" name="semester" value="" <?php echo (empty($semester)) ? "checked" : ''; ?>>
-            </p>
+            </div>
 
-        </div>
-
-        <div>
-            <button type="submit">Create</button>
-            <a href="../show/course.php">Back</a>
-        </div>
-    </form>
+            <div>
+                <button type="submit">Create</button>
+                <a href="../show/course.php">Back</a>
+            </div>
+        </form>
+    </div>
 </main>
 
 </body>
