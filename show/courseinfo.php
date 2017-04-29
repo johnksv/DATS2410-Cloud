@@ -1,29 +1,45 @@
 <?php
 require_once '../Connection.php';
-if (!empty($_GET)) {
+if (!empty($_GET) && isset($_GET["id"])) {
     $conn = (new Connection())->connect();
-    $courseID = $_GET['id'];
-    $sql = "select startDate, examDate from Course_Instance where courseCode='$courseID'";
-    $studentInfo = $conn->query($sql);
+    $courseID = filter_input(INPUT_GET, 'id');
+    $stat = $conn->prepare("select startDate, examDate from Course_Instance where courseCode=?");
+    $stat->bind_param("s", $courseID);
+    $stat->execute();
+    $studentInfo = $stat->get_result();
+
+    $stat = $conn->prepare("SELECT * FROM Course WHERE courseCode=?");
+    $stat->bind_param("s", $courseID);
+    $stat->execute();
+    $result = $stat->get_result();
+
     $conn->close();
+
+    $noSuchCourse = false;
+    $coursetitle = "";
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        $coursetitle = $row['courseTitle'];
+        $semester = $row['semester'];
+    } else {
+        $noSuchCourse = true;
+    }
 } else {
+    //If no valid ID is given
     header("location:course.php");
 }
 
-$coursetitle = null;
-$semester = null;
-$conn = (new Connection())->connect();
-
 if (!empty($_POST["update"])) {
+    $conn = (new Connection())->connect();
+    $sql = "UPDATE Course SET courseTitle='', semester='' WHERE courseCode='";
+    $newcoursetitle = filter_input(INPUT_POST, "courseTitle");
+    $semester = filter_input(INPUT_POST, "semester");
 
-    $sql = "UPDATE Course SET courseTitle='" . $_POST["courseTitle"] .
-        "', semester='" . $_POST['semester'] .
-        "' WHERE courseCode='" . $_POST["foo"] .
-        "'";
-
-    $result = $conn->query($sql);
+    $stat = $conn->prepare("UPDATE Course SET courseTitle=?, semester=? WHERE courseCode=?");
+    $stat->bind_param("sss", $newcoursetitle, $semester, $courseID);
+    $stat->execute();
     $conn->close();
-    header("Location: ../show/course.php");
+    header("Location: ../show/courseinfo.php?id=$courseID&updated=true");
 }
 ?>
 <!DOCTYPE html>
@@ -40,57 +56,89 @@ include_once '../html/header.php';
 
 <main>
 
-	<div class="shadow">
-    <div>
-        <h2>Info about <?php echo $courseID ?></h2>
-    </div>
+    <div class="shadow">
+        <div>
+            <h2>Info about <?php echo "$coursetitle - $courseID " ?></h2>
+        </div>
+        <?php if ($noSuchCourse) { ?>
+            <h3>No such course in database.</h3>
+        <?php } else { ?>
 
-    <form action="../insert/course_instance.php" method="post">
-        <input type="hidden" name="courseCode" value="<?php echo $_GET["id"] ?>">
-        <input type="submit" value="Add new start date"><br>
-    </form>
+            <div>
+                <form action="courseinfo.php?id=<?php echo "$courseID"; ?>" method="post">
+                    Title: <input type="text" name="courseTitle" value="<?php echo $coursetitle; ?>"><br>
+                    Semester:
+                    <div>
+                        <input type="radio" name="semester"
+                               value="S" <?php echo (!empty($semester) && $semester == "S") ? "checked" : ''; ?>>Spring
+                        <br>
+                        <input type="radio" name="semester"
+                               value="F" <?php echo (!empty($semester) && $semester == "F") ? "checked" : ''; ?>>Fall
+                        <input hidden type="radio" name="semester"
+                               value="" <?php echo (empty($semester)) ? "checked" : ''; ?>>
+                    </div>
+                    <p><b>
+                            <?php
+                            if (isset($_GET["updated"]))
+                                if (strcmp($_GET["updated"], "true") == 0)
+                                    echo "Succesfully updated!";
+                            ?>
 
-    <div>
-        <table>
-            <thead>
-            <tr>
-                <th>Start date</th>
-                <th>Exam date</th>
-                <th></th>
-            </tr>
-            </thead>
+                        </b>
+                    </p>
+                    <input type="submit" name="update" Value="Update">
+                </form>
+            </div>
 
-            <tbody>
-            <?php if (!empty($studentInfo)) {
-                while ($row = $studentInfo->fetch_assoc()) { ?>
+            <div>
+                <h3>Start & Exam Dates</h3>
+                <form action="../insert/course_instance.php" method="post">
+                    <input type="hidden" name="courseCode" value="<?php echo $_GET["id"] ?>">
+                    <input type="submit" value="Add new start date"><br>
+                </form>
+            </div>
+
+            <div>
+                <table>
+                    <thead>
                     <tr>
-                        <td><?php echo $row['startDate'] ?></td>
-                        <td><?php echo $row['examDate'] ?></td>
-                        <td>
-                            <form action="../update/courseinstance.php" method="post">
-                                <input type="hidden" name="courseCode" value="<?php echo $courseID?>">
-                                <input type="hidden" name="startDate" value="<?php echo $row['startDate'] ?>">
-                                <input type="submit" name="Change" value="Edit"><br>
-
-                            </form>
-
-                            <form action="delete.php" method="post">
-                                <input type="hidden" name="id" value="<?php echo $row['startDate'] ?>">
-                                <input type="hidden" name="course" value="<?php echo $courseID?>">
-                                <input type="hidden" name="type" value="courseinfo">
-                                <input type="submit" name="Delete" value="Delete"><br>
-
-                            </form>
-
-                        </td>
+                        <th>Start date</th>
+                        <th>Exam date</th>
+                        <th></th>
                     </tr>
-                <?php }
-            } ?>
-            </tbody>
-        </table>
-    </div>
+                    </thead>
 
-	</div>
+                    <tbody>
+                    <?php if (!empty($studentInfo)) {
+                        while ($row = $studentInfo->fetch_assoc()) { ?>
+                            <tr>
+                                <td><?php echo $row['startDate'] ?></td>
+                                <td><?php echo $row['examDate'] ?></td>
+                                <td>
+                                    <form action="../update/courseinstance.php" method="post">
+                                        <input type="hidden" name="courseCode" value="<?php echo $courseID ?>">
+                                        <input type="hidden" name="startDate" value="<?php echo $row['startDate'] ?>">
+                                        <input type="submit" name="Change" value="Edit"><br>
+
+                                    </form>
+
+                                    <form action="delete.php" method="post">
+                                        <input type="hidden" name="id" value="<?php echo $row['startDate'] ?>">
+                                        <input type="hidden" name="course" value="<?php echo $courseID ?>">
+                                        <input type="hidden" name="type" value="courseinfo">
+                                        <input type="submit" name="Delete" value="Delete"><br>
+
+                                    </form>
+
+                                </td>
+                            </tr>
+                        <?php }
+                    } ?>
+                    </tbody>
+                </table>
+            </div>
+        <?php } ?>
+    </div>
 </main>
 
 
