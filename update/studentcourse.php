@@ -37,7 +37,7 @@ include_once '../html/header.php';
         echo "<h1>Direct access not allowed, redirecting</h1>";
         header('Refresh: 2;URL=../show/student.php');
     } else {
-        echo "<B>Updating grade date for " . $_POST["studentID"] . " in the course ". $_POST["courseCode"]." starting at " . $_POST["startDate"] ."</B><br>";
+        echo "<B>Updating grade for " . $_POST["studentID"] . " in the course ". $_POST["courseCode"]." starting at " . $_POST["startDate"] ."</B><br>";
 
         $courseCode = $_POST["courseCode"];
         $startDate = $_POST["startDate"];
