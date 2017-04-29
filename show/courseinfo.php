@@ -118,7 +118,7 @@ include_once '../html/header.php';
                                     <form action="../update/courseinstance.php" method="post">
                                         <input type="hidden" name="courseCode" value="<?php echo $courseID ?>">
                                         <input type="hidden" name="startDate" value="<?php echo $row['startDate'] ?>">
-                                        <input type="submit" name="Change" value="Edit"><br>
+                                        <input type="submit" name="Change" value="Edit exam date"><br>
 
                                     </form>
 
