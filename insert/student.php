@@ -104,7 +104,7 @@ include_once '../html/header.php';
             <?php endif; ?>
         </div>
 
-        <label>Start year</label>
+        <label>Start date</label>
         <div>
             <input name="startYear" type="date" placeholder="yyyy-mm-dd"
                    value="<?php echo !empty($startYear) ? $startYear : ''; ?>">
