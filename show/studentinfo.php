@@ -70,8 +70,7 @@ include_once '../html/header.php';
         <?php } else { ?>
 
             <div>
-                <?php if (!empty($studentInfo)) {
-                    while ($row = $studentInfo->fetch_assoc()) { ?>
+
                         <p><b>ID:</b> <?php echo $studentID ?></p>
                         <p><b>Name:</b> <?php echo $row['firstName'];
                             echo ' ';
@@ -94,9 +93,6 @@ include_once '../html/header.php';
                             </p>
                             <input type="submit" name="update" value="Update">
                         </form>
-                    <?php }
-                } ?>
-
             </div>
             <h3>Study program(s)</h3>
             <div>
@@ -117,7 +113,7 @@ include_once '../html/header.php';
                     </tr>
                     </thead>
                     <tbody>
-                    <?php if (!empty($studyProgram)) { ?>
+                    <?php while ($row = $studyProgram->fetch_assoc()) { ?>
                         <tr>
                             <td><?php echo $row['sPID'] ?></td>
                             <td><?php echo $row['sPName'] ?></td>
