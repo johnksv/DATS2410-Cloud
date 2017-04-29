@@ -1,7 +1,7 @@
 <?php
 
 require '../Connection.php';
-
+$startYear = 0;
 if (!empty($_POST)) {
     // keep track validation errors
     $IDError = null;
@@ -11,17 +11,20 @@ if (!empty($_POST)) {
     $lastNameError = null;
 
     // keep track post values
-    $studentID = $_POST['studentID'];
-    $email = $_POST['email'];
-    $startYear = $_POST['startYear'];
-    $firstName = $_POST['firstName'];
-    $lastName = $_POST['lastName'];
+    $studentID = filter_input(INPUT_POST, 'studentID');
+    $email = filter_input(INPUT_POST, 'email');
+    $startYear = filter_input(INPUT_POST, 'startYear');
+    $firstName = filter_input(INPUT_POST, 'firstName');
+    $lastName = filter_input(INPUT_POST, 'lastName');
 
 
     // validate input
     $valid = true;
     if (empty($studentID)) {
         $IDError = 'Please enter student ID';
+        $valid = false;
+    } elseif (preg_match('/^s\d{6}$/', $studentID) != 1) {
+        $IDError = 'Please enter valid student ID (sXXXXXX)';
         $valid = false;
     }
 
@@ -57,9 +60,9 @@ if (!empty($_POST)) {
     // insert data
     if ($valid) {
         $conn = (new Connection())->connect();
-        $sql = "INSERT INTO Student (studentId, email, startYear, firstName, lastName) values('$studentID', '$email', '$startYear', '$firstName', '$lastName')";
-
-        $result = $conn->query($sql);
+        $stat = $conn->prepare("INSERT INTO Student (studentId, email, startYear, firstName, lastName) values(?, ?, ?, ?, ?)");
+        $stat->bind_param("sssss", $studentID, $email, $startYear, $firstName, $lastName);
+        $stat->execute();
         $conn->close();
         header("Location: ../show/student.php");
     }
@@ -69,7 +72,7 @@ if (!empty($_POST)) {
 <!DOCTYPE html>
 <html>
 <head>
-    <?php readfile("../html/head.html");  ?>
+    <?php readfile("../html/head.html"); ?>
 </head>
 <body>
 
@@ -103,11 +106,36 @@ include_once '../html/header.php';
 
         <label>Start year</label>
         <div>
-            <input name="startYear" type="date" placeholder="yyyy-mm-dd"
-                   value="<?php echo !empty($startYear) ? $startYear : ''; ?>">
-            <?php if (!empty($yearError)): ?>
-                <span><?php echo $yearError; ?></span>
-            <?php endif; ?>
+            <select name="startYear">
+                <?php
+                $time = new DateTime('now');
+                $year = intval($time->format("Y"));
+                for ($i = 5; $i > 0; $i--) {
+                    ?>
+                    <option <?php if ($startYear === strval($year + $i)) {
+                        echo "selected";
+                    } ?> >
+                        <?php echo $year + $i; ?>
+                    </option>
+                <?php } ?>
+
+                <option <?php if (empty($startYear)) {
+                    echo "selected";
+                } else if ($startYear === strval($year)) {
+                    echo "selected";
+                } ?>>
+                    <?php echo $year; ?>
+                </option>
+
+                <?php for ($i = $year - 1; $i > 1990; $i--) { ?>
+                    <option <?php if ($startYear === strval($i)) {
+                        echo "selected";
+                    } ?>>
+                        <?php echo $i; ?>
+                    </option>
+                <?php } ?>
+
+            </select>
         </div>
 
         <label>First Name</label>
