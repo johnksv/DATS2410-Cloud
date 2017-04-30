@@ -33,15 +33,14 @@ if (strcmp($type, "student") == 0) {
     if ($stat->execute() === TRUE) {
         header("Location: studyprogram.php");
     }
-} else if (strcmp($type, "CourseType") == 0) {
 
+} else if (strcmp($type, "studyprograminfo") == 0) {
 
         $stat = $conn->prepare("DELETE FROM CourseType WHERE sPID=? AND courseCode=?");
         $stat->bind_param("ss", $id, $course);
         if ($stat->execute() === TRUE) {
             header("Location: studyprograminfo.php?id=$id");
         }
-
 } else if (strcmp($type, "courseinfo") == 0) {
 
     $stat = $conn->prepare("DELETE FROM Course_Instance WHERE startDate=? AND courseCode=?");
