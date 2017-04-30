@@ -4,18 +4,12 @@ if (!empty($_GET) && isset($_GET["id"])) {
     $conn = (new Connection())->connect();
 
     $id = filter_input(INPUT_GET, "id");
-    $stat = $conn->prepare("Select Course.courseTitle, ElectiveCourse.courseCode, ElectiveCourse.standardSemester from Course 
-    join ElectiveCourse on ElectiveCourse.courseCode = Course.courseCode where sPID=?");
+    $stat = $conn->prepare("Select Course.courseTitle, CourseType.courseCode, CourseType.standardSemester, type from Course 
+    join CourseType on CourseType.courseCode = Course.courseCode where sPID=? order by type");
     $stat->bind_param("s", $id);
     $stat->execute();
 
     $result1 = $stat->get_result();
-
-    $stat = $conn->prepare("Select Course.courseTitle, MandatoryCourse.courseCode, MandatoryCourse.standardSemester from Course 
-    join MandatoryCourse on MandatoryCourse.courseCode = Course.courseCode where sPID=? ");
-    $stat->bind_param("s", $id);
-    $stat->execute();
-    $result2 = $stat->get_result();
 
     $stat = $conn->prepare("SELECT * FROM StudyProgram WHERE sPID=?");
     $stat->bind_param("s", $id);
@@ -31,7 +25,7 @@ if (!empty($_GET) && isset($_GET["id"])) {
         $row = $result->fetch_assoc();
         $name = $row['sPName'];
         $duration = $row['durationSemester'];
-        $startyear = $row['startYear'];
+        $startYear = $row['startYear'];
     } else {
         $noSuchCourse = true;
     }
@@ -44,11 +38,11 @@ if (!empty($_GET) && isset($_GET["id"])) {
 if (!empty($_POST["update"])) {
 
     $name = filter_input(INPUT_POST, "name");
-    $startyear = filter_input(INPUT_POST, "startYear");
+    $startYear = filter_input(INPUT_POST, "startYear");
     $duration = filter_input(INPUT_POST, "duration");
     $conn = (new Connection())->connect();
     $stat = $conn->prepare("UPDATE StudyProgram SET sPName=?, startYear=?, durationSemester=? WHERE sPID=?");
-    $stat->bind_param("ssss", $name, $startyear, $duration, $id);
+    $stat->bind_param("ssss", $name, $startYear, $duration, $id);
     $stat->execute();
     $conn->close();
     header("Location: ../show/studyprograminfo.php?id=$id&updated=true");
@@ -88,8 +82,8 @@ include_once '../html/header.php';
                         $time = new DateTime('now');
                         $curryear = intval($time->format("Y"));
                         $year = $curryear;
-                        if (isset($startyear)) {
-                            $newtime = new DateTime("$startyear-01-01");
+                        if (isset($startYear)) {
+                            $newtime = new DateTime("$startYear-01-01");
                             $year = intval($newtime->format("Y"));
                         }
 
@@ -139,8 +133,8 @@ include_once '../html/header.php';
                         <th> Course Title</th>
                         <th> Course Code</th>
                         <th> Standard Semester</th>
-                        <th></th>
-                        <th></th>
+                        <th> Type </th>
+                        <th> Action </th>
                     </tr>
                     </thead>
                     <tbody>
@@ -149,38 +143,18 @@ include_once '../html/header.php';
                             <td><?php echo $row['courseTitle'] ?></td>
                             <td><?php echo $row['courseCode'] ?></td>
                             <td><?php echo $row['standardSemester'] ?></td>
-                            <td>Elective</td>
+                            <td><?php echo $row['type']=="M" ? "Mandatory" : "Elective" ?></td>
                             <td>
                                 <form action="delete.php" method="post">
                                     <input type="hidden" name="id" value="<?php echo $id ?>">
                                     <input type="hidden" name="course" value="<?php echo $row['courseCode'] ?>">
-                                    <input type="hidden" name="courseInfo" value="elective">
-                                    <input type="hidden" name="type" value="studyprograminfo">
+                                    <input type="hidden" name="type" value="CourseType">
                                     <input type="submit" name="Delete" value="Delete"><br>
 
                                 </form>
                             </td>
 
 
-                        </tr>
-                    <?php }
-                    while ($row = $result2->fetch_assoc()) { ?>
-                        <tr>
-                            <td><?php echo $row['courseTitle'] ?></td>
-                            <td><?php echo $row['courseCode'] ?></td>
-                            <td><?php echo $row['standardSemester'] ?></td>
-                            <td>Mandatory</td>
-
-                            <td>
-                                <form action="delete.php" method="post">
-                                    <input type="hidden" name="id" value="<?php echo $id ?>">
-                                    <input type="hidden" name="course" value="<?php echo $row['courseCode'] ?>">
-                                    <input type="hidden" name="courseInfo" value="mandatory">
-                                    <input type="hidden" name="type" value="studyprograminfo">
-                                    <input type="submit" name="Delete" value="Delete"><br>
-
-                                </form>
-                            </td>
                         </tr>
                     <?php } ?>
                     </tbody>
