@@ -43,7 +43,6 @@ if (!empty($_POST["update"])) {
     $stat->bind_param("sss", $email, $startyear, $studentID);
     $stat->execute();
     $conn->close();
-    header("Location: ../show/studentinfo.php?id=$studentID&updated=true");
 }
 
 
@@ -84,13 +83,14 @@ include_once '../html/header.php';
                             </p>
                             <p><b>
                                     <?php
-                                    if (isset($_GET["updated"]))
-                                        if (strcmp($_GET["updated"], "true") == 0)
+                                    if (isset($_POST["updated"]))
+                                        if (strcmp($_POST["updated"], "true") == 0)
                                             echo "Succesfully updated!";
                                     ?>
 
                                 </b>
                             </p>
+                            <input hidden type="text" name="updated" value="true">
                             <input type="submit" name="update" value="Update">
                         </form>
             </div>
