@@ -34,7 +34,7 @@ if (empty($_POST['id'])) {
             $standardSemesterError = 'Please choose a semester';
             $valid = false;
         } elseif (!is_numeric($standardSemester)) {
-            $standardSemesterError = 'Be kind and use a number.';
+            $standardSemesterError = 'Use a number.';
             $valid = false;
         }
 
@@ -99,7 +99,7 @@ include_once '../html/header.php';
             </div>
             <label>Standard Semester</label>
             <div>
-                <input name="standardSemester" type="number" min="0" max="5"
+                <input name="standardSemester" type="number" min="1" max="8"
                        value="<?php echo !empty($standardSemester) ? $standardSemester : ''; ?>">
                 <?php if (!empty($standardSemesterError)): ?>
                     <span><?php echo $standardSemesterError; ?></span>
