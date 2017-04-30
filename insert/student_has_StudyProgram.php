@@ -37,8 +37,11 @@ if (empty($_POST['id'])) {
 }
 
 $conn = (new Connection())->connect();
-$sql = "SELECT sPID, sPName FROM StudyProgram";
-$result = $conn->query($sql);
+$stat = $conn->prepare("SELECT sPID, sPName FROM StudyProgram where sPID NOT IN (SELECT shs.sPID FROM Student_has_StudyProgram as shs where shs.studentID=?)");
+$stat->bind_param("s", $studentID);
+$stat->execute();
+$result = $stat->get_result();
+					
 $conn->close();
 ?>
 
