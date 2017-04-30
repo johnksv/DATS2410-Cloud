@@ -43,12 +43,15 @@ if (empty($_POST['id'])) {
 
 $conn = (new Connection())->connect();
 
-$sql = "SELECT startDate, CI.courseCode, C.courseTitle 
-            FROM Course_Instance as CI, Course as C 
-            where CI.courseCode = C.courseCode";
+$stat = $conn->prepare("SELECT startDate, CI.courseCode, C.courseTitle FROM Course_Instance AS CI, Course AS C WHERE CI.courseCode = C.courseCode AND CI.courseCode NOT IN (select SC.courseCode FROM StudentCourse AS SC WHERE SC.studentID=?)");
+$stat->bind_param("s", $studentID);
+$stat->execute();
+$result = $stat->get_result();
 
-$result = $conn->query($sql);
 $conn->close();
+
+
+
 ?>
 
 <!DOCTYPE html>
