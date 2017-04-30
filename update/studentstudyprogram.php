@@ -87,9 +87,10 @@ if (empty($_POST["studentID"]) || empty($_POST["sPID"])) {
     Completed Date: <input name="completed" type="date" placeholder="yyyy-mm-dd" value="<?php echo $comyear; ?>"><br>
     Terminated Date: <input name="terminated" type="date" placeholder="yyyy-mm-dd" value="<?php echo $teryear; ?>"><br>
     <br>
-    <input type="hidden" name="studentID" value="<?php echo $_POST["studentID"]; ?>"/>
-    <input type="hidden" name="sPID" value="<?php echo $_POST["sPID"]; ?>"/>
+    <input type="hidden" name="studentID" value="<?php echo $_POST["studentID"] ?>"/>
+    <input type="hidden" name="sPID" value="<?php echo $_POST["sPID"] ?>"/>
     <input type="submit" name="update" Value="Update">
+        <a href="../show/studentinfo.php?id=<?php echo $_POST["studentID"]?>">Back</a>
 </form>
     </div>
 </main>

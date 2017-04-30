@@ -88,7 +88,7 @@ include_once '../html/header.php';
             <div>
                 <input type="hidden" name="id" value="<?php echo $studentID ?>">
                 <button type="submit">Create</button>
-                <a href="../show/course_instance.php">Back</a>
+                <a href="../show/studentinfo.php?id=<?php echo $studentID?>">Back</a>
             </div>
         </form>
     </div>
