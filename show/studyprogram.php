@@ -45,7 +45,7 @@ include_once '../html/header.php';
                 $conn = (new Connection())->connect();
                 while ($row = $result->fetch_assoc()) {
                     $sPID = $row['sPID'];
-                    $sql = "SELECT COUNT(*) AS 'count' FROM student_has_studyprogram WHERE sPID='$sPID'";
+                    $sql = "SELECT COUNT(*) AS 'count' FROM Student_has_StudyProgram WHERE sPID='$sPID'";
                     $count = $conn->query($sql)->fetch_assoc();
                     ?>
                     <tr>
