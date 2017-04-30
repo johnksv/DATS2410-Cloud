@@ -35,7 +35,7 @@ include_once '../html/header.php';
                 <th>Firstname</th>
                 <th>Lastname</th>
                 <th>Email</th>
-                <th>StartYear</th>
+                <th>Start date</th>
                 <th>StudentID</th>
                 <th></th>
             </tr>
