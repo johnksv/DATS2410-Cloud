@@ -34,21 +34,11 @@ if (strcmp($type, "student") == 0) {
         header("Location: studyprogram.php");
     }
 } else if (strcmp($type, "studyprograminfo") == 0) {
-    if (strcmp($courseInfo, "elective") == 0) {
-
-        $stat = $conn->prepare("DELETE FROM ElectiveCourse WHERE sPID=? AND courseCode=?");
+        $stat = $conn->prepare("DELETE FROM CourseType WHERE sPID=? AND courseCode=?");
         $stat->bind_param("ss", $id, $course);
         if ($stat->execute() === TRUE) {
             header("Location: studyprograminfo.php?id=$id");
         }
-    } else if (strcmp($courseInfo, "mandatory") == 0) {
-
-        $stat = $conn->prepare("DELETE FROM MandatoryCourse WHERE sPID=? AND courseCode=?");
-        $stat->bind_param("ss", $id, $course);
-        if ($stat->execute() === TRUE) {
-            header("Location: studyprograminfo.php?id=$id");
-        }
-    }
 } else if (strcmp($type, "courseinfo") == 0) {
 
     $stat = $conn->prepare("DELETE FROM Course_Instance WHERE startDate=? AND courseCode=?");
