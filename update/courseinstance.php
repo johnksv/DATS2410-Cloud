@@ -57,24 +57,22 @@ include_once '../html/header.php';
                     $examDate = $row['examDate'];
                 }
             } else {
-                echo "<h1>No such course in database, redirecting</h1>";
+                echo "<h1>No such course in database, redirecting to courses</h1>";
                 header('Refresh: 2;URL=../show/course.php');
             } ?>
 
-        <form action="courseinstance.php" method="post">
-            Exam date: <input type="date" name="examDate" value="<?php echo $examDate; ?>"><br>
+            <form action="courseinstance.php" method="post">
+                Exam date: <input type="date" name="examDate" value="<?php echo $examDate; ?>"><br>
 
+                <br>
 
+                <input type="hidden" name="startDate" value="<?php echo $startDate; ?>"/>
+                <input type="hidden" name="courseCode" value="<?php echo $courseCode; ?>"/>
+                <input type="submit" name="update" Value="Update">
+                <a href="../show/courseinfo.php?id=<?php echo $courseCode ?>">Back</a>
+            </form>
 
-            <br>
-
-            <input type="hidden" name="startDate" value="<?php echo $startDate; ?>"/>
-            <input type="hidden" name="courseCode" value="<?php echo $courseCode; ?>"/>
-            <input type="submit" name="update" Value="Update">
-            <a href="../show/courseinfo.php?id=<?php echo $courseCode ?>">Back</a>
-        </form>
-
-    <?php } ?>
+        <?php } ?>
     </div>
 </main>
 
