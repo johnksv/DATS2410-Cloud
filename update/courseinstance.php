@@ -49,8 +49,6 @@ include_once '../html/header.php';
             $result = $stat->get_result();
             $conn->close();
 
-            $result = $conn->query($sql);
-
             if ($result->num_rows > 0) {
                 // output data of each row
                 while ($row = $result->fetch_assoc()) {
@@ -63,18 +61,20 @@ include_once '../html/header.php';
                 header('Refresh: 2;URL=../show/course.php');
             } ?>
 
-            <form action="courseinstance.php" method="post">
-                Exam date: <input type="date" name="examDate" value="<?php echo $examDate; ?>"><br>
+        <form action="courseinstance.php" method="post">
+            Exam date: <input type="date" name="examDate" value="<?php echo $examDate; ?>"><br>
 
 
-                <br>
 
-                <input type="hidden" name="startDate" value="<?php echo $startDate; ?>"/>
-                <input type="hidden" name="courseCode" value="<?php echo $courseCode; ?>"/>
-                <input type="submit" name="update" Value="Update">
-            </form>
+            <br>
 
-        <?php } ?>
+            <input type="hidden" name="startDate" value="<?php echo $startDate; ?>"/>
+            <input type="hidden" name="courseCode" value="<?php echo $courseCode; ?>"/>
+            <input type="submit" name="update" Value="Update">
+            <a href="../show/courseinfo.php?id=<?php echo $courseCode ?>">Back</a>
+        </form>
+
+    <?php } ?>
     </div>
 </main>
 

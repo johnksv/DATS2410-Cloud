@@ -79,8 +79,10 @@ include_once '../html/header.php';
                     require_once '../Connection.php';
                     $conn = (new Connection())->connect();
 
-                    $sql = "SELECT courseCode, courseTitle FROM Course";
-                    $result = $conn->query($sql);
+                    $stat = $conn->prepare("SELECT courseCode, courseTitle FROM Course where courseCode not in (Select cc.courseCode from CourseType as cc where cc.sPID=?)");
+					$stat->bind_param("s", $sPID);
+					$stat->execute();
+					$result = $stat->get_result();
                     // output data of each row
                     while ($row = $result->fetch_assoc()) {
                         $selected = (!empty($courseCode) && $courseCode == $row['courseCode']) ? 'selected' : ' ';
