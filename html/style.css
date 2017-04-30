@@ -59,9 +59,8 @@ nav a {
     border-top: solid 1px;
     color: white;
 }
-
-table {
-    background: white;
+nav a:last-of-type{
+    border-bottom: solid 0px;
 }
 
 nav a.active {
@@ -89,6 +88,15 @@ nav a:last-of-type{
 nav a:first-of-type{
     border-top: solid 0px;
 }
+
+nav a:hover{
+    background: #ea6e00;
+}
+
+table {
+    background: white;
+}
+
 
 main {
     margin: 0 auto;

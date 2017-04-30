@@ -57,7 +57,7 @@ include_once '../html/header.php';
                         <td>
                             <form action="studyprograminfo.php" method="get">
                                 <input type="hidden" name="id" value="<?php echo $row['sPID'] ?>">
-                                <input type="submit" value="Show courses"><br>
+                                <input type="submit" value="More info"><br>
 
                             </form>
 

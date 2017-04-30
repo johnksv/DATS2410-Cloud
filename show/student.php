@@ -35,7 +35,7 @@ include_once '../html/header.php';
                 <th>Firstname</th>
                 <th>Lastname</th>
                 <th>Email</th>
-                <th>StartYear</th>
+                <th>Start date</th>
                 <th>StudentID</th>
                 <th></th>
             </tr>
@@ -52,7 +52,7 @@ include_once '../html/header.php';
 
                         <form action="studentinfo.php" method="get">
                             <input type="hidden" name="id" value="<?php echo $row['studentID'] ?>">
-                            <input type="submit" value="Show Info"><br>
+                            <input type="submit" value="More info"><br>
 
                         </form>
 

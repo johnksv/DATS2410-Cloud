@@ -133,8 +133,8 @@ include_once '../html/header.php';
                         <th> Course Title</th>
                         <th> Course Code</th>
                         <th> Standard Semester</th>
-                        <th> Type </th>
-                        <th> Action </th>
+                        <th> Type</th>
+                        <th> Action</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -143,7 +143,7 @@ include_once '../html/header.php';
                             <td><?php echo $row['courseTitle'] ?></td>
                             <td><?php echo $row['courseCode'] ?></td>
                             <td><?php echo $row['standardSemester'] ?></td>
-                            <td><?php echo $row['type']=="M" ? "Mandatory" : "Elective" ?></td>
+                            <td><?php echo $row['type'] == "M" ? "Mandatory" : "Elective" ?></td>
                             <td>
                                 <form action="delete.php" method="post">
                                     <input type="hidden" name="id" value="<?php echo $id ?>">
@@ -157,6 +157,47 @@ include_once '../html/header.php';
 
                         </tr>
                     <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+
+            <div>
+                <h3>Students applied with program</h3>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Student ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Completed date</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $conn = (new Connection())->connect();
+                    $stat = $conn->prepare("SELECT studentID AS 'sID', completed FROM Student_has_StudyProgram WHERE sPID=?");
+                    $stat->bind_param("s", $id);
+                    $stat->execute();
+                    $result = $stat->get_result();
+
+                    while ($row = $result->fetch_assoc()) {
+                        $stat = $conn->prepare("SELECT firstName, lastName, email FROM Student WHERE studentID=?");
+                        $stat->bind_param("s", $row['sID']);
+                        $stat->execute();
+                        $name = $stat->get_result()->fetch_assoc();
+                        ?>
+                        <tr>
+                            <td><?php echo $row['sID']; ?></td>
+                            <td><?php echo $name['firstName'];
+                                echo " ";
+                                echo $name['lastName']; ?></td>
+                            <td><?php echo $name['email']; ?></td>
+                            <td><?php echo $row['completed']; ?></td>
+
+                        </tr>
+                    <?php }
+                    $conn->close(); ?>
                     </tbody>
                 </table>
             </div>
