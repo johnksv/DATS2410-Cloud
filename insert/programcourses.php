@@ -42,13 +42,9 @@ if (empty($_POST['id'])) {
         if ($valid) {
             $conn = (new Connection())->connect();
             $stat = null;
-            if ($type == "M") {
-                $stat = $conn->prepare("INSERT INTO MandatoryCourse (sPID, courseCode, standardSemester) values(?, ?, ?)");
+            $stat = $conn->prepare("INSERT INTO CourseType (sPID, courseCode, standardSemester, type) values(?, ?, ?, ?)");
 
-            } else {
-                $stat = $conn->prepare("INSERT INTO ElectiveCourse (sPID, courseCode, standardSemester)  values(?, ?, ?)");
-            }
-            $stat->bind_param("sss", $sPID, $courseCode, $standardSemester);
+            $stat->bind_param("ssss", $sPID, $courseCode, $standardSemester, $type);
             $stat->execute();
             $conn->close();
 
