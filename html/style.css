@@ -58,14 +58,22 @@ nav a {
     border-bottom: solid 1px;
     color: white;
 }
-
-table {
-    background: white;
+nav a:last-of-type{
+    border-bottom: solid 0px;
 }
 
 nav a.active {
     background: #e3791c;
 }
+
+nav a:hover{
+    background: #ea6e00;
+}
+
+table {
+    background: white;
+}
+
 
 main {
     margin: 0 auto;
