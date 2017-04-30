@@ -129,6 +129,14 @@ include_once '../html/header.php';
 
                                 </form>
 
+                                <form action="delete.php" method="post">
+                                    <input type="hidden" name="id" value="<?php echo $row['sPID'] ?>">
+                                    <input type="hidden" name="studentID" value="<?php echo $studentID ?>">
+                                    <input type="hidden" name="type" value="Student_has_StudyProgram">
+                                    <input type="submit" name="Delete" value="Delete"><br>
+
+                                </form>
+
                             </td>
                         </tr>
                     <?php } ?>
@@ -169,6 +177,13 @@ include_once '../html/header.php';
                                         <input type="hidden" name="grade" value="<?php echo $row['grade'] ?>">
                                         <input type="submit" name="Change" value="Edit"><br>
 
+                                    </form>
+                                    <form action="delete.php" method="post">
+                                        <input type="hidden" name="id" value="<?php echo $row['courseCode'] ?>">
+                                        <input type="hidden" name="studentID" value="<?php echo $studentID ?>">
+                                        <input type="hidden" name="startDate" value="<?php echo $row["startDate"] ?>">
+                                        <input type="hidden" name="type" value="StudentCourse">
+                                        <input type="submit" name="Delete" value="Delete"><br>
                                     </form>
 
                                 </td>

@@ -7,6 +7,8 @@ $type = filter_input(INPUT_POST, "type");
 $id = filter_input(INPUT_POST, "id");
 $course = filter_input(INPUT_POST, "course");
 $courseInfo = filter_input(INPUT_POST, "courseInfo");
+$studentID = filter_input(INPUT_POST, "studentID");
+$startDate = filter_input(INPUT_POST, "startDate");
 
 echo "<h1>Deleting course from database</h1>";
 $stat = "";
@@ -55,8 +57,21 @@ if (strcmp($type, "student") == 0) {
         header("Location: courseinfo.php?id=$course");
     }
 
-}
+}else if (strcmp($type, "Student_has_StudyProgram") == 0) {
 
+    $stat = $conn->prepare("DELETE FROM Student_has_StudyProgram WHERE studentId=? AND sPID=?");
+    $stat->bind_param("ss", $studentID, $id);
+    if ($stat->execute() === TRUE) {
+        header("Location: studentinfo.php?id=$studentID");
+    }
+}else if (strcmp($type, "StudentCourse") == 0) {
+
+    $stat = $conn->prepare("DELETE FROM StudentCourse WHERE studentId=? AND courseCode=? AND startDate=?");
+    $stat->bind_param("sss", $studentID, $id, $startDate);
+    if ($stat->execute() === TRUE) {
+        header("Location: studentinfo.php?id=$studentID");
+    }
+}
 echo "Error deleting record: " . $conn->error;
 $conn->close();
 
