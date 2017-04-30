@@ -68,6 +68,7 @@ include_once '../html/header.php';
             <input type="hidden" name="startDate" value="<?php echo $startDate; ?>"/>
             <input type="hidden" name="courseCode" value="<?php echo $courseCode; ?>"/>
             <input type="submit" name="update" Value="Update">
+            <a href="../show/courseinfo.php?id=<?php echo $courseCode ?>">Back</a>
         </form>
 
     <?php } ?>
