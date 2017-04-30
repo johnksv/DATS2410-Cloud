@@ -26,7 +26,6 @@ $program = "/show/studyprogram.php";
                 href="<?php echo $program; ?>">Programs</a><a <?php if ($site === $course) { ?> class="active" <?php } ?>
                 href="<?php echo $course; ?>">Courses</a>
     </nav>
-
     <div>
         <p>You are served by the server IP: <b><?php echo $_SERVER['SERVER_ADDR']; ?> </b></p>
         <p>Database IP: <b><?php echo "$dbHostInfo" ?> </b></p>

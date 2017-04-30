@@ -56,6 +56,7 @@ nav a {
     margin: 0;
     text-decoration: none;
     border-bottom: solid 1px;
+    border-top: solid 1px;
     color: white;
 }
 
@@ -65,6 +66,28 @@ table {
 
 nav a.active {
     background: #e3791c;
+}
+nav a {
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-transform: perspective(1px) translateZ(0);
+    transform: perspective(1px) translateZ(0);
+    box-shadow: 0 0 1px transparent;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+}
+nav a:hover, nav a:focus, nav a:active {
+    -webkit-transform: scale(1.05);
+    transform: scale(1.05);
+}
+
+nav a:last-of-type{
+    border-bottom: solid 0px;
+}
+nav a:first-of-type{
+    border-top: solid 0px;
 }
 
 main {
