@@ -57,6 +57,10 @@ nav a {
     text-decoration: none;
     border-top: solid 1px;
     color: white;
+    -o-transition:.1s;
+  -ms-transition:.1s;
+  -moz-transition:.1s;
+  -webkit-transition:.1s;
 }
 
 table {
