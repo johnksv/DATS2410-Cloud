@@ -76,7 +76,7 @@ include_once '../html/header.php';
                             echo $row['lastName']; ?></p>
                         <form action="studentinfo.php?id=<?php echo "$studentID"; ?>" method="post">
                             <p><b>E-mail:</b>
-                                <input type="text" name="email" value="<?php echo $row['email']; ?>">
+                                <input type="email" name="email" value="<?php echo $row['email']; ?>">
                             </p>
                             <p><b>Start date:</b>
                                 <input name="startYear" type="date" value="<?php echo $row['startYear']; ?>">
