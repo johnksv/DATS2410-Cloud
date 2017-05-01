@@ -91,7 +91,7 @@ include_once '../html/header.php';
 
             <label>Duration (number of semesters)</label>
             <div>
-                <input name="durationSemester" type="number" min="1" max="5"
+                <input name="durationSemester" type="number" min="1" max="14"
                        value="<?php echo !empty($durationSemester) ? $durationSemester : ''; ?>">
                 <?php if (!empty($durationError)): ?>
                     <span><?php echo $durationError; ?></span>
